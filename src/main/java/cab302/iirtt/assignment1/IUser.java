@@ -29,6 +29,6 @@ public interface IUser {
     // Takes in multiple parameters
     // If the all parameters are in the correct formatting, the user's data will be updated with the new data and a "successful pop up will display";
     // otherwise, it will display an error message for that error.
-    //    abstract boolean modifyUser();
+    abstract boolean modifyUser();
 
 }
