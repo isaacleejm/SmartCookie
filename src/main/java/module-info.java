@@ -1,6 +1,8 @@
 module cab302.iirtt.assignment1 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.json;
+    requires java.net.http;
 
 
     opens cab302.iirtt.assignment1 to javafx.fxml;

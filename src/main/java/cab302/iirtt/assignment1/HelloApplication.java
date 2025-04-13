@@ -18,6 +18,9 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        GeminiAPI geminiAPI = new GeminiAPI();
+        geminiAPI.run("How does AI work? Please explain in less than 40 words.");
         launch();
+
     }
 }

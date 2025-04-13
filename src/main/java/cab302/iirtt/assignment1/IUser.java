@@ -32,3 +32,4 @@ public interface IUser {
     abstract boolean modifyUser();
 
 }
+ 
