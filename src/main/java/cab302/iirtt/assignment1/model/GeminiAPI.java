@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
