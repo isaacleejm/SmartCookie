@@ -21,7 +21,7 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         // Create table if not exists
         try {
             Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS studentGoals ("
+            String query = "CREATE TABLE IF NOT EXISTS studyGoals ("
                     + "studyGoalID INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "studyGoalTitle VARCHAR NOT NULL,"
                     + "studyGoalDescription VARCHAR NOT NULL,"
@@ -45,10 +45,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         try {
             // Clear before inserting
             Statement clearStatement = connection.createStatement();
-            String clearQuery = "DELETE FROM studentGoals";
+            String clearQuery = "DELETE FROM studyGoals";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO studentGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES "
+            String insertQuery = "INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES "
                     + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 0, 1, '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 42),"
                     + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 1, 0, '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 53)";
             insertStatement.execute(insertQuery);
