@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.model;
 
 public interface IUser {
     // Allows the User to sign in to an existing account, using an email and password
@@ -13,7 +13,7 @@ public interface IUser {
     // Each parameter will have to be tested for correct formatting, such as password has to be n length, and passwords have to be same, or phone number is invalid.
     // If an incorrect format is used, an error message will display for that error, otherwise, the account will be created successfully,
     // the User object will be added to the User database, and they will be directed to the login page.
-    abstract void userRegistration(String name, String password, String confirmPassword, String phoneNumber);
+    abstract void userRegistration(String firstName, String lastName, String email, String password, String confirmPassword);
 
     // Allows the User to Logout of an account
     // This method will have zero parameters ()
