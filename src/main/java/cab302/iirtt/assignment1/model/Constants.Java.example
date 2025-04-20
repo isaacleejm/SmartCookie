@@ -3,5 +3,5 @@ package cab302.iirtt.assignment1.model;
 // 2. Make your own Gemini API Key from the link below:
 // https://aistudio.google.com/prompts/new_chat?model=gemini-2.0-flash
 public final class Constants {
-    public static final String API_KEY = "AIzaSyCWf5KrfHhNeMShFlL3i3D3kuTv_W6rakY";
+    public static final String API_KEY = "PASTE YOU API KEY HERE";
 }
