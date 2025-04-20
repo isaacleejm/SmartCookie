@@ -2,6 +2,7 @@ package cab302.iirtt.assignment1;
 
 
 import cab302.iirtt.assignment1.model.GeminiAPI;
+import cab302.iirtt.assignment1.model.StudyGoalDAO;
 import cab302.iirtt.assignment1.model.UserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,9 @@ public class MainApplication extends Application {
 
         // This should create the database (if the database has not yet been created) and create the users table (if users table has not yet been created)
         UserDAO userDAO = new UserDAO();
+
+        // This should create the database (if the database has not yet been created) and create the studyGoals table (if studyGoals table has not yet been created)
+        StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
 
         launch();
 
