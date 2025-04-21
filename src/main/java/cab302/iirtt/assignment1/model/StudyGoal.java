@@ -1,6 +1,6 @@
 package cab302.iirtt.assignment1.model;
 
-public class StudyGoal {
+public class StudyGoal implements IStudyGoal {
 
     private int studyGoalID;
     private String studyGoalTitle;
@@ -79,4 +79,43 @@ public class StudyGoal {
     }
 
 
+    @Override
+    public void newStudyGoal(int studyGoalID, String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, String userID) {
+
+    }
+
+    @Override
+    public void deleteStudyGoal(int studyGoalID) {
+
+    }
+
+    @Override
+    public void changeStudyGoalPriority(int studyGoalID, String studyGoalPriority) {
+
+    }
+
+    @Override
+    public void changeStudyGoalStatus(int studyGoalID, Boolean studyGoalStatus) {
+
+    }
+
+    @Override
+    public void pinStudyGoal(int studyGoalID, Boolean pinned) {
+
+    }
+
+    @Override
+    public void changeStudyGoalDueDate(int studyGoalID, String dueDate) {
+
+    }
+
+    @Override
+    public void changeStudyGoalTitle(int studyGoalID, String studyGoalTitle) {
+
+    }
+
+    @Override
+    public void changeStudyGoalDescription(int studyGoalID, String studyGoalDescription) {
+
+    }
 }
