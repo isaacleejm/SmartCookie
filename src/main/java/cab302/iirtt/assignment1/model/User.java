@@ -10,7 +10,10 @@ public class User implements IUser {
     private String mood;
     private String memberSince;
 
+    // Default Constructor
+    public User() {
 
+    }
     // Constructor
     public User(String firstName, String lastName, String email, String password, String mood, String memberSince) {
         this.firstName = firstName;
@@ -100,7 +103,7 @@ public class User implements IUser {
     }
 
     @Override
-    public boolean modifyUser() {
+    public boolean modifyUser(String firstName, String lastName, String email, String password, String mood, String memberSince) {
         // NOT YET IMPLEMENTED
         return false;
     }
