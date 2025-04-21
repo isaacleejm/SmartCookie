@@ -55,27 +55,25 @@ public class StudyGoal implements IStudyGoal {
         return userID;
     }
 
-    public int setStudyGoalID(int anInt) { return studyGoalID; }
-    public String setStudyGoalTitle() {
-        return studyGoalTitle;
+    public void setStudyGoalID(int studyGoalID) { this.studyGoalID = studyGoalID; }
+    public void setStudyGoalTitle(String studyGoalTitle) {
+        this.studyGoalTitle = studyGoalTitle;
     }
-    public String setStudyGoalDescription() {
-        return studyGoalDescription;
+    public void setStudyGoalDescription(String studyGoalDescription) { this.studyGoalDescription = studyGoalDescription; }
+    public void setStudyGoalPriority(String studyGoalPriority) { this.studyGoalPriority = studyGoalPriority; }
+    public void setStudyGoalStatus(boolean studyGoalStatus) { this.studyGoalStatus = studyGoalStatus; }
+    public void setPinned(boolean pinned) {
+        this.pinned = pinned;
     }
-    public String setStudyGoalPriority() { return studyGoalPriority; }
-    public Boolean setStudyGoalStatus() {return studyGoalStatus; }
-    public Boolean setPinned() {
-        return pinned;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
-    public String setDueDate() {
-        return dueDate;
+    public void setLastModified(String lastModified) { this.lastModified = lastModified; }
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
-    public String setLastModified() { return lastModified; }
-    public String setDateCreated() {
-        return dateCreated;
-    }
-    public int setUserID() {
-        return userID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
 
