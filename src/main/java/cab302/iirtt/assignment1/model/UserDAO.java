@@ -11,7 +11,7 @@ public class UserDAO implements IUserDAO {
     // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create a users table if it does not already exist.
     public UserDAO() {
         connection = DatabaseConnection.getInstance();
-        deleteUserTable(); // Used for testing, TO BE REMOVED LATER
+        deleteTable(); // Used for testing, TO BE REMOVED LATER
         createTable();
         insertSampleData(); // Used for testing, TO BE REMOVED LATER
     }
@@ -35,7 +35,8 @@ public class UserDAO implements IUserDAO {
             e.printStackTrace();
         }
     }
-    private void deleteUserTable() {
+    // DROPs the users table if it exists
+    private void deleteTable() {
         try {
             Statement statement = connection.createStatement();
             String query = "DROP TABLE IF EXISTS users";

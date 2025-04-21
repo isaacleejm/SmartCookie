@@ -11,9 +11,9 @@ public class StudyGoalDAO implements IStudyGoalDAO {
     // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create a StudyGoal table if it does not already exist.
     public StudyGoalDAO() {
         connection = DatabaseConnection.getInstance();
+        deleteTable(); // Used for testing, TO BE REMOVED LATER
         createTable();
-        // Used for testing, TO BE REMOVED LATER
-        insertSampleData();
+        insertSampleData(); // Used for testing, TO BE REMOVED LATER
     }
 
     // Creates the StudyGoal table if it does not exist yet
@@ -31,7 +31,8 @@ public class StudyGoalDAO implements IStudyGoalDAO {
                     + "dueDate VARCHAR NOT NULL,"
                     + "lastModified DATETIME NOT NULL,"
                     + "dateCreated DATETIME NOT NULL,"
-                    + "userID INTEGER NOT NULL"
+                    + "userID INTEGER NOT NULL,"
+                    + "FOREIGN KEY (userID) REFERENCES users(userID)"
                     // userID is not a Foreign Key until it can be linked with the usersDatabase
                     + ")";
             statement.execute(query);
@@ -39,7 +40,16 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             e.printStackTrace();
         }
     }
-
+    // DROPs the studyGoals table if it exists
+    private void deleteTable() {
+        try {
+            Statement statement = connection.createStatement();
+            String query = "DROP TABLE IF EXISTS studyGoals";
+            statement.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     // This method inserts sample data into StudyGoal table and will be removed when submitting. NOTE: This method does not consider duplicate data
     private void insertSampleData() {
         try {
@@ -49,8 +59,9 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
             String insertQuery = "INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES "
-                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 0, 1, '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 42),"
-                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 1, 0, '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 53)";
+                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 0, 1, '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 2),"
+                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 1, 0, '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 1),"
+                    + "('Complete Assignment', 'Complete CAB123 assignment 1', 'High', 1, 1, '" + LocalDate.of(2025, 05, 25) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 3)";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
