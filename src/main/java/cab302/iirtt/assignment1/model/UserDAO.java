@@ -114,7 +114,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public IUser getUser(int userID) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userID = ?");
             statement.setInt(1, userID);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
