@@ -76,44 +76,43 @@ public class StudyGoal implements IStudyGoal {
         this.userID = userID;
     }
 
-
     @Override
-    public void newStudyGoal(int studyGoalID, String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, String userID) {
+    public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, int userID) {
 
     }
 
     @Override
-    public void deleteStudyGoal(int studyGoalID) {
+    public void deleteStudyGoal() {
 
     }
 
     @Override
-    public void changeStudyGoalPriority(int studyGoalID, String studyGoalPriority) {
+    public void changeStudyGoalPriority(String studyGoalPriority) {
 
     }
 
     @Override
-    public void changeStudyGoalStatus(int studyGoalID, Boolean studyGoalStatus) {
+    public void toggleStudyGoalStatus() {
 
     }
 
     @Override
-    public void pinStudyGoal(int studyGoalID, Boolean pinned) {
+    public void togglePinStudyGoal() {
 
     }
 
     @Override
-    public void changeStudyGoalDueDate(int studyGoalID, String dueDate) {
+    public void changeStudyGoalDueDate(String dueDate) {
 
     }
 
     @Override
-    public void changeStudyGoalTitle(int studyGoalID, String studyGoalTitle) {
+    public void changeStudyGoalTitle(String studyGoalTitle) {
 
     }
 
     @Override
-    public void changeStudyGoalDescription(int studyGoalID, String studyGoalDescription) {
+    public void changeStudyGoalDescription(String studyGoalDescription) {
 
     }
 }
