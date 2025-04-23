@@ -2,6 +2,7 @@ package cab302.iirtt.assignment1;
 
 
 import cab302.iirtt.assignment1.model.GeminiAPI;
+import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.StudyGoalDAO;
 import cab302.iirtt.assignment1.model.UserDAO;
 import javafx.application.Application;
@@ -31,6 +32,10 @@ public class MainApplication extends Application {
 
         // This should create the database (if the database has not yet been created) and create the studyGoals table (if studyGoals table has not yet been created)
         StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+
+        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
+        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
+
 
         launch();
 
