@@ -69,7 +69,55 @@ public class User implements IUser {
         this.username = username;
     }
     public void setPassword(String password) {
-        this.password = password;
+        if (!password.trim().isEmpty()) {
+            if (password.length() > 7) {
+                boolean hasUpper = false;
+                boolean hasLower = false;
+                boolean hasDigit = false;
+                boolean hasSpaces = false;
+                boolean hasSpecial = false;
+                for (int i = 0; i < password.length(); i++) {
+                    char character = password.charAt(i);
+                    if (Character.isLowerCase(character)) {
+                        hasUpper = true;
+                    }
+                    if (Character.isUpperCase(character)) {
+                        hasLower = true;
+                    }
+                    if (Character.isDigit(character)) {
+                        hasDigit = true;
+                    }
+                    if (Character.isSpaceChar(character)) {
+                        hasSpaces = true;
+                    }
+                    if (!Character.isLetter(character) && !Character.isDigit(character) && !Character.isWhitespace(character)) {
+                        hasSpecial = true;
+                    }
+                }
+                if (!hasSpaces) {
+                    if (hasUpper && hasLower) {
+                        if (hasDigit) {
+                            if (hasSpecial) {
+                                System.out.println("ALL CONDITIONS OF THE PASSWORD HAVE BEEN MET"); // ONCE ALL CONDITIONS WAS MET AND THE PASSWORD IS VALID
+                                this.password = password;
+                            } else {
+                                System.out.println("Password must have at least one Special Characters");
+                            }
+                        } else {
+                            System.out.println("Password must have at least one number");
+                        }
+                    } else {
+                        System.out.println("Password must have both Upper and Lower Cases");
+                    }
+                } else {
+                    System.out.println("Password cannot have spaces");
+                }
+            } else {
+                System.out.println("Password must be more than 7");
+            }
+        } else {
+            System.out.println("Password cannot be empty!");
+        }
     }
     public void setMood(String mood) {
         this.mood = mood;
