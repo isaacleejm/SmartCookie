@@ -30,5 +30,5 @@ public interface IAIResponse {
 
     // This feature allows the user to change the tone of the messages being generated
     // It takes responseType as its only parameter
-    abstract void changeTone(String responseType) ;
+    abstract void changeType(String responseType) ;
 }
