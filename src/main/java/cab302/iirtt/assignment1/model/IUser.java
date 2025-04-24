@@ -11,7 +11,6 @@ public interface IUser {
     public static User userLogin(String username, String password) {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.getUserByUsername(username);
-        System.out.println(user);
         if (user == null) { return null; }
         if (password.equals(user.getPassword())) {
             return user;
