@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.User;
 import cab302.iirtt.assignment1.model.UserDAO;
 import javafx.fxml.FXML;
@@ -21,50 +22,52 @@ public class SignUpController {
     }
 
     @FXML
-    private void setFirstNameField() {
+    private boolean setFirstNameField() {
         String firstName = firstNameField.getText().trim();
         // Format checking for Username
         for (int i = 0; i < firstName.length(); i++) {
             char character = firstName.charAt(i);
             if (!(Character.isLetter(character) || Character.isWhitespace(character))) {
                 System.out.println("First Name can only contain letters");
-                return;
+                return false;
             }
         }
         System.out.println("Valid First Name used");
+        return true;
     }
 
     @FXML
-    private void setLastNameField() {
+    private boolean setLastNameField() {
         String lastName = lastNameField.getText().trim();
         // Format checking for Username
         for (int i = 0; i < lastName.length(); i++) {
             char character = lastName.charAt(i);
             if (!(Character.isLetter(character) || Character.isWhitespace(character))) {
                 System.out.println("Last Name can only contain letters");
-                return;
+                return false;
             }
         }
         System.out.println("Valid Last Name used");
+        return true;
     }
 
     @FXML
-    private void setUsernameField() {
+    private boolean setUsernameField() {
         String username = usernameField.getText().trim();
         // Format checking for Username
         if (username.length() < 4) {
             System.out.println("Username must have more than 3 characters");
-            return;
+            return false;
         }
         for (int i = 0; i < username.length(); i++) {
             char character = username.charAt(i);
             if (Character.isSpaceChar(character)) {
                 System.out.println("Username cannot have spaces");
-                return;
+                return false;
             }
             if (!(Character.isLetter(character) || Character.isDigit(character))) {
                 System.out.println("username can only contain letter and digits");
-                return;
+                return false;
             }
         }
         // Once Format has been checked, it checks if username exist in the database
@@ -72,15 +75,15 @@ public class SignUpController {
         User user = userDAO.getUserByUsername(usernameField.getText().trim());
         if (userDAO.getUserByUsername(usernameField.getText().trim()) == null) {
             System.out.println("username available");// Replace this line with the message/Text display, "Username is available"
-            // Maybe disable the SignUp button if conditions aren't met
+            return true;
         } else {
             System.out.println("username taken");// Replace this line with the message/Text display, "Username has been taken"
-            // Maybe enables the SignUp button if all conditions are met
+            return false;
         }
     }
 
     @FXML
-    private void setPasswordField() {
+    private boolean setPasswordField() {
         String password = passwordField.getText();
         if (!password.isEmpty()) {
             if (password.length() > 7) {
@@ -112,6 +115,7 @@ public class SignUpController {
                         if (hasDigit) {
                             if (hasSpecial) {
                                 System.out.println("ALL CONDITIONS OF THE PASSWORD HAVE BEEN MET"); // ONCE ALL CONDITIONS WAS MET AND THE PASSWORD IS VALID
+                                return true;
                             } else {
                                 System.out.println("Password must have at least one Special Characters");
                             }
@@ -130,41 +134,35 @@ public class SignUpController {
         } else {
             System.out.println("Password cannot be empty!");
         }
+        return false;
     }
 
     @FXML
-    private void setConfirmPasswordField() {
+    private boolean setConfirmPasswordField() {
         if (passwordField.getText().equals(confirmPasswordField.getText())) {
             System.out.println("Passwords match");
+            return true;
         } else {
             System.out.println("Passwords do not match");
         }
+        return false;
     }
 
     @FXML
     private void onSignUpButtonClick() {
-        String firstName = firstNameField.getText().trim();
-        String lastName = lastNameField.getText().trim();
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
-
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Please fill in all fields.");
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            showAlert(Alert.AlertType.ERROR, "Passwords do not match.");
-            return;
-        }
-
         // TODO: Add username format validation, password rules, and database integration
+        // Checks if all fields are of correct format
+        if (setFirstNameField() && setLastNameField() && setUsernameField() && setPasswordField() && setConfirmPasswordField()) {
+            // Creates a new user account and stores it within the database
+            IUser.userRegistration(firstNameField.getText().trim(), lastNameField.getText().trim(), usernameField.getText().trim(), passwordField.getText());
+            // Placeholder success
+            showAlert(Alert.AlertType.INFORMATION, "Account created successfully!");
+            // TODO: Navigate to login screen after signup
+        }
 
-        // Placeholder success
-        showAlert(Alert.AlertType.INFORMATION, "Account created successfully!");
 
-        // TODO: Navigate to login screen after signup
+
+
     }
 
     private void showAlert(Alert.AlertType type, String message) {
