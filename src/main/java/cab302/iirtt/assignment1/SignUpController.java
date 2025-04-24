@@ -1,5 +1,7 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.model.User;
+import cab302.iirtt.assignment1.model.UserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -9,7 +11,7 @@ public class SignUpController {
 
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
+    @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
 
@@ -19,14 +21,135 @@ public class SignUpController {
     }
 
     @FXML
+    private void setFirstNameField() {
+        String firstName = firstNameField.getText().trim();
+        // Format checking for Username
+        for (int i = 0; i < firstName.length(); i++) {
+            char character = firstName.charAt(i);
+            if (!(Character.isLetter(character) || Character.isWhitespace(character))) {
+                System.out.println("First Name can only contain letters");
+                return;
+            }
+        }
+        System.out.println("Valid First Name used");
+    }
+
+    @FXML
+    private void setLastNameField() {
+        String lastName = lastNameField.getText().trim();
+        // Format checking for Username
+        for (int i = 0; i < lastName.length(); i++) {
+            char character = lastName.charAt(i);
+            if (!(Character.isLetter(character) || Character.isWhitespace(character))) {
+                System.out.println("Last Name can only contain letters");
+                return;
+            }
+        }
+        System.out.println("Valid Last Name used");
+    }
+
+    @FXML
+    private void setUsernameField() {
+        String username = usernameField.getText().trim();
+        // Format checking for Username
+        if (username.length() < 4) {
+            System.out.println("Username must have more than 3 characters");
+            return;
+        }
+        for (int i = 0; i < username.length(); i++) {
+            char character = username.charAt(i);
+            if (Character.isSpaceChar(character)) {
+                System.out.println("Username cannot have spaces");
+                return;
+            }
+            if (!(Character.isLetter(character) || Character.isDigit(character))) {
+                System.out.println("username can only contain letter and digits");
+                return;
+            }
+        }
+        // Once Format has been checked, it checks if username exist in the database
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByUsername(usernameField.getText().trim());
+        if (userDAO.getUserByUsername(usernameField.getText().trim()) == null) {
+            System.out.println("username available");// Replace this line with the message/Text display, "Username is available"
+            // Maybe disable the SignUp button if conditions aren't met
+        } else {
+            System.out.println("username taken");// Replace this line with the message/Text display, "Username has been taken"
+            // Maybe enables the SignUp button if all conditions are met
+        }
+    }
+
+    @FXML
+    private void setPasswordField() {
+        String password = passwordField.getText();
+        if (!password.isEmpty()) {
+            if (password.length() > 7) {
+                boolean hasUpper = false;
+                boolean hasLower = false;
+                boolean hasDigit = false;
+                boolean hasSpaces = false;
+                boolean hasSpecial = false;
+                for (int i = 0; i < password.length(); i++) {
+                    char character = password.charAt(i);
+                    if (Character.isLowerCase(character)) {
+                        hasUpper = true;
+                    }
+                    if (Character.isUpperCase(character)) {
+                        hasLower = true;
+                    }
+                    if (Character.isDigit(character)) {
+                        hasDigit = true;
+                    }
+                    if (Character.isSpaceChar(character)) {
+                        hasSpaces = true;
+                    }
+                    if (!Character.isLetter(character) && !Character.isDigit(character) && !Character.isWhitespace(character)) {
+                        hasSpecial = true;
+                    }
+                }
+                if (!hasSpaces) {
+                    if (hasUpper && hasLower) {
+                        if (hasDigit) {
+                            if (hasSpecial) {
+                                System.out.println("ALL CONDITIONS OF THE PASSWORD HAVE BEEN MET"); // ONCE ALL CONDITIONS WAS MET AND THE PASSWORD IS VALID
+                            } else {
+                                System.out.println("Password must have at least one Special Characters");
+                            }
+                        } else {
+                            System.out.println("Password must have at least one number");
+                        }
+                    } else {
+                        System.out.println("Password must have both Upper and Lower Cases");
+                    }
+                } else {
+                    System.out.println("Password cannot have spaces");
+                }
+            } else {
+                System.out.println("Password must be more than 7");
+            }
+        } else {
+            System.out.println("Password cannot be empty!");
+        }
+    }
+
+    @FXML
+    private void setConfirmPasswordField() {
+        if (passwordField.getText().equals(confirmPasswordField.getText())) {
+            System.out.println("Passwords match");
+        } else {
+            System.out.println("Passwords do not match");
+        }
+    }
+
+    @FXML
     private void onSignUpButtonClick() {
         String firstName = firstNameField.getText().trim();
         String lastName = lastNameField.getText().trim();
-        String email = emailField.getText().trim();
+        String username = usernameField.getText().trim();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Please fill in all fields.");
             return;
         }
@@ -36,7 +159,7 @@ public class SignUpController {
             return;
         }
 
-        // TODO: Add email format validation, password rules, and database integration
+        // TODO: Add username format validation, password rules, and database integration
 
         // Placeholder success
         showAlert(Alert.AlertType.INFORMATION, "Account created successfully!");
