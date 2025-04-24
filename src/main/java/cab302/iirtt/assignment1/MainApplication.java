@@ -29,9 +29,11 @@ public class MainApplication extends Application {
 
         // This should create the database (if the database has not yet been created) and create the users table (if users table has not yet been created)
         UserDAO userDAO = new UserDAO();
+        userDAO.start();
 
         // This should create the database (if the database has not yet been created) and create the studyGoals table (if studyGoals table has not yet been created)
         StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+        studyGoalDAO.start();
 
         IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
         IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
