@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class SignUpController {
 
     @FXML private TextField firstNameField;
@@ -149,7 +151,7 @@ public class SignUpController {
     }
 
     @FXML
-    private void onSignUpButtonClick() {
+    private void onSignUpButtonClick() throws IOException {
         // TODO: Add username format validation, password rules, and database integration
         // Checks if all fields are of correct format
         if (setFirstNameField() && setLastNameField() && setUsernameField() && setPasswordField() && setConfirmPasswordField()) {
@@ -158,6 +160,7 @@ public class SignUpController {
             // Placeholder success
             showAlert(Alert.AlertType.INFORMATION, "Account created successfully!");
             // TODO: Navigate to login screen after signup
+                MainApplication.setRoot("login-view");
         }
 
 

@@ -25,7 +25,7 @@ public class LoginController {
     private void onSignInButtonClick() {
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() +"has successfuly Signed In!");
+            System.out.println(user.getFirstName() + " " + user.getLastName() + " has successfully Signed In!");
             // TODO: Open Dashboard page and pass the LoggedIn User there
         } else {
             System.out.println("Incorrect username or password");
@@ -34,8 +34,8 @@ public class LoginController {
     }
 
     @FXML
-    private void onCreateAccountButtonClick() {
-        // TODO: Goes to SignUp Page
+    private void onCreateAccountButtonClick() throws IOException {
+        MainApplication.setRoot("signUp-view");
     }
 
     private void loadMainScene() {
