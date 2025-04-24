@@ -25,10 +25,12 @@ public class UserDAO implements IUserDAO {
                     + "userID INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "firstName VARCHAR NOT NULL,"
                     + "lastName VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL,"
+                    + "username VARCHAR NOT NULL,"
                     + "password VARCHAR NOT NULL,"
                     + "mood VARCHAR NOT NULL,"
-                    + "memberSince DATETIME NOT NULL"
+                    + "memberSince DATETIME NOT NULL,"
+                    + "dateLoggedIn DATETIME NOT NULL,"
+                    + "streak INTEGER NOT NULL"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -53,10 +55,10 @@ public class UserDAO implements IUserDAO {
             String clearQuery = "DELETE FROM users";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO users (firstName, lastName, email, password, mood, memberSince) VALUES "
-                    + "('John', 'Doe', 'johndoe@example.com', 'password123', 'neutral', '" + LocalDate.now() + "'),"
-                    + "('Jane', 'Doe', 'janedoe@example.com', 'password321', 'neutral', '" + LocalDate.now() + "'),"
-                    + "('Jay', 'Doe', 'jaydoe@example.com', 'isnotmypassword', 'neutral', '" + LocalDate.now() + "')";
+            String insertQuery = "INSERT INTO users (firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak) VALUES "
+                    + "('John', 'Doe', 'johndoe', 'password123', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
+                    + "('Jane', 'Doe', 'janedoe', 'password321', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
+                    + "('Jay', 'Doe', 'jaydoe', 'isnotmypassword', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0')";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,13 +68,15 @@ public class UserDAO implements IUserDAO {
     @Override
     public void addUser(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (firstName, lastName, email, password, mood, memberSince) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
-            statement.setString(3, user.getEmail());
+            statement.setString(3, user.getUsername());
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getMood());
             statement.setString(6, user.getMemberSince());
+            statement.setString(7, user.getDateLoggedIn());
+            statement.setInt(8, user.getStreak());
             statement.executeUpdate();
             // Set the id of the new user
             ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -87,14 +91,16 @@ public class UserDAO implements IUserDAO {
     @Override
     public void updateUser(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, email = ?, password = ?, mood = ?, memberSince = ? WHERE userID = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, username = ?, password = ?, mood = ?, memberSince = ?, dateLoggedIn = ?, streak = ? WHERE userID = ?");
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
-            statement.setString(3, user.getEmail());
+            statement.setString(3, user.getUsername());
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getMood());
             statement.setString(6, user.getMemberSince());
-            statement.setInt(7, user.getUserID());
+            statement.setString(7, user.getDateLoggedIn());
+            statement.setInt(8, user.getStreak());
+            statement.setInt(9, user.getUserID());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,7 +108,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUserByID(User user) {
         try {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE userID = ?");
             statement.setInt(1, user.getUserID());
@@ -113,7 +119,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public IUser getUser(int userID) {
+    public User getUserByID(int userID) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userID = ?");
             statement.setInt(1, userID);
@@ -121,11 +127,38 @@ public class UserDAO implements IUserDAO {
             if (resultSet.next()) {
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                String email = resultSet.getString("email");
+                String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 String mood = resultSet.getString("mood");
                 String memberSince = resultSet.getString("memberSince");
-                User user = new User(firstName, lastName, email, password, mood, memberSince);
+                String dateLoggedIn = resultSet.getString("dateLoggedIn");
+                int streak = resultSet.getInt("streak");
+                User user = new User(firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak);
+                user.setUserID(userID);
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int userID = resultSet.getInt("userID");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String password = resultSet.getString("password");
+                String mood = resultSet.getString("mood");
+                String memberSince = resultSet.getString("memberSince");
+                String dateLoggedIn = resultSet.getString("dateLoggedIn");
+                int streak = resultSet.getInt("streak");
+                User user = new User(firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak);
                 user.setUserID(userID);
                 return user;
             }
@@ -146,11 +179,13 @@ public class UserDAO implements IUserDAO {
                 int userID = resultSet.getInt("userID");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                String email = resultSet.getString("email");
+                String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 String mood = resultSet.getString("mood");
                 String memberSince = resultSet.getString("memberSince");
-                User user = new User(firstName, lastName, email, password, mood, memberSince);
+                String dateLoggedIn = resultSet.getString("dateLoggedIn");
+                int streak = resultSet.getInt("streak");
+                User user = new User(firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak);
                 user.setUserID(userID);
                 users.add(user);
             }
