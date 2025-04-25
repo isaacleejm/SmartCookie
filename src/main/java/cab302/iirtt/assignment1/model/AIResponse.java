@@ -4,49 +4,53 @@ import java.time.LocalDate;
 
 public class AIResponse implements IAIResponse{
     // AI Responses Variables.  ---> type (fortune cookie, motivational quote, advice/tips)
+    public enum ResponseType {
+        MOTIVATIONAL_QUOTE,
+        ADVICE_TIP,
+        FUN_PREDICTION,
+        FORTUNE_COOKIE
+    }
     private int responseID;  //Unique ID for response.
-    private String responseType;    //Tone of the response
+    private ResponseType responseType;
     private int responseRating; //User rating given for response.
     private String userInput;    //user input which response is based on.
     private int userID;
     private String responseDate;
-    private int responseTime;   // Time taken to generate response.
     private String responseText;
-    // boolean favourite
+    private boolean favourite;
 
     // Constructor
-    public AIResponse (int responseID, int responseRating, String responseText, String userInput) {
+    public AIResponse (int responseID, ResponseType responseType, int responseRating, String responseDate, String responseText, String userInput, int userID,  boolean favourite) {
         this.responseID = responseID; // id auto
-
         // specifies the type of AI repsoonse "is it fortuneCookie, adviceTip, motivationalQuotes, funPrediction"
-        this.responseType = "fun";  //This is just a placeholder/default, it can be changed for user preference.
+        this.responseType = responseType;  //This is just a placeholder/default, it can be changed for user preference.
         this.responseRating = responseRating;
         this.userInput = userInput;
         this.userID = userID;
         this.responseDate = responseDate;
-        this.responseTime = responseTime; //
         this.responseText = responseText;
-        // add favourite/saved/pinned/liked boolean
+        this.favourite = favourite;
     }
 
     // Getter and Setter
     public int getAIResponseID() { return responseID; }
-    public String getResponseType() {return responseType;}
+    public ResponseType getResponseType() {return responseType;}
     public int getResponseRating() {return responseRating;}
     public String getResponseDate() { return responseDate; }
-    public int getResponseTime() {return responseTime; }
     public String getResponseText() {return responseText;}
     public String getUserInput() {return userInput;}
     public int getUserID() {return userID;}
+    public Boolean getFavourite() {return favourite;}
 
-    public void setAIResponseID(int aiResponseID) { this.responseID = aiResponseID; }
-    public void setResponseType(String aiResponseType) {this.responseType = aiResponseType;}
-    public void setResponseRating(int aiResponseRating) { this.responseRating = aiResponseRating; }
-    public void setResponseDate(String aiResponseDate) { this.responseDate = aiResponseDate; }
-    public void setResponseTime(int aiResponseTime) { this.responseTime = aiResponseTime; }
-    public void setResponseText(String aiResponseText) {this.responseText = aiResponseText;}
+    public void setAIResponseID(int responseID) { this.responseID = responseID; }
+    public void setResponseType(ResponseType responseType) {this.responseType = responseType;}
+    public void setResponseRating(int responseRating) { this.responseRating = responseRating; }
+    public void setResponseDate(String responseDate) { this.responseDate = responseDate; }
+    public void setResponseText(String responseText) {this.responseText = responseText;}
     public void setUserInput(String userInput) {this.userInput = userInput;}
     public void setUserID(int userID) {this.userID = userID;}
+    public void setFavourite(boolean favourite) {this.favourite = favourite;}
+
 
     @Override
     public void generateResponse(String userInput, String responseType, String mood) {
@@ -54,7 +58,7 @@ public class AIResponse implements IAIResponse{
     }
 
     @Override   //Function to provide fun prediction tailored to user's mood.
-    public void generatePrediction(String mood , String userID) {
+    public void generatePrediction(String mood , int userID) {
         // NOT YET IMPLEMENTED
     }
 

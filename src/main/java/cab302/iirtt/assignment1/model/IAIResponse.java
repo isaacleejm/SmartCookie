@@ -12,7 +12,7 @@ public interface IAIResponse {
     // User has the option to rate the response given from 1 to 5
     // Each response has a unique ID
     // rating is stored in responseRating and linked to corresponding responseID
-    abstract void rateResponse(String responseID, int responseRating) ;
+    abstract void rateResponse(int responseID, int responseRating) ;
 
     // User has the option to view past responses.
     // Responses are stored in a database and given a unique ID
@@ -21,12 +21,12 @@ public interface IAIResponse {
 
     // User has the option to save their favourite messages
     // Each user has their own unique list of favourite messages
-    abstract void saveResponse(String userID, String responseID, String responseDate, int responseTime);
+    abstract void toggleFavouriteResponse(int responseID);
 
     // This feature generates a fun prediction based on the user's mood
     // Each user has their mood history stored
     // predictions are plausible but absurd
-    abstract void generatePrediction(String mood , String userID);
+    abstract void generatePrediction(String mood , int userID);
 
     // This feature allows the user to change the tone of the messages being generated
     // It takes responseType as its only parameter

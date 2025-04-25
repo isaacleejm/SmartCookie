@@ -1,6 +1,7 @@
 package cab302.iirtt.assignment1;
 
 
+import cab302.iirtt.assignment1.model.AIResponseDAO;
 import cab302.iirtt.assignment1.model.GeminiAPI;
 import cab302.iirtt.assignment1.model.StudyGoalDAO;
 import cab302.iirtt.assignment1.model.UserDAO;
@@ -31,6 +32,9 @@ public class MainApplication extends Application {
 
         // This should create the database (if the database has not yet been created) and create the studyGoals table (if studyGoals table has not yet been created)
         StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+
+        // This should create the database (if the database has not yet been created) and create the AIResponses table (if aiResponses table has not yet been created)
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
 
         launch();
 
