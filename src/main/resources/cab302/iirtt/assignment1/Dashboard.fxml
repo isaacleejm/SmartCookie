@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.DashboardController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -248,7 +249,7 @@
                            <children>
                               <AnchorPane prefHeight="120.0" prefWidth="1060.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e1e1e1" height="90.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1030.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f8f8f8" height="90.0" layoutX="15.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1030.0" />
                                     <HBox layoutX="15.0" layoutY="15.0" prefHeight="90.0" prefWidth="1030.0">
                                        <children>
                                           <HBox prefHeight="90.0" prefWidth="343.0">
@@ -333,12 +334,29 @@
                            <children>
                               <AnchorPane prefHeight="240.0" prefWidth="720.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#a5edff" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="680.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#b9f1ff" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="680.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="40.0" layoutX="30.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="190.0" />
+                                    <Text fill="#1100ff" layoutX="40.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Study Goals">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Text>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="240.0" prefWidth="360.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#a5edff" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#d39a8d" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="40.0" layoutX="30.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="150.0" />
+                                    <Text fill="#1100ff" layoutX="45.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Mood">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Button layoutX="30.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Happy" />
+                                    <Button layoutX="130.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Tired" />
+                                    <Button layoutX="230.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Anxious" />
+                                    <Button layoutX="80.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Neutral" />
+                                    <Button layoutX="180.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Stressed" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -347,17 +365,37 @@
                            <children>
                               <AnchorPane prefHeight="240.0" prefWidth="360.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#a5edff" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e0e9ff" height="220.0" layoutX="15.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="40.0" layoutX="30.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                                    <Text fill="#1100ff" layoutX="42.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Fortune">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#bcd0ff" height="100.0" layoutX="30.0" layoutY="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="290.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="240.0" prefWidth="360.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#a5edff" height="220.0" layoutX="20.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#fff0bd" height="220.0" layoutX="17.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="40.0" layoutX="30.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="160.0" />
+                                    <Text fill="#1100ff" layoutX="48.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fun Prediction">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#e1c87f" height="100.0" layoutX="30.0" layoutY="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="290.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="240.0" prefWidth="360.0">
                                  <children>
-                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#a5edff" height="220.0" layoutX="20.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#faddff" height="220.0" layoutX="20.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+                                    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="40.0" layoutX="30.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+                                    <Text fill="#1100ff" layoutX="53.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Streak">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Text>
                                  </children>
                               </AnchorPane>
                            </children>
