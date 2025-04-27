@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import cab302.iirtt.assignment1.model.IUser;
-import cab302.iirtt.assignment1.model.User;
 import cab302.iirtt.assignment1.model.UserDAO;
 
 public class SignUpController {
@@ -18,18 +17,37 @@ public class SignUpController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
-    @FXML private Label messageLabel;
+
+    @FXML private Label firstNameErrorLabel;
+    @FXML private Label lastNameErrorLabel;
+    @FXML private Label usernameErrorLabel;
+    @FXML private Label passwordErrorLabel;
+    @FXML private Label confirmPasswordErrorLabel;
 
     @FXML
     private void initialize() {
-        // No special initialization needed yet
+        clearErrorLabels();
+        addRealTimeValidation();
     }
 
     @FXML
     private void onSignUpButtonClick() {
-        if (setFirstNameField() && setLastNameField() && setUsernameField() && setPasswordField() && setConfirmPasswordField()) {
-            IUser.userRegistration(firstNameField.getText().trim(), lastNameField.getText().trim(), usernameField.getText().trim(), passwordField.getText());
-            messageLabel.setText("Account created successfully! Redirecting to login...");
+        clearErrorLabels();
+        boolean valid = true;
+
+        if (!setFirstNameField()) valid = false;
+        if (!setLastNameField()) valid = false;
+        if (!setUsernameField()) valid = false;
+        if (!setPasswordField()) valid = false;
+        if (!setConfirmPasswordField()) valid = false;
+
+        if (valid) {
+            IUser.userRegistration(
+                    firstNameField.getText().trim(),
+                    lastNameField.getText().trim(),
+                    usernameField.getText().trim(),
+                    passwordField.getText()
+            );
             goToLogin();
         }
     }
@@ -37,80 +55,108 @@ public class SignUpController {
     @FXML
     private void onGoBackButtonClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/smartcookie/view/Main.fxml"));
-            Stage stage = (Stage) firstNameField.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
+            MainApplication.setRoot("Landing-Page");
         } catch (IOException e) {
-            messageLabel.setText("Failed to go back.");
             e.printStackTrace();
         }
     }
 
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/smartcookie/view/login-view.fxml"));
-            Stage stage = (Stage) firstNameField.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
+            MainApplication.setRoot("login-view");
         } catch (IOException e) {
-            messageLabel.setText("Failed to load login page.");
             e.printStackTrace();
         }
+    }
+
+    private void clearErrorLabels() {
+        firstNameErrorLabel.setText(""); firstNameErrorLabel.setOpacity(0);
+        lastNameErrorLabel.setText(""); lastNameErrorLabel.setOpacity(0);
+        usernameErrorLabel.setText(""); usernameErrorLabel.setOpacity(0);
+        passwordErrorLabel.setText(""); passwordErrorLabel.setOpacity(0);
+        confirmPasswordErrorLabel.setText(""); confirmPasswordErrorLabel.setOpacity(0);
+    }
+
+    private void addRealTimeValidation() {
+        firstNameField.textProperty().addListener((obs, oldText, newText) -> setFirstNameField());
+        lastNameField.textProperty().addListener((obs, oldText, newText) -> setLastNameField());
+        usernameField.textProperty().addListener((obs, oldText, newText) -> setUsernameField());
+        passwordField.textProperty().addListener((obs, oldText, newText) -> setPasswordField());
+        confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> setConfirmPasswordField());
     }
 
     private boolean setFirstNameField() {
         String firstName = firstNameField.getText().trim();
         if (!firstName.matches("[a-zA-Z\\s]+")) {
-            messageLabel.setText("First Name can only contain letters.");
+            firstNameErrorLabel.setText("First Name can only contain letters.");
+            firstNameErrorLabel.setOpacity(1);
             return false;
         }
+        firstNameErrorLabel.setText("");
+        firstNameErrorLabel.setOpacity(0);
         return true;
     }
 
     private boolean setLastNameField() {
         String lastName = lastNameField.getText().trim();
         if (!lastName.matches("[a-zA-Z\\s]+")) {
-            messageLabel.setText("Last Name can only contain letters.");
+            lastNameErrorLabel.setText("Last Name can only contain letters.");
+            lastNameErrorLabel.setOpacity(1);
             return false;
         }
+        lastNameErrorLabel.setText("");
+        lastNameErrorLabel.setOpacity(0);
         return true;
     }
 
     private boolean setUsernameField() {
         String username = usernameField.getText().trim();
         if (username.length() < 4 || !username.matches("[a-zA-Z0-9]+")) {
-            messageLabel.setText("Username must be at least 4 characters and no spaces/symbols.");
+            usernameErrorLabel.setText("Username must be at least 4 characters and no spaces/symbols.");
+            usernameErrorLabel.setOpacity(1);
             return false;
         }
         UserDAO userDAO = new UserDAO();
         if (userDAO.getUserByUsername(username) != null) {
-            messageLabel.setText("Username already taken.");
+            usernameErrorLabel.setText("Username already taken.");
+            usernameErrorLabel.setOpacity(1);
             return false;
         }
+        usernameErrorLabel.setText("");
+        usernameErrorLabel.setOpacity(0);
         return true;
     }
 
     private boolean setPasswordField() {
         String password = passwordField.getText();
         if (password.length() < 8) {
-            messageLabel.setText("Password must be at least 8 characters.");
+            passwordErrorLabel.setText("Password must be at least 8 characters.");
+            passwordErrorLabel.setOpacity(1);
             return false;
         }
         if (!password.matches(".*[A-Z].*") || !password.matches(".*[a-z].*") || !password.matches(".*\\d.*") || !password.matches(".*[^a-zA-Z0-9].*")) {
-            messageLabel.setText("Password must contain uppercase, lowercase, number, and special character.");
+            passwordErrorLabel.setText("Password must contain uppercase, lowercase, number, and special character.");
+            passwordErrorLabel.setOpacity(1);
             return false;
         }
         if (password.contains(" ")) {
-            messageLabel.setText("Password must not contain spaces.");
+            passwordErrorLabel.setText("Password must not contain spaces.");
+            passwordErrorLabel.setOpacity(1);
             return false;
         }
+        passwordErrorLabel.setText("");
+        passwordErrorLabel.setOpacity(0);
         return true;
     }
 
     private boolean setConfirmPasswordField() {
         if (!passwordField.getText().equals(confirmPasswordField.getText())) {
-            messageLabel.setText("Passwords do not match.");
+            confirmPasswordErrorLabel.setText("Passwords do not match.");
+            confirmPasswordErrorLabel.setOpacity(1);
             return false;
         }
+        confirmPasswordErrorLabel.setText("");
+        confirmPasswordErrorLabel.setOpacity(0);
         return true;
     }
 }
