@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.User;
