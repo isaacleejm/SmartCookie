@@ -23,11 +23,11 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="dashboardbutton" arcHeight="5.0" fill="#0088ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/logo.png" />
                                  </image></ImageView>
+                              <Rectangle id="dashboardbutton" fx:id="dashboard" arcHeight="5.0" fill="#0088ff00" height="75.0" onMouseClicked="#switchToDashboard" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -48,7 +48,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="uploadstudybutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Study Materials" wrappingWidth="118.8037109375">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -59,6 +58,7 @@
                                     <Image url="@images/uploadmaterial.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="uploadstudybutton" fx:id="uploadmaterial" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -67,7 +67,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="notificationsbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notifications" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -78,6 +77,7 @@
                                     <Image url="@images/notifications.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="notificationsbutton" fx:id="notifications" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToNotifications" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -86,7 +86,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="aichatbotbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Chatbot" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -97,6 +96,7 @@
                                     <Image url="@images/aichatbot.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="aichatbotbutton" fx:id="aichatbot" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToAIChatbot" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -105,7 +105,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="studygoalsbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Goals" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -116,6 +115,7 @@
                                     <Image url="@images/studygoals.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="studygoalsbutton" fx:id="studygoals" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToStudyGoals" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -124,7 +124,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="myfortunesbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Fortunes" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -135,6 +134,7 @@
                                     <Image url="@images/myfortunes.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="myfortunesbutton" fx:id="myfortunes" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToMyFortune" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -143,7 +143,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="advicebutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advice / Tips" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -154,6 +153,7 @@
                                     <Image url="@images/advice.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="advicebutton" fx:id="advice" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToAdvice" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -165,7 +165,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="settingsbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -176,6 +175,7 @@
                                     <Image url="@images/settings.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="settingsbutton" fx:id="settings" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToSettings" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -196,7 +196,6 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle id="logoutbutton" arcHeight="5.0" fill="#2197ff00" height="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                               <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -207,6 +206,7 @@
                                     <Image url="@images/logout.png" />
                                  </image>
                               </ImageView>
+                              <Rectangle id="logoutbutton" fx:id="logout" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#logoutConfirm" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                            </children>
                         </AnchorPane>
                      </children>

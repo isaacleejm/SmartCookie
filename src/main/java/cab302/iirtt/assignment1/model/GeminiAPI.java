@@ -23,10 +23,6 @@ public class GeminiAPI {
 //            String prompt = "How does AI work? Please explain in less than 40 words.";
 
             // Connects to Gemini 2.0 Flash API and sets content type to json.
-//            Properties properties = new Properties();
-//            properties.load(getResourceAsStream("config.properties"));
-//            System.out.println("Properties API Key: " + properties.getProperty("API_KEY"));
-
             Properties properties = new Properties();
             try (InputStream inputStream = GeminiAPI.class.getClassLoader().getResourceAsStream("config.properties")) {
                 properties.load(inputStream);

@@ -4,14 +4,14 @@ import cab302.iirtt.assignment1.MainApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.util.Optional;
 
 
-public class DashboardController {
+public class UploadMaterialController {
 
     @FXML
     private void switchToDashboard() throws IOException {

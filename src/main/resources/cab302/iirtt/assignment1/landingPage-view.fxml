@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.LandingPageController">
+   <children>
+      <Text fill="#1122ff" layoutX="605.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" text="And More! At SmartCookie">
+         <font>
+            <Font name="Comic Sans MS" size="34.0" />
+         </font>
+      </Text>
+      <HBox prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <HBox prefHeight="720.0" prefWidth="428.0">
+               <children>
+                  <AnchorPane prefHeight="720.0" prefWidth="428.0">
+                     <children>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="720.0" stroke="BLACK" strokeType="INSIDE" width="428.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.7268518805503845" green="0.7541666626930237" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="0.7268518805503845" green="0.7541666626930237" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.03333333507180214" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="86.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/aichatbot.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" layoutX="10.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your #1 Study Companion">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="40.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Be Prepared For Your">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="90.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Journey">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="225.0" layoutX="14.0" layoutY="480.0" stroke="BLACK" strokeType="INSIDE" width="400.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="0.7333333492279053" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text layoutX="38.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SmartCookie is an interactive application where students receive personalised study tips and advice, motivational quotes, and fun fortune cookie predictions to assist their study journey, from our mascot: The Smartest Cookie" wrappingWidth="350.728515625">
+                           <font>
+                              <Font name="Comic Sans MS" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="720.0" prefWidth="426.0">
+               <children>
+                  <AnchorPane prefHeight="720.0" prefWidth="426.0">
+                     <children>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="75.0" layoutX="35.0" layoutY="30.0" onMouseClicked="#switchToLogin" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.7254902124404907" green="0.7529411911964417" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="0.7254902124404907" green="0.7529411911964417" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.03333333507180214" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text fill="WHITE" layoutX="170.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="200.0" layoutX="35.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="0.7333333492279053" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text layoutX="50.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You don't need to be a genius. You just need snacks and a solid plan - trust me, I'm the Smartest Cookie." wrappingWidth="314.802734375">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#1122ff" layoutX="100.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Tips...">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="200.0" layoutX="35.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="0.7333333492279053" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text layoutX="50.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;It's not that I'm so smart, it's just that I stay with problems longer.&quot; -Albert Einstein" wrappingWidth="314.802734375">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#1122ff" layoutX="40.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motivational Quotes...">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="720.0" prefWidth="426.0">
+               <children>
+                  <AnchorPane prefHeight="720.0" prefWidth="426.0">
+                     <children>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="75.0" layoutX="35.0" layoutY="30.0" onMouseClicked="#switchToRegister" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.7254902124404907" green="0.7529411911964417" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="0.7254902124404907" green="0.7529411911964417" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.03333333507180214" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text fill="WHITE" layoutX="145.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="200.0" layoutX="35.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="0.7333333492279053" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text layoutX="50.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Break big tasks into cookie-sized chunks. Studying for 30 minutes five times a week is better than cramming five hours in one day." wrappingWidth="314.802734375">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#1122ff" layoutX="85.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Advice...">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                        <Rectangle arcHeight="100.0" arcWidth="100.0" height="200.0" layoutX="35.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" width="350.0">
+                           <fill>
+                              <LinearGradient startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006711409395973154">
+                                       <color>
+                                          <Color red="1.0" green="0.800000011920929" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="0.7333333492279053" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill></Rectangle>
+                        <Text layoutX="50.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;I see... flashcards in your future. And yes, you'll actually use them this time!&quot;" wrappingWidth="314.802734375">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#1122ff" layoutX="70.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fun Predictions...">
+                           <font>
+                              <Font name="Comic Sans MS" size="34.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
