@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.SignUpController">
+
+    <!-- Top Blue Header -->
+    <Pane layoutX="0" layoutY="0" prefHeight="68" prefWidth="1280" style="-fx-background-color: linear-gradient(to right, #1935CA, #1935CA);" />
+
+    <!-- Title -->
+    <Label layoutX="16" layoutY="14" style="-fx-font-family: 'Itim'; -fx-font-size: 32px; -fx-text-fill: white;" text="Creating a new account" />
+
+    <!-- Gray Signup Box -->
+    <Pane layoutX="107" layoutY="81" prefHeight="570" prefWidth="1066" style="-fx-background-color: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%), #E9E9E9; -fx-background-radius: 30px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 4);">
+
+        <Label layoutX="165" layoutY="9" style="-fx-font-size: 28px; -fx-font-family: 'Inter'; -fx-font-weight: 600;" text="Personal Details" />
+
+        <!-- First Name -->
+        <Label layoutX="165" layoutY="67" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" text="First Name" />
+        <TextField fx:id="firstNameField" layoutX="420" layoutY="54" onKeyTyped="#setFirstNameField" prefHeight="44" prefWidth="500" style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
+
+        <!-- Last Name -->
+        <Label layoutX="165" layoutY="140" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" text="Last Name" />
+        <TextField fx:id="lastNameField" layoutX="420" layoutY="127" onKeyTyped="#setLastNameField" prefHeight="44" prefWidth="500" style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
+
+        <!-- Email -->
+        <Label layoutX="165" layoutY="213" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" text="Username" />
+        <TextField fx:id="usernameField" layoutX="420" layoutY="200" onKeyTyped="#setUsernameField" prefHeight="44" prefWidth="500" style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
+
+        <!-- New Password -->
+        <Label layoutX="165" layoutY="286" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" text="New Password" />
+        <PasswordField fx:id="passwordField" layoutX="420" layoutY="273" onKeyTyped="#setPasswordField" prefHeight="44" prefWidth="500" style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
+
+        <!-- Confirm Password -->
+        <Label layoutX="165" layoutY="359" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" text="Confirm Password" />
+        <PasswordField fx:id="confirmPasswordField" layoutX="420" layoutY="346" onKeyTyped="#setConfirmPasswordField" prefHeight="44" prefWidth="500" style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
+
+        <!-- Sign Up Button -->
+        <Button fx:id="signUpButton" layoutX="344.5" layoutY="470" onAction="#onSignUpButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" text="Signup" />
+
+    </Pane>
+</AnchorPane>

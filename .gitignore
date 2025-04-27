@@ -38,4 +38,7 @@ build/
 .DS_Store
 
 ### API KEY ###
-src/main/java/cab302/iirtt/assignment1/Constants.java
+src/main/java/cab302/iirtt/assignment1/model/Constants.java
+
+### DATABASE - MAY BE REMOVED ###
+database.db
