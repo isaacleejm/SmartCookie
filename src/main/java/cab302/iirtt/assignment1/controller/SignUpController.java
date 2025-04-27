@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import cab302.iirtt.assignment1.model.IUser;
-import cab302.iirtt.assignment1.model.User;
 import cab302.iirtt.assignment1.model.UserDAO;
 
 public class SignUpController {

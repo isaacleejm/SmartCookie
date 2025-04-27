@@ -19,13 +19,13 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Landing-Page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("dashboard-view.fxml"));
         scene = new Scene(fxmlLoader.load(), 1280, 720);stage.setScene(scene);
         stage.show();
         scene.setFill(Color.web("#f8f8f8"));
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
 
     }
