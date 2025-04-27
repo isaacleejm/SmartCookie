@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1.controller;
 
+import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.User;
 import javafx.fxml.FXML;
@@ -35,7 +36,11 @@ public class LoginController {
 
     @FXML
     private void onCreateAccountButtonClick() {
-        // TODO: Goes to SignUp Page
+        try {
+            MainApplication.setRoot("signUp-view");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMainScene() {

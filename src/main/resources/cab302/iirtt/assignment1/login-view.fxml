@@ -44,7 +44,7 @@
         <Hyperlink fx:id="forgotPasswordLink" layoutX="20" layoutY="469" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black;" text="Forgot your password? Click here." />
 
         <!-- Create New Account Button -->
-        <Button fx:id="createAccountButton" layoutX="20" layoutY="511" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Create new account" />
+        <Button fx:id="createAccountButton" layoutX="20" layoutY="511" onAction="#onCreateAccountButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Create new account" />
 
     </Pane>
 </AnchorPane>
