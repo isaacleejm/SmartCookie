@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.net.URI;
