@@ -25,7 +25,7 @@ public class MainApplication extends Application {
         scene.setFill(Color.web("#f8f8f8"));
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
 
     }
