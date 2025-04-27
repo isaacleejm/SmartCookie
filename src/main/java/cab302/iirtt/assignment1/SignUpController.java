@@ -27,6 +27,7 @@ public class SignUpController {
     @FXML
     private void initialize() {
         clearErrorLabels();
+        addRealTimeValidation();
     }
 
     @FXML
@@ -62,9 +63,7 @@ public class SignUpController {
 
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("cab302/iirtt/assignment1/login-view.fxml"));
-            Stage stage = (Stage) firstNameField.getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
+            MainApplication.setRoot("login-view");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,6 +77,14 @@ public class SignUpController {
         confirmPasswordErrorLabel.setText(""); confirmPasswordErrorLabel.setOpacity(0);
     }
 
+    private void addRealTimeValidation() {
+        firstNameField.textProperty().addListener((obs, oldText, newText) -> setFirstNameField());
+        lastNameField.textProperty().addListener((obs, oldText, newText) -> setLastNameField());
+        usernameField.textProperty().addListener((obs, oldText, newText) -> setUsernameField());
+        passwordField.textProperty().addListener((obs, oldText, newText) -> setPasswordField());
+        confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> setConfirmPasswordField());
+    }
+
     private boolean setFirstNameField() {
         String firstName = firstNameField.getText().trim();
         if (!firstName.matches("[a-zA-Z\\s]+")) {
@@ -85,6 +92,8 @@ public class SignUpController {
             firstNameErrorLabel.setOpacity(1);
             return false;
         }
+        firstNameErrorLabel.setText("");
+        firstNameErrorLabel.setOpacity(0);
         return true;
     }
 
@@ -95,6 +104,8 @@ public class SignUpController {
             lastNameErrorLabel.setOpacity(1);
             return false;
         }
+        lastNameErrorLabel.setText("");
+        lastNameErrorLabel.setOpacity(0);
         return true;
     }
 
@@ -111,6 +122,8 @@ public class SignUpController {
             usernameErrorLabel.setOpacity(1);
             return false;
         }
+        usernameErrorLabel.setText("");
+        usernameErrorLabel.setOpacity(0);
         return true;
     }
 
@@ -131,6 +144,8 @@ public class SignUpController {
             passwordErrorLabel.setOpacity(1);
             return false;
         }
+        passwordErrorLabel.setText("");
+        passwordErrorLabel.setOpacity(0);
         return true;
     }
 
@@ -140,6 +155,8 @@ public class SignUpController {
             confirmPasswordErrorLabel.setOpacity(1);
             return false;
         }
+        confirmPasswordErrorLabel.setText("");
+        confirmPasswordErrorLabel.setOpacity(0);
         return true;
     }
 }
