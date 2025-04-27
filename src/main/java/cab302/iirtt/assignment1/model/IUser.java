@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.model;
 
 public interface IUser {
     // Allows the User to sign in to an existing account, using an email and password

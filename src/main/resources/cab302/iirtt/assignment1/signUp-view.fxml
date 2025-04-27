@@ -21,33 +21,43 @@
                style="-fx-font-size: 28px; -fx-font-family: 'Inter'; -fx-font-weight: 600;" />
 
         <!-- First Name -->
+        <Label fx:id="firstNameErrorLabel" layoutX="420" layoutY="30" textFill="red" opacity="0"/>
         <Label text="First Name" layoutX="165" layoutY="67" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
         <TextField fx:id="firstNameField" layoutX="420" layoutY="54" prefWidth="500" prefHeight="44"
                    style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- Last Name -->
+        <Label fx:id="lastNameErrorLabel" layoutX="420" layoutY="103" textFill="red" opacity="0"/>
         <Label text="Last Name" layoutX="165" layoutY="140" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
         <TextField fx:id="lastNameField" layoutX="420" layoutY="127" prefWidth="500" prefHeight="44"
                    style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- Email -->
+        <Label fx:id="usernameErrorLabel" layoutX="420" layoutY="176" textFill="red" opacity="0"/>
         <Label text="Email Address" layoutX="165" layoutY="213" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
         <TextField fx:id="emailField" layoutX="420" layoutY="200" prefWidth="500" prefHeight="44"
                    style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- New Password -->
+        <Label fx:id="passwordErrorLabel" layoutX="420" layoutY="249" textFill="red" opacity="0"/>
         <Label text="New Password" layoutX="165" layoutY="286" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
         <PasswordField fx:id="passwordField" layoutX="420" layoutY="273" prefWidth="500" prefHeight="44"
                        style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- Confirm Password -->
+        <Label fx:id="confirmPasswordErrorLabel" layoutX="420" layoutY="322" textFill="red" opacity="0"/>
         <Label text="Confirm Password" layoutX="165" layoutY="359" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
         <PasswordField fx:id="confirmPasswordField" layoutX="420" layoutY="346" prefWidth="500" prefHeight="44"
                        style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- Sign Up Button -->
-        <Button fx:id="signUpButton" text="Signup" layoutX="344.5" layoutY="470" prefWidth="377" prefHeight="48"
+        <Button fx:id="signUpButton" text="Sign Up" prefWidth="180" prefHeight="48"
+                onAction="#onSignUpButtonClick"
                 style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" />
 
+        <!-- Go Back Button -->
+        <Button fx:id="goBackButton" text="Go Back" prefWidth="180" prefHeight="48"
+                onAction="#onGoBackButtonClick"
+                style="-fx-background-color: gray; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
     </Pane>
 </AnchorPane>

@@ -1,4 +1,4 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
