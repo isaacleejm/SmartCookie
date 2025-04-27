@@ -1,13 +1,9 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.controller;
 
+import cab302.iirtt.assignment1.MainApplication;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import java.io.IOException;
-import javafx.event.ActionEvent;
 
 
 public class LandingPageController {

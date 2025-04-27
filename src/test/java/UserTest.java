@@ -14,49 +14,49 @@ public class UserTest {
     }
 
     @Test
-    public void testUserID() {
+    public void testGetUserID() {
         assertEquals(1, user.getUserID());
 
     }
 
     @Test
-    public void testFirstName() {
+    public void testGetFirstName() {
         assertEquals("John", user.getFirstName());
 
     }
 
     @Test
-    public void testLastName() {
+    public void testGetLastName() {
         assertEquals("Doe", user.getLastName());
     }
 
     @Test
-    public void testUsername() {
+    public void testGetUsername() {
         assertEquals("johndoe", user.getUsername());
     }
 
     @Test
-    public void testPassword() {
+    public void testGetPassword() {
         assertEquals("$Password123", user.getPassword());
     }
 
     @Test
-    public void testMood() {
+    public void testGetMood() {
         assertEquals("neutral", user.getMood());
     }
 
     @Test
-    public void testMemberSince() {
+    public void testGetMemberSince() {
         assertEquals("2024-04-23", user.getMemberSince());
     }
 
     @Test
-    public void testDateLoggedIn() {
+    public void testGetDateLoggedIn() {
         assertEquals("2024-04-23", user.getDateLoggedIn());
     }
 
     @Test
-    public void testStreak() {
+    public void testGetStreak() {
         assertEquals(0, user.getStreak());
     }
 

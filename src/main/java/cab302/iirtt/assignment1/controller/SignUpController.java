@@ -1,5 +1,6 @@
-package cab302.iirtt.assignment1;
+package cab302.iirtt.assignment1.controller;
 
+import cab302.iirtt.assignment1.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -55,7 +56,7 @@ public class SignUpController {
     @FXML
     private void onGoBackButtonClick() {
         try {
-            MainApplication.setRoot("Landing-Page");
+            MainApplication.setRoot("landingPage-view");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,20 +70,20 @@ public class SignUpController {
         }
     }
 
-    private void clearErrorLabels() {
-        firstNameErrorLabel.setText(""); firstNameErrorLabel.setOpacity(0);
-        lastNameErrorLabel.setText(""); lastNameErrorLabel.setOpacity(0);
-        usernameErrorLabel.setText(""); usernameErrorLabel.setOpacity(0);
-        passwordErrorLabel.setText(""); passwordErrorLabel.setOpacity(0);
-        confirmPasswordErrorLabel.setText(""); confirmPasswordErrorLabel.setOpacity(0);
-    }
-
     private void addRealTimeValidation() {
         firstNameField.textProperty().addListener((obs, oldText, newText) -> setFirstNameField());
         lastNameField.textProperty().addListener((obs, oldText, newText) -> setLastNameField());
         usernameField.textProperty().addListener((obs, oldText, newText) -> setUsernameField());
         passwordField.textProperty().addListener((obs, oldText, newText) -> setPasswordField());
         confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> setConfirmPasswordField());
+    }
+
+    private void clearErrorLabels() {
+        firstNameErrorLabel.setText(""); firstNameErrorLabel.setOpacity(0);
+        lastNameErrorLabel.setText(""); lastNameErrorLabel.setOpacity(0);
+        usernameErrorLabel.setText(""); usernameErrorLabel.setOpacity(0);
+        passwordErrorLabel.setText(""); passwordErrorLabel.setOpacity(0);
+        confirmPasswordErrorLabel.setText(""); confirmPasswordErrorLabel.setOpacity(0);
     }
 
     private boolean setFirstNameField() {
