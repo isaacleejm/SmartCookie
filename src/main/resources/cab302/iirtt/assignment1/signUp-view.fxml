@@ -32,10 +32,10 @@
         <TextField fx:id="lastNameField" layoutX="420" layoutY="127" prefWidth="500" prefHeight="44"
                    style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
-        <!-- Email -->
+        <!-- Username -->
         <Label fx:id="usernameErrorLabel" layoutX="420" layoutY="176" textFill="red" opacity="0"/>
-        <Label text="Email Address" layoutX="165" layoutY="213" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
-        <TextField fx:id="emailField" layoutX="420" layoutY="200" prefWidth="500" prefHeight="44"
+        <Label text="Username" layoutX="165" layoutY="213" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <TextField fx:id="usernameField" layoutX="420" layoutY="200" prefWidth="500" prefHeight="44"
                    style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- New Password -->
@@ -51,13 +51,15 @@
                        style="-fx-background-color: #D9D9D9; -fx-border-color: black;" />
 
         <!-- Sign Up Button -->
-        <Button fx:id="signUpButton" text="Sign Up" prefWidth="180" prefHeight="48"
-                onAction="#onSignUpButtonClick"
-                style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" />
-
-        <!-- Go Back Button -->
-        <Button fx:id="goBackButton" text="Go Back" prefWidth="180" prefHeight="48"
-                onAction="#onGoBackButtonClick"
-                style="-fx-background-color: gray; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+        <HBox layoutX="344.5" layoutY="470" spacing="20" alignment="CENTER">
+            <!-- Sign Up Button -->
+            <Button fx:id="signUpButton" text="Sign Up" prefWidth="180" prefHeight="48"
+                    onAction="#onSignUpButtonClick"
+                    style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" />
+            <!-- Go Back Up Button -->
+            <Button fx:id="goBackButton" text="Go Back" prefWidth="180" prefHeight="48"
+                    onAction="#onGoBackButtonClick"
+                    style="-fx-background-color: gray; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+        </HBox>
     </Pane>
 </AnchorPane>
