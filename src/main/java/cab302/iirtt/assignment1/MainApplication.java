@@ -1,6 +1,5 @@
 package cab302.iirtt.assignment1;
 
-
 import cab302.iirtt.assignment1.model.GeminiAPI;
 import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.StudyGoalDAO;
@@ -11,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -20,9 +20,10 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Landing-Page.fxml"));
         scene = new Scene(fxmlLoader.load(), 1280, 720);stage.setScene(scene);
         stage.show();
+        scene.setFill(Color.web("#f8f8f8"));
     }
 
     static void setRoot(String fxml) throws IOException {
