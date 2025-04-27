@@ -1,14 +1,19 @@
 package cab302.iirtt.assignment1.model;
 
-import cab302.iirtt.assignment1.Constants;
+import cab302.iirtt.assignment1.MainApplication;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.http.HttpResponse;
+import java.sql.SQLOutput;
+import java.util.Properties;
 
 public class GeminiAPI {
     //
@@ -18,8 +23,15 @@ public class GeminiAPI {
 //            String prompt = "How does AI work? Please explain in less than 40 words.";
 
             // Connects to Gemini 2.0 Flash API and sets content type to json.
+            Properties properties = new Properties();
+            try (InputStream inputStream = GeminiAPI.class.getClassLoader().getResourceAsStream("config.properties")) {
+                properties.load(inputStream);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + Constants.API_KEY))   // The link to the API + API_KEY
+                    .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + properties.getProperty("API_KEY")))   // The link to the API + API_KEY
                     .header("Content-Type", "application/json")     // Determines the type of content (prompt) the API accepts
                     .POST(BodyPublishers.ofString("{\"contents\": [{\"parts\": [{\"text\": \"" + prompt + "\"}]}]}"))   // The text prompt that the API receives
                     .build();   // builds
