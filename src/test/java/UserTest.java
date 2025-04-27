@@ -60,4 +60,58 @@ public class UserTest {
         assertEquals(0, user.getStreak());
     }
 
+    @Test
+    public void testSetUserID() {
+        user.setUserID(2);
+        assertEquals(2, user.getUserID());
+    }
+
+    @Test
+    public void testSetFirstName() {
+        user.setFirstName("Jane");
+        assertEquals("Jane", user.getFirstName());
+    }
+
+    @Test
+    public void testSetLastName() {
+        user.setLastName("Smith");
+        assertEquals("Smith", user.getLastName());
+    }
+
+    @Test
+    public void testSetUsername() {
+        user.setUsername("janesmith");
+        assertEquals("janesmith", user.getUsername());
+    }
+
+    @Test
+    public void testSetPassword_Valid() {
+        user.setPassword("NewPass1!");
+        assertEquals("NewPass1!", user.getPassword());
+    }
+
+    @Test
+    public void testSetMood() {
+        user.setMood("happy");
+        assertEquals("happy", user.getMood());
+    }
+
+    @Test
+    public void testSetMemberSince() {
+        user.setMemberSince("2025-01-01");
+        assertEquals("2025-01-01", user.getMemberSince());
+    }
+
+    @Test
+    public void testSetDateLoggedIn() {
+        user.setDateLoggedIn("2025-01-02");
+        assertEquals("2025-01-02", user.getDateLoggedIn());
+    }
+
+    @Test
+    public void testSetStreak() {
+        user.setStreak(10);
+        assertEquals(10, user.getStreak());
+    }
+
 }
