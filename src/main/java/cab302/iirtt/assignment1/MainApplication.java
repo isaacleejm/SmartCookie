@@ -1,10 +1,6 @@
 package cab302.iirtt.assignment1;
 
-import cab302.iirtt.assignment1.model.AIResponseDAO;
-import cab302.iirtt.assignment1.model.GeminiAPI;
-import cab302.iirtt.assignment1.model.IUser;
-import cab302.iirtt.assignment1.model.StudyGoalDAO;
-import cab302.iirtt.assignment1.model.UserDAO;
+import cab302.iirtt.assignment1.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -53,8 +49,8 @@ public class MainApplication extends Application {
         AIResponseDAO aiResponseDAO = new AIResponseDAO();
         aiResponseDAO.start();
 
-        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
-        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
+//        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
+//        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
 
 

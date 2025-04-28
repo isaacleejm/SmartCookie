@@ -34,7 +34,7 @@ public class StudyGoalDAO implements IStudyGoalDAO {
                     + "studyGoalDescription VARCHAR NOT NULL,"
                     + "studyGoalPriority VARCHAR NOT NULL,"
                     + "studyGoalStatus VARCHAR NOT NULL,"
-                    + "pinned VARCHAR NOT NULL,"
+                    + "pinned BOOLEAN NOT NULL,"
                     + "dueDate VARCHAR NOT NULL,"
                     + "lastModified DATETIME NOT NULL,"
                     + "dateCreated DATETIME NOT NULL,"
@@ -66,9 +66,9 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
             String insertQuery = "INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES "
-                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 0, 1, '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 2),"
-                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 1, 0, '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 1),"
-                    + "('Complete Assignment', 'Complete CAB123 assignment 1', 'High', 1, 1, '" + LocalDate.of(2025, 05, 25) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 3)";
+                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 'false', 'true', '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 2),"
+                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 'true', 'false', '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 1),"
+                    + "('Complete Assignment', 'Complete CAB123 assignment 1', 'High', 'true', 'true', '" + LocalDate.of(2025, 05, 25) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 3)";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();

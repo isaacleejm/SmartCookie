@@ -35,6 +35,7 @@ public class AIResponseDAO implements IAIResponseDAO{
                     + "responseDate DATETIME NOT NULL,"
                     + "responseText VARCHAR NOT NULL,"
                     + "userInput VARCHAR NOT NULL,"
+                    + "favourite BOOLEAN NOT NULL,"
                     + "userID INTEGER NOT NULL,"
                     + "FOREIGN KEY (userID) REFERENCES users(userID)"
                     // userID is not a Foreign Key until it can be linked with the usersDatabase
@@ -62,10 +63,10 @@ public class AIResponseDAO implements IAIResponseDAO{
             String clearQuery = "DELETE FROM AIResponses";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO AIResponses (responseType, responseRating, responseDate, responseText, userInput, userID) VALUES "
-                    + "('formal', 3, '" + LocalDate.now() + "', 'Artificial Intelligence (AI) is a vast and rapidly evolving field within computer science that focuses on creating machines capable of performing tasks that typically require human intelligence.', 'Can you tell me more about AI?', 1),"
-                    + "('fun', 5, '" + LocalDate.now() + "', 'A random sentence that was generated from the prompt.', 'Can you generate some random sentence.', 2),"
-                    + "('formal', 9, '" + LocalDate.now() + "', 'one - two - three - four - five - six - seven - eight - nine - ten', 'Can you count from one to ten like this, one - two -...', 3)";
+            String insertQuery = "INSERT INTO AIResponses (responseType, responseRating, responseDate, responseText, userInput, favourite, userID) VALUES "
+                    + "('MOTIVATIONAL_QUOTE', 3, '" + LocalDate.now() + "', 'Artificial Intelligence (AI) is a vast and rapidly evolving field within computer science that focuses on creating machines capable of performing tasks that typically require human intelligence.', 'Can you tell me more about AI?', 'false', 1),"
+                    + "('ADVICE_TIP', 5, '" + LocalDate.now() + "', 'A random sentence that was generated from the prompt.', 'Can you generate some random sentence.', 'true', 2),"
+                    + "('FORTUNE_COOKIE', 9, '" + LocalDate.now() + "', 'one - two - three - four - five - six - seven - eight - nine - ten', 'Can you count from one to ten like this, one - two -...', 'false', 3)";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,15 +76,14 @@ public class AIResponseDAO implements IAIResponseDAO{
     @Override
     public void addAIResponse(AIResponse aiResponse) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO AIResponses (responseType, responseRating, responseDate, responseTime, responseText, userInput, userID) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            statement.setInt(1, aiResponse.getAIResponseID());
-            statement.setString(2, aiResponse.getResponseType().name());
-            statement.setInt(3, aiResponse.getResponseRating());
-            statement.setString(4, aiResponse.getResponseDate());
-            statement.setString(5, aiResponse.getResponseText());
-            statement.setString(6, aiResponse.getUserInput());
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO AIResponses (responseType, responseRating, responseDate, responseText, userInput, favourite, userID) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1, aiResponse.getResponseType().name());
+            statement.setInt(2, aiResponse.getResponseRating());
+            statement.setString(3, aiResponse.getResponseDate());
+            statement.setString(4, aiResponse.getResponseText());
+            statement.setString(5, aiResponse.getUserInput());
+            statement.setBoolean(6, aiResponse.getFavourite());
             statement.setInt(7, aiResponse.getUserID());
-            statement.setBoolean(8, aiResponse.getFavourite());
 
 
             statement.executeUpdate();
@@ -100,15 +100,15 @@ public class AIResponseDAO implements IAIResponseDAO{
     @Override
     public void updateAIResponse(AIResponse aiResponse) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE AIResponses SET responseType = ?, responseRating = ?, responseDate = ?, responseTime = ?, responseText = ?, userInput = ?, userID = ? WHERE aiResponseID = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE AIResponses SET responseType = ?, responseRating = ?, responseDate = ?, responseText = ?, userInput = ?, favourite = ?, userID = ? WHERE responseID = ?");
             statement.setInt(1, aiResponse.getAIResponseID());
             statement.setString(2, aiResponse.getResponseType().name());
             statement.setInt(3, aiResponse.getResponseRating());
             statement.setString(4, aiResponse.getResponseDate());
             statement.setString(5, aiResponse.getResponseText());
             statement.setString(6, aiResponse.getUserInput());
-            statement.setInt(7, aiResponse.getUserID());
-            statement.setBoolean(8, aiResponse.getFavourite());
+            statement.setBoolean(7, aiResponse.getFavourite());
+            statement.setInt(8, aiResponse.getUserID());
 
             statement.executeUpdate();
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class AIResponseDAO implements IAIResponseDAO{
     @Override
     public void deleteAIResponse(AIResponse aiResponse) {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM AIResponses WHERE aiResponseID = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM AIResponses WHERE responseID = ?");
             statement.setInt(1, aiResponse.getAIResponseID());
             statement.executeUpdate();
         } catch (Exception e) {
@@ -130,21 +130,21 @@ public class AIResponseDAO implements IAIResponseDAO{
     @Override
     public AIResponse getAIResponse(int aiResponseID) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM AIResponses WHERE aiResponseID = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM AIResponses WHERE responseID = ?");
             statement.setInt(1, aiResponseID);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                int id = resultSet.getInt("responseID");
-                AIResponse.ResponseType type = AIResponse.ResponseType.valueOf(resultSet.getString("responseType"));
-                int rating = resultSet.getInt("responseRating");
-                String date = resultSet.getString("responseDate");
-                String text = resultSet.getString("responseText");
-                String input = resultSet.getString("userInput");
-                int userID = resultSet.getInt("userID");
+                int AIResponseID = resultSet.getInt("responseID");
+                AIResponse.ResponseType responseType = AIResponse.ResponseType.valueOf(resultSet.getString("responseType"));
+                int responseRating = resultSet.getInt("responseRating");
+                String responseDate = resultSet.getString("responseDate");
+                String responseText = resultSet.getString("responseText");
+                String userInput = resultSet.getString("userInput");
                 boolean favourite = resultSet.getBoolean("favourite");
+                int userID = resultSet.getInt("userID");
 
-                AIResponse aiResponse = new AIResponse(id, type, rating, date, text, input, userID, favourite);
-                aiResponse.setAIResponseID(id);
+                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                aiResponse.setAIResponseID(AIResponseID);
                 return aiResponse;
             }
         } catch (Exception e) {
@@ -161,17 +161,17 @@ public class AIResponseDAO implements IAIResponseDAO{
             String query = "SELECT * FROM AIResponses";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                int id = resultSet.getInt("responseID");
-                AIResponse.ResponseType type = AIResponse.ResponseType.valueOf(resultSet.getString("responseType"));
-                int rating = resultSet.getInt("responseRating");
-                String date = resultSet.getString("responseDate");
-                String text = resultSet.getString("responseText");
-                String input = resultSet.getString("userInput");
-                int userID = resultSet.getInt("userID");
+                int AIResponseID = resultSet.getInt("responseID");
+                AIResponse.ResponseType responseType = AIResponse.ResponseType.valueOf(resultSet.getString("responseType"));
+                int responseRating = resultSet.getInt("responseRating");
+                String responseDate = resultSet.getString("responseDate");
+                String responseText = resultSet.getString("responseText");
+                String userInput = resultSet.getString("userInput");
                 boolean favourite = resultSet.getBoolean("favourite");
+                int userID = resultSet.getInt("userID");
 
-                AIResponse aiResponse = new AIResponse(id, type, rating, date, text, input, userID, favourite);
-                aiResponse.setAIResponseID(id);
+                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                aiResponse.setAIResponseID(AIResponseID);
                 aiResponses.add(aiResponse);
             }
         } catch (Exception e) {

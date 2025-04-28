@@ -20,8 +20,8 @@ public class AIResponse implements IAIResponse{
     private boolean favourite;
 
     // Constructor
-    public AIResponse (int responseID, ResponseType responseType, int responseRating, String responseDate, String responseText, String userInput, int userID,  boolean favourite) {
-        this.responseID = responseID; // id auto
+    public AIResponse (ResponseType responseType, int responseRating, String responseDate, String responseText, String userInput, boolean favourite, int userID) {
+//        this.responseID = responseID; // id auto
         // specifies the type of AI repsoonse "is it fortuneCookie, adviceTip, motivationalQuotes, funPrediction"
         this.responseType = responseType;  //This is just a placeholder/default, it can be changed for user preference.
         this.responseRating = responseRating;

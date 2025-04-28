@@ -4,7 +4,7 @@ public interface IStudyGoal {
 
     // The user has pressed the "New Goal +" button in the study goals page and has input all relevant information to create a new study goal, then pressed confirm to create the Study Goal.
     // Takes parameters of all the necessary fields to construct a studyGoal, not including the studyGoalID as it is auto-generated.
-    abstract void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, int userID);
+    abstract void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean pinned, String dueDate, String dateCreated, int userID);
 
     // The user has pressed "Remove Goal" and confirmed "Yes" that they are sure of removing the goal
     // Deletes the current StudyGoal Object

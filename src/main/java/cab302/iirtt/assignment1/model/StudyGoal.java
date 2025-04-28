@@ -38,8 +38,8 @@ public class StudyGoal implements IStudyGoal {
         return studyGoalDescription;
     }
     public String getStudyGoalPriority() { return studyGoalPriority; }
-    public Boolean getStudyGoalStatus() {return studyGoalStatus; }
-    public Boolean getPinned() {
+    public boolean getStudyGoalStatus() {return studyGoalStatus; }
+    public boolean getPinned() {
         return pinned;
     }
     public String getDueDate() {
@@ -77,7 +77,7 @@ public class StudyGoal implements IStudyGoal {
     }
 
     @Override
-    public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, int userID) {
+    public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean pinned, String dueDate, String dateCreated, int userID) {
 
     }
 
