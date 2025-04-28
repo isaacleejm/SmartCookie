@@ -7,19 +7,19 @@ public class StudyGoal implements IStudyGoal {
     private String studyGoalDescription;
     private String studyGoalPriority;
     private boolean studyGoalStatus;
-    private boolean pinned;
+    private boolean studyGoalPinned;
     private String dueDate;
     private String lastModified;
     private String dateCreated;
     private int userID;
 
     // Constructor
-    public StudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean pinned, String dueDate, String lastModified, String dateCreated, int userID) {
+    public StudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean studyGoalPinned, String dueDate, String lastModified, String dateCreated, int userID) {
         this.studyGoalTitle = studyGoalTitle;
         this.studyGoalDescription = studyGoalDescription;
         this.studyGoalPriority = studyGoalPriority;
         this.studyGoalStatus = studyGoalStatus;
-        this.pinned = pinned;
+        this.studyGoalPinned = studyGoalPinned;
         this.dueDate = dueDate;
         this.lastModified = lastModified;
         this.dateCreated = dateCreated;
@@ -38,9 +38,9 @@ public class StudyGoal implements IStudyGoal {
         return studyGoalDescription;
     }
     public String getStudyGoalPriority() { return studyGoalPriority; }
-    public Boolean getStudyGoalStatus() {return studyGoalStatus; }
-    public Boolean getPinned() {
-        return pinned;
+    public boolean getStudyGoalStatus() {return studyGoalStatus; }
+    public boolean getStudyGoalPinned() {
+        return studyGoalPinned;
     }
     public String getDueDate() {
         return dueDate;
@@ -62,8 +62,8 @@ public class StudyGoal implements IStudyGoal {
     public void setStudyGoalDescription(String studyGoalDescription) { this.studyGoalDescription = studyGoalDescription; }
     public void setStudyGoalPriority(String studyGoalPriority) { this.studyGoalPriority = studyGoalPriority; }
     public void setStudyGoalStatus(boolean studyGoalStatus) { this.studyGoalStatus = studyGoalStatus; }
-    public void setPinned(boolean pinned) {
-        this.pinned = pinned;
+    public void setStudyGoalPinned(boolean studyGoalPinned) {
+        this.studyGoalPinned = studyGoalPinned;
     }
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
@@ -77,7 +77,7 @@ public class StudyGoal implements IStudyGoal {
     }
 
     @Override
-    public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, String studyGoalStatus, String pinned, String dueDate, String dateCreated, int userID) {
+    public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean studyGoalPinned, String dueDate, String dateCreated, int userID) {
 
     }
 
