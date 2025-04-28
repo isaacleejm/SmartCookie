@@ -49,12 +49,14 @@ public class MainApplication extends Application {
         StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
         studyGoalDAO.start();
 
+        // This should create the database (if the database has not yet been created) and create the AIResponses table (if aiResponses table has not yet been created)
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
+        aiResponseDAO.start();
+
         IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
         IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
 
-        // This should create the database (if the database has not yet been created) and create the AIResponses table (if aiResponses table has not yet been created)
-        AIResponseDAO aiResponseDAO = new AIResponseDAO();
 
         launch();
 
