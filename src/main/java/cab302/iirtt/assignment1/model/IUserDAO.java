@@ -22,13 +22,19 @@ public interface IUserDAO {
      * Deletes a user from the database.
      * @param user The user to delete.
      */
-    public void deleteUser(User user);
+    public void deleteUserByID(User user);
     /**
      * Retrieves a user from the database.
      * @param userID The id of the user to retrieve.
      * @return The user with the given id, or null if not found.
      */
-    public IUser getUser(int userID);
+    public User getUserByID(int userID);
+    /**
+     * Retrieves a user from the database.
+     * @param username The email of the user to retrieve.
+     * @return The user with the given email, or null if not found.
+     */
+    public User getUserByUsername(String username);
     /**
      * Retrieves all users from the database.
      * @return A list of all users in the database.
