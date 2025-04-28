@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.model.AIResponseDAO;
 import cab302.iirtt.assignment1.model.GeminiAPI;
 import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.StudyGoalDAO;
@@ -51,6 +52,9 @@ public class MainApplication extends Application {
         IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
         IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
+
+        // This should create the database (if the database has not yet been created) and create the AIResponses table (if aiResponses table has not yet been created)
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
 
         launch();
 
