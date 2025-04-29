@@ -29,4 +29,9 @@ public interface IAIResponseDAO {
      * @return A list of all AI Responses in the database.
      */
     public List<AIResponse> getAllAIResponse();
+    /**
+     * Retrieves all AI Responses with the selected userID from the database.
+     * @return A list of all AI Responses in the database.
+     */
+    public List<AIResponse> getAIResponsesByUserID(int userID);
 }

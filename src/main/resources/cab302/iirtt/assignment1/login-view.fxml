@@ -18,7 +18,7 @@
         <!-- Logo Image -->
         <ImageView fx:id="logo" fitHeight="174" fitWidth="209" layoutX="104" layoutY="-8" pickOnBounds="true" preserveRatio="true">
             <image>
-                <javafx.scene.image.Image url="@smartcookie.png" />
+                <javafx.scene.image.Image url="@images/smartcookie.png" />
             </image>
         </ImageView>
 

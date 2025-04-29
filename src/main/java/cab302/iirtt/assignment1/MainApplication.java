@@ -11,13 +11,15 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 
 public class MainApplication extends Application {
+    public static User currentUser = null; // Stores the current logged-in User
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("dashboard-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("landingPage-view.fxml"));
         scene = new Scene(fxmlLoader.load(), 1280, 720);stage.setScene(scene);
+        stage.setTitle("SmartCookie");
         stage.show();
         scene.setFill(Color.web("#f8f8f8"));
     }

@@ -1,5 +1,7 @@
 package cab302.iirtt.assignment1.model;
 
+import javafx.animation.AnimationTimer;
+
 import java.time.LocalDate;
 
 public interface IUser {
