@@ -33,8 +33,8 @@ public class StudyGoalDAO implements IStudyGoalDAO {
                     + "studyGoalTitle VARCHAR NOT NULL,"
                     + "studyGoalDescription VARCHAR NOT NULL,"
                     + "studyGoalPriority VARCHAR NOT NULL,"
-                    + "studyGoalStatus VARCHAR NOT NULL,"
-                    + "pinned BOOLEAN NOT NULL,"
+                    + "studyGoalStatus BOOLEAN NOT NULL,"
+                    + "studyGoalPinned BOOLEAN NOT NULL,"
                     + "dueDate VARCHAR NOT NULL,"
                     + "lastModified DATETIME NOT NULL,"
                     + "dateCreated DATETIME NOT NULL,"
@@ -65,10 +65,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             String clearQuery = "DELETE FROM studyGoals";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES "
-                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', 'false', 'true', '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 2),"
-                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', 'true', 'false', '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 1),"
-                    + "('Complete Assignment', 'Complete CAB123 assignment 1', 'High', 'true', 'true', '" + LocalDate.of(2025, 05, 25) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 3)";
+            String insertQuery = "INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID) VALUES "
+                    + "('Revise for CAB123', 'Revise lectures 3 and 7 for CAB123 test', 'High', false, true, '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 2),"
+                    + "('Watch Lecture', 'Watch lecture 5 for CAB123 in preparation of test', 'Low', true, false, '" + LocalDate.of(2025, 04, 18) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 1),"
+                    + "('Complete Assignment', 'Complete CAB123 assignment 1', 'High', true, true, '" + LocalDate.of(2025, 05, 25) + "', '" + LocalDate.now() + "', '" + LocalDate.now() + "', 3)";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,12 +78,12 @@ public class StudyGoalDAO implements IStudyGoalDAO {
     @Override
     public void addStudyGoal(StudyGoal studyGoal) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, pinned, dueDate, lastModified, dateCreated, userID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO studyGoals (studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, studyGoal.getStudyGoalTitle());
             statement.setString(2, studyGoal.getStudyGoalDescription());
             statement.setString(3, studyGoal.getStudyGoalPriority());
             statement.setBoolean(4, studyGoal.getStudyGoalStatus());
-            statement.setBoolean(5, studyGoal.getPinned());
+            statement.setBoolean(5, studyGoal.getStudyGoalPinned());
             statement.setString(6, studyGoal.getDueDate());
             statement.setString(7, studyGoal.getLastModified());
             statement.setString(8, studyGoal.getDateCreated());
@@ -103,13 +103,13 @@ public class StudyGoalDAO implements IStudyGoalDAO {
     public void updateStudyGoal(StudyGoal studyGoal) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE studyGoals SET studyGoalTitle = ?, studyGoalDescription = ?, studyGoalPriority = ?, studyGoalStatus = ?, pinned = ?, dueDate = ?, lastModified = ?, dateCreated = ?, userID = ? WHERE studyGoalID = ?"
+                    "UPDATE studyGoals SET studyGoalTitle = ?, studyGoalDescription = ?, studyGoalPriority = ?, studyGoalStatus = ?, studyGoalPinned = ?, dueDate = ?, lastModified = ?, dateCreated = ?, userID = ? WHERE studyGoalID = ?"
             );
             statement.setString(1, studyGoal.getStudyGoalTitle());
             statement.setString(2, studyGoal.getStudyGoalDescription());
             statement.setString(3, studyGoal.getStudyGoalPriority());
             statement.setBoolean(4, studyGoal.getStudyGoalStatus());
-            statement.setBoolean(5, studyGoal.getPinned());
+            statement.setBoolean(5, studyGoal.getStudyGoalPinned());
             statement.setString(6, studyGoal.getDueDate());
             statement.setString(7, studyGoal.getLastModified());
             statement.setString(8, studyGoal.getDateCreated());
@@ -139,17 +139,17 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             statement.setInt(1, studyGoalID);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String title = resultSet.getString("studyGoalTitle");
-                String description = resultSet.getString("studyGoalDescription");
-                String priority = resultSet.getString("studyGoalPriority");
-                boolean status = resultSet.getBoolean("studyGoalStatus");
-                boolean pinned = resultSet.getBoolean("pinned");
+                String studyGoalTitle = resultSet.getString("studyGoalTitle");
+                String studyGoalDescription = resultSet.getString("studyGoalDescription");
+                String studyGoalPriority = resultSet.getString("studyGoalPriority");
+                boolean studyGoalStatus = resultSet.getBoolean("studyGoalStatus");
+                boolean studyGoalPinned = resultSet.getBoolean("studyGoalPinned");
                 String dueDate = resultSet.getString("dueDate");
                 String lastModified = resultSet.getString("lastModified");
                 String dateCreated = resultSet.getString("dateCreated");
                 int userID = resultSet.getInt("userID");
 
-                StudyGoal studyGoal = new StudyGoal(title, description, priority, status, pinned, dueDate, lastModified, dateCreated, userID);
+                StudyGoal studyGoal = new StudyGoal(studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID);
                 studyGoal.setStudyGoalID(studyGoalID);
                 return studyGoal;
             }
@@ -168,17 +168,73 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 int studyGoalID = resultSet.getInt("studyGoalID");
-                String title = resultSet.getString("studyGoalTitle");
-                String description = resultSet.getString("studyGoalDescription");
-                String priority = resultSet.getString("studyGoalPriority");
-                boolean status = resultSet.getBoolean("studyGoalStatus");
-                boolean pinned = resultSet.getBoolean("pinned");
+                String studyGoalTitle = resultSet.getString("studyGoalTitle");
+                String studyGoalDescription = resultSet.getString("studyGoalDescription");
+                String studyGoalPriority = resultSet.getString("studyGoalPriority");
+                boolean studyGoalStatus = resultSet.getBoolean("studyGoalStatus");
+                boolean studyGoalPinned = resultSet.getBoolean("studyGoalPinned");
                 String dueDate = resultSet.getString("dueDate");
                 String lastModified = resultSet.getString("lastModified");
                 String dateCreated = resultSet.getString("dateCreated");
                 int userID = resultSet.getInt("userID");
 
-                StudyGoal studyGoal = new StudyGoal(title, description, priority, status, pinned, dueDate, lastModified, dateCreated, userID);
+                StudyGoal studyGoal = new StudyGoal(studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID);
+                studyGoal.setStudyGoalID(studyGoalID);
+                studyGoals.add(studyGoal);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return studyGoals;
+    }
+
+    @Override
+    public List<StudyGoal> getStudyGoalsByUserID(int userID) {
+        List<StudyGoal> studyGoals = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM studyGoals WHERE userID = ?");
+            statement.setInt(1, userID);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int studyGoalID = resultSet.getInt("studyGoalID");
+                String studyGoalTitle = resultSet.getString("studyGoalTitle");
+                String studyGoalDescription = resultSet.getString("studyGoalDescription");
+                String studyGoalPriority = resultSet.getString("studyGoalPriority");
+                boolean studyGoalStatus = resultSet.getBoolean("studyGoalStatus");
+                boolean studyGoalPinned = resultSet.getBoolean("studyGoalPinned");
+                String dueDate = resultSet.getString("dueDate");
+                String lastModified = resultSet.getString("lastModified");
+                String dateCreated = resultSet.getString("dateCreated");
+
+                StudyGoal studyGoal = new StudyGoal(studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID);
+                studyGoal.setStudyGoalID(studyGoalID);
+                studyGoals.add(studyGoal);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return studyGoals;
+    }
+
+    @Override
+    public List<StudyGoal> getCompletedStudyGoalsByUserID(int userID) {
+        List<StudyGoal> studyGoals = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM studyGoals WHERE userID = ? AND studyGoalStatus = true");
+            statement.setInt(1, userID);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int studyGoalID = resultSet.getInt("studyGoalID");
+                String studyGoalTitle = resultSet.getString("studyGoalTitle");
+                String studyGoalDescription = resultSet.getString("studyGoalDescription");
+                String studyGoalPriority = resultSet.getString("studyGoalPriority");
+                boolean studyGoalStatus = resultSet.getBoolean("studyGoalStatus");
+                boolean studyGoalPinned = resultSet.getBoolean("studyGoalPinned");
+                String dueDate = resultSet.getString("dueDate");
+                String lastModified = resultSet.getString("lastModified");
+                String dateCreated = resultSet.getString("dateCreated");
+
+                StudyGoal studyGoal = new StudyGoal(studyGoalTitle, studyGoalDescription, studyGoalPriority, studyGoalStatus, studyGoalPinned, dueDate, lastModified, dateCreated, userID);
                 studyGoal.setStudyGoalID(studyGoalID);
                 studyGoals.add(studyGoal);
             }

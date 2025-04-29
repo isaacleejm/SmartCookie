@@ -33,4 +33,16 @@ public interface IStudyGoalDAO {
      * @return A list of all contacts in the database.
      */
     public List<StudyGoal> getAllStudyGoal();
+    /**
+     * Retrieves all study goals from the database from a specific userID.
+     * @param userID the ID of the User to view all their study goals.
+     * @return A list of the user's study goals.
+     */
+    public List<StudyGoal> getStudyGoalsByUserID(int userID);
+    /**
+     * Retrieves all completed study goals (studyGoalStatus = true) for a specific userID.
+     * @param userID the ID of the user to view all their completed studyGoals.
+     * @return A list of the specific user's completed study goals.
+     */
+     public List<StudyGoal> getCompletedStudyGoalsByUserID(int userID);
 }
