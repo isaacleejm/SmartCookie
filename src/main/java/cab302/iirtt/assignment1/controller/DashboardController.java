@@ -1,17 +1,30 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.animation.AnimationTimer;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
 public class DashboardController {
+
+    protected static int sessionDuration;
+    private long startTime;
+    private AnimationTimer timer;
+
+    @FXML private Text usernameText;
+    @FXML private Text goalsCompletedText;
+    @FXML private Text sessionDurationText;
+    @FXML private Text responsesGatheredText;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -62,6 +75,7 @@ public class DashboardController {
         alert.setContentText("Are you sure you want to logout?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            MainApplication.currentUser = null;
             MainApplication.setRoot("landingPage-view");
         }
     }
@@ -86,6 +100,8 @@ public class DashboardController {
     @FXML
     private Rectangle logout;
 
+
+
     @FXML
     public void initialize() {
         Color originalColor = (Color) dashboard.getFill();
@@ -109,6 +125,40 @@ public class DashboardController {
         settings.setOnMouseExited(e -> settings.setFill(Color.web("#0088ff00")));
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
+
+        // Display Logged-in User data
+        StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+        AIResponseDAO responses = new AIResponseDAO();
+        User user = MainApplication.currentUser;
+
+        String username = user.getUsername();
+        usernameText.setText(username);
+
+        List<StudyGoal> goalsCompletedList = studyGoalDAO.getCompletedStudyGoalsByUserID(user.getUserID());
+        int goalsCompleted = goalsCompletedList.size();
+        goalsCompletedText.setText(Integer.toString(goalsCompleted));
+
+        List<AIResponse> responsesGatheredList = responses.getAIResponsesByUserID(user.getUserID());
+        int responsesGathered = responsesGatheredList.size();
+        responsesGatheredText.setText(Integer.toString(responsesGathered));
+
+        startTimer(); // starts the session timer
+        // TODO: This method is currently resetting every time dashboard runs
+    }
+
+    public void startTimer() {
+        startTime = System.nanoTime();
+
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                long elapsedNanos = now - startTime;
+                double elapsedSeconds = elapsedNanos / 1_000_000_000.0;
+                long elapsedMinutes = Math.round(elapsedSeconds / 60);
+                sessionDurationText.setText(String.format("%d", elapsedMinutes) + " m");
+            }
+        };
+        timer.start();
     }
 }
 

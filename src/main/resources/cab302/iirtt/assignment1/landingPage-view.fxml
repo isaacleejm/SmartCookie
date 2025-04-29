@@ -46,9 +46,9 @@
                                  </stops>
                               </LinearGradient>
                            </fill></Rectangle>
-                        <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="86.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="294.0" fitWidth="295.0" layoutX="67.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/aichatbot.png" />
+                              <Image url="@images/smartcookie.png" />
                            </image>
                         </ImageView>
                         <Text fill="WHITE" layoutX="10.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your #1 Study Companion">
