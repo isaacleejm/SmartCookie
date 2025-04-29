@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom, #D8DBEB, #83A9E3);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.LoginController">
+
+    <!-- White login container -->
+    <Pane layoutX="413" layoutY="69" prefHeight="597" prefWidth="417" style="-fx-background-color: #F8F8F8; -fx-background-radius: 12;">
+
+        <!-- Logo Image -->
+        <ImageView fx:id="logo" fitHeight="174" fitWidth="209" layoutX="104" layoutY="-8" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <javafx.scene.image.Image url="@smartcookie.png" />
+            </image>
+        </ImageView>
+
+        <!-- Sign In Label -->
+        <Label layoutX="21" layoutY="175" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-font-family: 'Inter';" text="Sign in" />
+
+        <!-- Email Label -->
+        <Label layoutX="25" layoutY="227" style="-fx-font-size: 20px; -fx-font-family: 'Inter';" text="Username" />
+
+        <!-- Email Field -->
+        <TextField fx:id="usernameField" layoutX="20" layoutY="252" prefHeight="48" prefWidth="377" style="-fx-background-color: #D9D9D9; -fx-font-size: 17px;" />
+
+        <!-- Password Label -->
+        <Label layoutX="25" layoutY="318" style="-fx-font-size: 20px; -fx-font-family: 'Inter';" text="Password" />
+
+        <!-- Password Field -->
+        <PasswordField fx:id="passwordField" layoutX="20" layoutY="343" prefHeight="48" prefWidth="377" style="-fx-background-color: #D9D9D9; -fx-font-size: 17px;" />
+
+        <!-- Sign In Button -->
+        <Button fx:id="signInButton" layoutX="20" layoutY="404" onAction="#onSignInButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Sign in" />
+
+        <!-- Forgot Password Link -->
+        <Hyperlink fx:id="forgotPasswordLink" layoutX="20" layoutY="469" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black;" text="Forgot your password? Click here." />
+
+        <!-- Create New Account Button -->
+        <Button fx:id="createAccountButton" layoutX="20" layoutY="511" onAction="#onCreateAccountButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Create new account" />
+
+    </Pane>
+</AnchorPane>

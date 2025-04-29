@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="cab302.iirtt.assignment1.controller.SignUpController"
+            prefWidth="1280.0" prefHeight="720.0" style="-fx-background-color: white;">
+
+    <!-- Top Blue Header -->
+    <Pane layoutX="0" layoutY="0" prefWidth="1280" prefHeight="68"
+          style="-fx-background-color: linear-gradient(to right, #1935CA, #1935CA);" />
+
+    <!-- Title -->
+    <Label text="Creating a new account" layoutX="16" layoutY="14"
+           style="-fx-font-family: 'Itim'; -fx-font-size: 32px; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+    <!-- Gray Signup Box -->
+    <Pane layoutX="107" layoutY="81" prefWidth="1066" prefHeight="570"
+          style="-fx-background-color: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%), #E9E9E9; -fx-background-radius: 30px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 4);">
+
+        <Label text="Personal Details" layoutX="165" layoutY="9"
+               style="-fx-font-size: 28px; -fx-font-family: 'Inter'; -fx-font-weight: bold;" />
+
+        <!-- First Name -->
+        <Label fx:id="firstNameErrorLabel" layoutX="420" layoutY="30" textFill="red" opacity="0"/>
+        <Label text="First Name" layoutX="165" layoutY="67" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <TextField fx:id="firstNameField" layoutX="420" layoutY="54" prefWidth="500" prefHeight="44"
+                   style="-fx-background-color: #D9D9D9; -fx-border-color: black; -fx-font-size: 17px;" />
+
+        <!-- Last Name -->
+        <Label fx:id="lastNameErrorLabel" layoutX="420" layoutY="103" textFill="red" opacity="0"/>
+        <Label text="Last Name" layoutX="165" layoutY="140" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <TextField fx:id="lastNameField" layoutX="420" layoutY="127" prefWidth="500" prefHeight="44"
+                   style="-fx-background-color: #D9D9D9; -fx-border-color: black; -fx-font-size: 17px;" />
+
+        <!-- Username -->
+        <Label fx:id="usernameErrorLabel" layoutX="420" layoutY="176" textFill="red" opacity="0"/>
+        <Label text="Username" layoutX="165" layoutY="213" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <TextField fx:id="usernameField" layoutX="420" layoutY="200" prefWidth="500" prefHeight="44"
+                   style="-fx-background-color: #D9D9D9; -fx-border-color: black; -fx-font-size: 17px;" />
+
+        <!-- New Password -->
+        <Label fx:id="passwordErrorLabel" layoutX="420" layoutY="249" textFill="red" opacity="0"/>
+        <Label text="New Password" layoutX="165" layoutY="286" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <PasswordField fx:id="passwordField" layoutX="420" layoutY="273" prefWidth="500" prefHeight="44"
+                       style="-fx-background-color: #D9D9D9; -fx-border-color: black; -fx-font-size: 17px;" />
+
+        <!-- Confirm Password -->
+        <Label fx:id="confirmPasswordErrorLabel" layoutX="420" layoutY="322" textFill="red" opacity="0"/>
+        <Label text="Confirm Password" layoutX="165" layoutY="359" style="-fx-font-size: 18px; -fx-font-family: 'Inter';" />
+        <PasswordField fx:id="confirmPasswordField" layoutX="420" layoutY="346" prefWidth="500" prefHeight="44"
+                       style="-fx-background-color: #D9D9D9; -fx-border-color: black; -fx-font-size: 17px;" />
+
+        <!-- Sign Up Button -->
+        <HBox layoutX="344.5" layoutY="470" spacing="20" alignment="CENTER">
+            <!-- Sign Up Button -->
+            <Button fx:id="signUpButton" text="Sign Up" prefWidth="180" prefHeight="48"
+                    onAction="#onSignUpButtonClick"
+                    style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" />
+            <!-- Go Back Up Button -->
+            <Button fx:id="goBackButton" text="Go Back" prefWidth="180" prefHeight="48"
+                    onAction="#onGoBackButtonClick"
+                    style="-fx-background-color: gray; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" />
+        </HBox>
+    </Pane>
+</AnchorPane>
