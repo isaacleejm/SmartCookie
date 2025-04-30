@@ -46,7 +46,7 @@ public class StudyGoalTest {
     }
 
     @Test
-    public void testGetStudyGoalDueDate() {
+    public void testGetDueDate() {
         Assertions.assertEquals(false, this.studyGoal.getStudyGoalStatus());
     }
 
