@@ -63,9 +63,17 @@ public class UserDAO implements IUserDAO {
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
             String insertQuery = "INSERT INTO users (firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak) VALUES "
-                    + "('John', 'Doe', 'johndoe', 'password123', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
-                    + "('Jane', 'Doe', 'janedoe', 'password321', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
-                    + "('Jay', 'Doe', 'jaydoe', 'isnotmypassword', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0')";
+                    + "('John', 'Doe', 'johndoe', '!Password123', 'neutral', '" + LocalDate.of(2025, 04, 15) + "', '" + LocalDate.of(2025, 04, 15) + "', '1'),"
+                    + "('Jane', 'Sands', 'janesands', 'JD$Password321', 'neutral', '" + LocalDate.of(2025, 04, 10) + "', '" + LocalDate.of(2025, 04, 11) + "', '1'),"
+                    + "('Bobby', 'Lee', 'bobbylee', 'urokPW$213', 'happy', '" + LocalDate.of(2025, 04, 9) + "', '" + LocalDate.of(2025, 04, 25) + "', '7'),"
+                    + "('Aaron', 'Kora', 'aaronkora', 'MyPassword321@', 'anxious', '" + LocalDate.of(2025, 03, 01) + "', '" + LocalDate.of(2025, 03, 05) + "', '3'),"
+                    + "('Joe', 'Donalds', 'joedonalds', '123BestP@ss321', 'tired', '" + LocalDate.of(2025, 02, 21) + "', '" + LocalDate.of(2025, 04, 29) + "', '2'),"
+                    + "('Terrance', 'Banks', 'terrancebanks', '!!SecurePa55!!', 'neutral', '" + LocalDate.of(2025, 01, 25) + "', '" + LocalDate.of(2025, 04, 26) + "', '1'),"
+                    + "('Larry', 'Lanks', 'larrylanks', 'Unkn0wnP@ss', 'anxious', '" + LocalDate.of(2025, 03, 05) + "', '" + LocalDate.of(2025, 04, 25) + "', '10'),"
+                    + "('Evelyn', 'Dough', 'evelyndough', 'Gue55disPassword', 'stressed', '" + LocalDate.of(2025, 04, 20) + "', '" + LocalDate.of(2025, 04, 28) + "', '4'),"
+                    + "('Ian', 'Rats', 'ianrats', 'BigMan123@@', 'stressed', '" + LocalDate.of(2025, 01, 15) + "', '" + LocalDate.of(2025, 02, 27) + "', '3'),"
+                    + "('Manny', 'Lim', 'mannylim', '321drowssaP!', 'anxious', '" + LocalDate.of(2025, 01, 01) + "', '" + LocalDate.of(2025, 01, 12) + "', '9'),"
+                    + "('Jay', 'Smith', 'jaysmith', 'isn0tmyPassword', 'tired', '" + LocalDate.of(2025, 04, 11) + "', '" + LocalDate.of(2025, 04, 26) + "', '1')";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();

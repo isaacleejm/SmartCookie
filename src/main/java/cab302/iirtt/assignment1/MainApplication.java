@@ -18,7 +18,8 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("landingPage-view.fxml"));
-        scene = new Scene(fxmlLoader.load(), 1280, 720);stage.setScene(scene);
+        scene = new Scene(fxmlLoader.load(), 1280, 720);
+        stage.setScene(scene);
         stage.setTitle("SmartCookie");
         stage.show();
         scene.setFill(Color.web("#f8f8f8"));
