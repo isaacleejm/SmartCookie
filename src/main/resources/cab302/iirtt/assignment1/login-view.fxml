@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom, #D8DBEB, #83A9E3);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.LoginController">
 
@@ -13,7 +12,7 @@
         <!-- Logo Image -->
         <ImageView fx:id="logo" fitHeight="174" fitWidth="209" layoutX="104" layoutY="-8" pickOnBounds="true" preserveRatio="true">
             <image>
-                <javafx.scene.image.Image url="@smartcookie.png" />
+                <javafx.scene.image.Image url="@images/smartcookie.png" />
             </image>
         </ImageView>
 
@@ -23,29 +22,23 @@
         <!-- Username Label -->
         <Label layoutX="25" layoutY="227" style="-fx-font-size: 20px; -fx-font-family: 'Inter';" text="Username" />
 
-        <!-- Username Error Label -->
-        <Label fx:id="usernameErrorLabel" layoutX="144.0" layoutY="231.0" opacity="0" textFill="red">
-
         <!-- Username Field -->
         <TextField fx:id="usernameField" layoutX="20" layoutY="252" prefHeight="48" prefWidth="377" style="-fx-background-color: #D9D9D9; -fx-font-size: 17px;" />
 
         <!-- Password Label -->
         <Label layoutX="25" layoutY="318" style="-fx-font-size: 20px; -fx-font-family: 'Inter';" text="Password" />
 
-        <!-- Password Error Label -->
-        <Label fx:id="passwordErrorLabel" layoutX="144.0" layoutY="322.0" opacity="0" textFill="red" />
-
         <!-- Password Field -->
         <PasswordField fx:id="passwordField" layoutX="20" layoutY="343" prefHeight="48" prefWidth="377" style="-fx-background-color: #D9D9D9; -fx-font-size: 17px;" />
 
-        <!-- Sign In Button -->
-        <Button fx:id="signInButton" layoutX="20" layoutY="404" onAction="#onSignInButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Sign in" />
+        <!-- Error Label -->
+        <Label fx:id="loginErrorLabel" layoutX="25.0" layoutY="406.0" opacity="0.0" text="TEST ERROR" textFill="red" />
 
-        <!-- Forgot Password Link -->
-        <Hyperlink fx:id="forgotPasswordLink" layoutX="20" layoutY="469" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: black;" text="Forgot your password? Click here." />
+        <!-- Sign In Button -->
+        <Button fx:id="signInButton" layoutX="20.0" layoutY="436.0" onAction="#onSignInButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Sign in" />
 
         <!-- Create New Account Button -->
-        <Button fx:id="createAccountButton" layoutX="20" layoutY="511" onAction="#onCreateAccountButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Create new account" />
+        <Button fx:id="createAccountButton" layoutX="20.0" layoutY="506.0" onAction="#onCreateAccountButtonClick" prefHeight="48" prefWidth="377" style="-fx-background-color: #1935CA; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Create new account" />
 
     </Pane>
 </AnchorPane>

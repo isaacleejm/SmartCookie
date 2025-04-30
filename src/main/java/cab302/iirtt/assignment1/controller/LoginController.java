@@ -3,6 +3,7 @@ package cab302.iirtt.assignment1.controller;
 import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.User;
+import cab302.iirtt.assignment1.model.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Controller for handling user login interactions.
+ */
 public class LoginController {
 
     @FXML private TextField usernameField;
@@ -17,22 +21,47 @@ public class LoginController {
     @FXML private Button signInButton;
     @FXML private Button createAccountButton;
 
+    /**
+     * Error label for invalid login feedback.
+     */
+    @FXML private Label loginErrorLabel;
+
     @FXML
     public void initialize() {
+        clearErrorLabels();
+    }
 
+    private void clearErrorLabels() {
+        loginErrorLabel.setText("");
+        loginErrorLabel.setOpacity(0);
     }
 
     @FXML
     private void onSignInButtonClick() {
-        User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
-        if (user != null) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
-            MainApplication.currentUser = user;
-            switchToDashboard();
-            // TODO: Open Dashboard page and pass the LoggedIn User there
-        } else {
-            System.out.println("Incorrect username or password");
-            // TODO: Display error message on UI
+        clearErrorLabels();
+        boolean valid = true;
+
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText();
+
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByUsername(username);
+
+        if (user == null) {
+            loginErrorLabel.setText("Incorrect username or password");
+            loginErrorLabel.setOpacity(1);
+            valid = false;
+        }
+
+        if (user != null && !user.getPassword().equals(password)) {
+            loginErrorLabel.setText("Incorrect username or password");
+            loginErrorLabel.setOpacity(1);
+            valid = false;
+        }
+
+        if (valid) {
+            System.out.println(user.getFirstName() + " " + user.getLastName() + " has successfully Signed In!");
+            // TODO: Load Dashboard Scene
         }
     }
 
@@ -52,14 +81,6 @@ public class LoginController {
             stage.setScene(new Scene(loader.load()));
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Failed to load main application.");
-            e.printStackTrace();
-        }
-    }
-
-    private void switchToDashboard() {
-        try {
-            MainApplication.setRoot("dashboard-view");
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
