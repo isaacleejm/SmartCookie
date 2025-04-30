@@ -8,7 +8,7 @@ public class AIResponseTest {
 
     @BeforeEach
     public void setup() {
-        this.aiResponse = new AIResponse("FORTUNE_COOKIE", 9, "\" + LocalDate.now() + \"", "one - two - three - four - five - six - seven - eight - nine - ten", "Can you count from one to ten like this, one - two -...", false, 3);
+        this.aiResponse = new AIResponse(AIResponse.ResponseType.valueOf("FORTUNE_COOKIE"), 9, "\" + LocalDate.now() + \"", "one - two - three - four - five - six - seven - eight - nine - ten", "Can you count from one to ten like this, one - two -...", false, 3);
         this.aiResponse.setAIResponseID(1);
     }
 
@@ -19,7 +19,7 @@ public class AIResponseTest {
 
     @Test
     public void testGetResponseType() {
-        Assertions.assertEquals("FORTUNE_COOKIE", this.aiResponse.getResponseType());
+        Assertions.assertEquals(AIResponse.ResponseType.valueOf("FORTUNE_COOKIE"), this.aiResponse.getResponseType());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class AIResponseTest {
 
     @Test
     public void testGetFavourite() {
-        Assertions.assertEquals("false", this.aiResponse.getFavourite());
+        Assertions.assertFalse(this.aiResponse.getFavourite());
     }
 
     @Test
@@ -60,14 +60,14 @@ public class AIResponseTest {
 
     @Test
     public void testSetResponseType() {
-        aiResponse.setResponseType("MOTIVATIONAL_QUOTE");
-        Assertions.assertEquals("MOTIVATIONAL_QUOTE", aiResponse.getResponseType());
+        aiResponse.setResponseType(AIResponse.ResponseType.valueOf("MOTIVATIONAL_QUOTE"));
+        Assertions.assertEquals(AIResponse.ResponseType.valueOf("MOTIVATIONAL_QUOTE"), aiResponse.getResponseType());
     }
 
     @Test
     public void testSetResponseRating() {
         aiResponse.setResponseRating(10);
-        Assertions.assertTrue(aiResponse.getResponseRating());
+        Assertions.assertEquals(10, aiResponse.getResponseRating());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class AIResponseTest {
     @Test
     public void testSetResponseText() {
         aiResponse.setResponseText("ten - nine - eight - seven - six - five - four - three - two - one");
-        Assertions.assertTrue("ten - nine - eight - seven - six - five - four - three - two - one", aiResponse.getResponseText());
+        Assertions.assertEquals("ten - nine - eight - seven - six - five - four - three - two - one", aiResponse.getResponseText());
     }
 
     @Test
