@@ -179,4 +179,30 @@ public class AIResponseDAO implements IAIResponseDAO{
         }
         return aiResponses;
     }
+
+    @Override
+    public List<AIResponse> getAIResponsesByUserID(int userID) {
+        List<AIResponse> aiResponses = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM AIResponses WHERE userID = ?");
+            statement.setInt(1, userID);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int AIResponseID = resultSet.getInt("responseID");
+                AIResponse.ResponseType responseType = AIResponse.ResponseType.valueOf(resultSet.getString("responseType"));
+                int responseRating = resultSet.getInt("responseRating");
+                String responseDate = resultSet.getString("responseDate");
+                String responseText = resultSet.getString("responseText");
+                String userInput = resultSet.getString("userInput");
+                boolean favourite = resultSet.getBoolean("favourite");
+
+                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                aiResponse.setAIResponseID(AIResponseID);
+                aiResponses.add(aiResponse);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return aiResponses;
+    }
 }

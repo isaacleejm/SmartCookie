@@ -27,6 +27,8 @@ public class LoginController {
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {
             System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
+            MainApplication.currentUser = user;
+            switchToDashboard();
             // TODO: Open Dashboard page and pass the LoggedIn User there
         } else {
             System.out.println("Incorrect username or password");
@@ -50,6 +52,14 @@ public class LoginController {
             stage.setScene(new Scene(loader.load()));
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Failed to load main application.");
+            e.printStackTrace();
+        }
+    }
+
+    private void switchToDashboard() {
+        try {
+            MainApplication.setRoot("dashboard-view");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
