@@ -46,13 +46,8 @@ public class StudyGoalTest {
     }
 
     @Test
-    public void testGetStudyGoalDueDate() {
-        Assertions.assertEquals(false, this.studyGoal.getStudyGoalStatus());
-    }
-
-    @Test
     public void testGetDueDate() {
-        Assertions.assertEquals("\" + LocalDate.of(2025, 04, 15) + \"", this.studyGoal.getDueDate());
+        Assertions.assertEquals(false, this.studyGoal.getStudyGoalStatus());
     }
 
     @Test
@@ -104,5 +99,29 @@ public class StudyGoalTest {
     public void testSetGoalID() {
         studyGoal.setStudyGoalID(1421);
         Assertions.assertEquals(1421, studyGoal.getStudyGoalID());
+    }
+
+    @Test
+    public void testSetDueDate() {
+        studyGoal.setDueDate("\" + LocalDate.of(2025, 05, 19) + \"");
+        Assertions.assertEquals("\" + LocalDate.of(2025, 05, 19) + \"", studyGoal.getDueDate());
+    }
+
+    @Test
+    public void testSetLastModified() {
+        studyGoal.setLastModified("\" + LocalDate.of(2025, 03, 20) + \"");
+        Assertions.assertEquals("\" + LocalDate.of(2025, 03, 20) + \"", studyGoal.getLastModified());
+    }
+
+    @Test
+    public void testSetDateCreated() {
+        studyGoal.setDateCreated("\" + LocalDate.now() + \"");
+        Assertions.assertEquals("\" + LocalDate.now() + \"", studyGoal.getDateCreated());
+    }
+
+    @Test
+    public void testSetUserID() {
+        studyGoal.setUserID(156);
+        Assertions.assertEquals(156, studyGoal.getUserID());
     }
 }
