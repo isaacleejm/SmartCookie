@@ -1,6 +1,6 @@
 package cab302.iirtt.assignment1.model;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class AIResponse implements IAIResponse{
     // AI Responses Variables.  ---> type (fortune cookie, motivational quote, advice/tips)
@@ -18,11 +18,13 @@ public class AIResponse implements IAIResponse{
     private String responseDate;
     private String responseText;
     private boolean favourite;
+    public AIResponse() {
 
+    }
     // Constructor
     public AIResponse (ResponseType responseType, int responseRating, String responseDate, String responseText, String userInput, boolean favourite, int userID) {
 //        this.responseID = responseID; // id auto
-        // specifies the type of AI repsoonse "is it fortuneCookie, adviceTip, motivationalQuotes, funPrediction"
+        // specifies the type of AI response "is it fortuneCookie, adviceTip, motivationalQuotes, funPrediction"
         this.responseType = responseType;  //This is just a placeholder/default, it can be changed for user preference.
         this.responseRating = responseRating;
         this.userInput = userInput;
@@ -57,19 +59,15 @@ public class AIResponse implements IAIResponse{
         // NOT YET IMPLEMENTED
     }
 
-    @Override   //Function to provide fun prediction tailored to user's mood.
-    public void generatePrediction(String mood , int userID) {
-        // NOT YET IMPLEMENTED
-    }
-
     @Override
     public void rateResponse(int responseID, int responseRating) {
         // NOT YET IMPLEMENTED
     }
 
     @Override
-    public void viewResponses(String userID) { // maybe
+    public List<AIResponse> viewResponses(String userID) { // maybe
         // NOT YET IMPLEMENTED
+        return null;
     }
 
     @Override

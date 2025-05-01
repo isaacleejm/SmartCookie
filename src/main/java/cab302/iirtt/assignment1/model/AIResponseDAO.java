@@ -39,7 +39,7 @@ public class AIResponseDAO implements IAIResponseDAO{
                     + "userID INTEGER NOT NULL,"
                     + "FOREIGN KEY (userID) REFERENCES users(userID)"
                     // userID is not a Foreign Key until it can be linked with the usersDatabase
-                    + ")";
+                     + ")";
             statement.execute(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -143,7 +143,24 @@ public class AIResponseDAO implements IAIResponseDAO{
                 boolean favourite = resultSet.getBoolean("favourite");
                 int userID = resultSet.getInt("userID");
 
-                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                AIResponse aiResponse;
+                switch (responseType) {
+                    case ADVICE_TIP:
+                        aiResponse = new AdviceTip(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FORTUNE_COOKIE:
+                        aiResponse = new FortuneCookie(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FUN_PREDICTION:
+                        aiResponse = new FunPrediction(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case MOTIVATIONAL_QUOTE:
+                        aiResponse = new MotivationalQuote(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    default:
+                        aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                }
                 aiResponse.setAIResponseID(AIResponseID);
                 return aiResponse;
             }
@@ -170,7 +187,24 @@ public class AIResponseDAO implements IAIResponseDAO{
                 boolean favourite = resultSet.getBoolean("favourite");
                 int userID = resultSet.getInt("userID");
 
-                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                AIResponse aiResponse;
+                switch (responseType) {
+                    case ADVICE_TIP:
+                        aiResponse = new AdviceTip(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FORTUNE_COOKIE:
+                        aiResponse = new FortuneCookie(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FUN_PREDICTION:
+                        aiResponse = new FunPrediction(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case MOTIVATIONAL_QUOTE:
+                        aiResponse = new MotivationalQuote(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    default:
+                        aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                }
                 aiResponse.setAIResponseID(AIResponseID);
                 aiResponses.add(aiResponse);
             }
@@ -196,7 +230,24 @@ public class AIResponseDAO implements IAIResponseDAO{
                 String userInput = resultSet.getString("userInput");
                 boolean favourite = resultSet.getBoolean("favourite");
 
-                AIResponse aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                AIResponse aiResponse;
+                switch (responseType) {
+                    case ADVICE_TIP:
+                        aiResponse = new AdviceTip(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FORTUNE_COOKIE:
+                        aiResponse = new FortuneCookie(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case FUN_PREDICTION:
+                        aiResponse = new FunPrediction(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    case MOTIVATIONAL_QUOTE:
+                        aiResponse = new MotivationalQuote(responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                    default:
+                        aiResponse = new AIResponse(responseType, responseRating, responseDate, responseText, userInput, favourite, userID);
+                        break;
+                }
                 aiResponse.setAIResponseID(AIResponseID);
                 aiResponses.add(aiResponse);
             }

@@ -1,5 +1,7 @@
 package cab302.iirtt.assignment1.model;
 
+import java.util.List;
+
 public interface IAIResponse {
 
     // Generates AI message
@@ -17,16 +19,16 @@ public interface IAIResponse {
     // User has the option to view past responses.
     // Responses are stored in a database and given a unique ID
     // User can view the message and corresponding ratings and ID
-    abstract void viewResponses(String userID);
+    abstract List<AIResponse> viewResponses(String userID);
 
     // User has the option to save their favourite messages
     // Each user has their own unique list of favourite messages
     abstract void toggleFavouriteResponse(int responseID);
 
-    // This feature generates a fun prediction based on the user's mood
-    // Each user has their mood history stored
-    // predictions are plausible but absurd
-    abstract void generatePrediction(String mood , int userID);
+//    // This feature generates a fun prediction based on the user's mood
+//    // Each user has their mood history stored
+//    // predictions are plausible but absurd
+//    abstract void generatePrediction(String mood , int userID);
 
     // This feature allows the user to change the tone of the messages being generated
     // It takes responseType as its only parameter
