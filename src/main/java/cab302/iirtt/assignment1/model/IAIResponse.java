@@ -9,7 +9,7 @@ public interface IAIResponse {
     // Message generated is different to messages already received by user.
     // Response type is set by user in settings
     // Tone of message is based on user mood and tailored to study material (userInput)
-    abstract void generateResponse(String userInput, String responseType, String mood);
+    abstract void generateResponse(String userInput, String mood);
 
     // User has the option to rate the response given from 1 to 5
     // Each response has a unique ID
