@@ -17,7 +17,8 @@ import java.util.Properties;
 
 public class GeminiAPI {
     //
-    public void run(String prompt) {
+    public String run(String prompt) {
+        String response = "";
         try {
             // User's prompt
 //            String prompt = "How does AI work? Please explain in less than 40 words.";
@@ -45,15 +46,17 @@ public class GeminiAPI {
             JSONObject jsonObject = new JSONObject(postResponse.body());
             JSONArray candidates = jsonObject.getJSONArray("candidates");
             JSONObject parts = candidates.getJSONObject(0).getJSONObject("content").getJSONArray("parts").getJSONObject(0);
-            String response = parts.getString("text");
+            response = parts.getString("text");
 
             // Printing out the response
-            System.out.println(response);
+            // System.out.println(response);
 
+            return response;
 
         } catch (Exception e) { // catches all exceptions
             System.out.println(e.getMessage());
             System.out.println("Something went wrong");
+            return response;
         }
 
     }
