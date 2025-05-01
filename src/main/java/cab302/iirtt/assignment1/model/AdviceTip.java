@@ -17,7 +17,7 @@ public class AdviceTip extends AIResponse {
     }
 
     @Override
-    public void generateResponse(String userInput, String mood) {
+    public void generateResponse(String userInput) {
         // TODO: Creates an advice/tip AI response using uploaded material
     }
 

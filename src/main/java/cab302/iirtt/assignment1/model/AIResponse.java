@@ -55,8 +55,8 @@ public class AIResponse implements IAIResponse{
 
 
     @Override
-    public void generateResponse(String userInput, String mood) {
-        // NOT YET IMPLEMENTED
+    public void generateResponse(String userInput) {
+        System.out.println("NOT YET IMPLEMENTED");
     }
 
     @Override

@@ -17,7 +17,7 @@ public class MotivationalQuote extends AIResponse {
     }
 
     @Override
-    public void generateResponse(String userInput, String mood) {
+    public void generateResponse(String userInput) {
         // TODO: Creates a motivational quote AI response
     }
 

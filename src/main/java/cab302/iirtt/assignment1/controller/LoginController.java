@@ -29,7 +29,6 @@ public class LoginController {
             System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
             MainApplication.currentUser = user;
             switchToDashboard();
-            // TODO: Open Dashboard page and pass the LoggedIn User there
         } else {
             System.out.println("Incorrect username or password");
             // TODO: Display error message on UI

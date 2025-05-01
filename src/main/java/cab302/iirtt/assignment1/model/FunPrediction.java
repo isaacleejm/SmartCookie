@@ -1,8 +1,14 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.MainApplication;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class FunPrediction extends AIResponse {
+    public FunPrediction() {
+
+    }
     /**
      * Declares a FortuneCookie AIResponse
      * @param responseRating The rating of the response
@@ -17,8 +23,17 @@ public class FunPrediction extends AIResponse {
     }
 
     @Override
-    public void generateResponse(String userInput, String mood) {
-        // TODO: Creates a fun prediction AI response
+    public void generateResponse(String userInput) {
+        if (MainApplication.currentUser == null) {
+            System.out.println("Error, User is not Logged-in to an account");
+            return;
+        }
+        userInput = "Generate a fun prediction for a " + MainApplication.currentUser.getMood() + "  student. Please make it less than 30 words.";
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
+        GeminiAPI geminiAPI = new GeminiAPI();
+        String generatedResponse = geminiAPI.run(userInput);
+        FunPrediction funPrediction = new FunPrediction(0, LocalDate.now().toString(), generatedResponse, userInput, false, MainApplication.currentUser.getUserID());
+        aiResponseDAO.addAIResponse(funPrediction);
     }
 
     @Override

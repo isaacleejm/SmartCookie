@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.animation.AnimationTimer;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,8 @@ public class DashboardController {
     @FXML private Text goalsCompletedText;
     @FXML private Text sessionDurationText;
     @FXML private Text responsesGatheredText;
+    @FXML private Text todayFortuneText;
+    @FXML private Text funPredictionText;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -128,7 +131,7 @@ public class DashboardController {
 
         // Display Logged-in User data
         StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
-        AIResponseDAO responses = new AIResponseDAO();
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
         User user = MainApplication.currentUser;
 
         String username = user.getUsername();
@@ -138,9 +141,30 @@ public class DashboardController {
         int goalsCompleted = goalsCompletedList.size();
         goalsCompletedText.setText(Integer.toString(goalsCompleted));
 
-        List<AIResponse> responsesGatheredList = responses.getAIResponsesByUserID(user.getUserID());
+        List<AIResponse> responsesGatheredList = aiResponseDAO.getAIResponsesByUserID(user.getUserID());
         int responsesGathered = responsesGatheredList.size();
         responsesGatheredText.setText(Integer.toString(responsesGathered));
+
+        String todayFortune = "Not Yet Generated";
+        FortuneCookie fortuneCookie = new FortuneCookie();
+        fortuneCookie.generateResponse("");
+        AIResponse fortuneCookieResponse = aiResponseDAO.getTodayFortune(MainApplication.currentUser.getUserID());
+        todayFortune = fortuneCookieResponse.getResponseText();
+        todayFortuneText.setText(todayFortune);
+
+        String prediction = "Not Yet Generated";
+        FunPrediction funPrediction = new FunPrediction();
+        List<AIResponse> funPredictionResponses = aiResponseDAO.getAIResponsesByType(MainApplication.currentUser.getUserID(), AIResponse.ResponseType.FUN_PREDICTION);
+        funPrediction.generateResponse("");
+        List<AIResponse>  newFunPredictionResponses = aiResponseDAO.getAIResponsesByType(MainApplication.currentUser.getUserID(), AIResponse.ResponseType.FUN_PREDICTION);
+        for (int i = 0; i < funPredictionResponses.size(); i++) {
+            newFunPredictionResponses.removeFirst();
+        }
+        System.out.println(newFunPredictionResponses.size());
+        prediction = newFunPredictionResponses.getFirst().getResponseText();
+        funPredictionText.setText(prediction);
+
+
 
         startTimer(); // starts the session timer
         // TODO: This method is currently resetting every time dashboard runs

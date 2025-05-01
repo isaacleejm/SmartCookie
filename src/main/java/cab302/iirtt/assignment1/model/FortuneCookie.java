@@ -1,5 +1,9 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.MainApplication;
+import com.sun.tools.javac.Main;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class FortuneCookie extends AIResponse {
@@ -20,8 +24,23 @@ public class FortuneCookie extends AIResponse {
     }
 
     @Override
-    public void generateResponse(String userInput, String mood) {
-        // TODO: Creates a daily fortune cookie AI response
+    public void generateResponse(String userInput) {
+        if (MainApplication.currentUser == null) {
+            System.out.println("Error, User is not Logged-in to an account");
+            return;
+        }
+        userInput = "Generate a fortune cookie for a " + MainApplication.currentUser.getMood() + "  student. Please make it less than 30 words.";
+        AIResponseDAO aiResponseDAO = new AIResponseDAO();
+        List<AIResponse> aiResponseList = aiResponseDAO.getAIResponsesByUserID(MainApplication.currentUser.getUserID());
+        for (AIResponse response : aiResponseList) {
+            if (response instanceof FortuneCookie && response.getResponseDate().equals(LocalDate.now().toString())) {
+                return;
+            }
+        }
+        GeminiAPI geminiAPI = new GeminiAPI();
+        String generatedResponse = geminiAPI.run(userInput);
+        FortuneCookie fortuneCookie = new FortuneCookie(0, LocalDate.now().toString(), generatedResponse, userInput, false, MainApplication.currentUser.getUserID());
+        aiResponseDAO.addAIResponse(fortuneCookie);
     }
 
     @Override
