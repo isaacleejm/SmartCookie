@@ -15,11 +15,24 @@ public class User implements IUser {
     private int streak;
 
 
-    // Default Constructor
+    /**
+     * Default User Constructor
+     */
     public User() {
 
     }
-    // Constructor
+
+    /**
+     * User Constructor that creates a User Object without userID
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @param username The account's username
+     * @param password The account's password
+     * @param mood The user's current mood
+     * @param memberSince The date of which the user created this account
+     * @param dateLoggedIn The date of which the user last logged in
+     * @param streak Number of consecutive days the User logged in
+     */
     public User(String firstName, String lastName, String username, String password, String mood, String memberSince, String dateLoggedIn, int streak) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,22 +41,8 @@ public class User implements IUser {
         this.mood = mood;
         this.memberSince = memberSince;
         this.dateLoggedIn = dateLoggedIn;
-        this.streak = streak;  
-
-//        this.mood = "neutral";
-//        this.memberSince = LocalDate.now().toString();
+        this.streak = streak;
     }
-
-
-//    public User(int userID, String firstName, String lastName, String username, String password) {
-//        this.userID = userID;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.username = username;
-//        this.password = password;
-//        this.mood = "neutral";
-//        this.memberSince = LocalDate.now().toString();
-//    }
 
     // Getter and Setter
     public int getUserID() { return userID; }
@@ -69,55 +68,7 @@ public class User implements IUser {
         this.username = username;
     }
     public void setPassword(String password) {
-        if (!password.trim().isEmpty()) {
-            if (password.length() > 7) {
-                boolean hasUpper = false;
-                boolean hasLower = false;
-                boolean hasDigit = false;
-                boolean hasSpaces = false;
-                boolean hasSpecial = false;
-                for (int i = 0; i < password.length(); i++) {
-                    char character = password.charAt(i);
-                    if (Character.isLowerCase(character)) {
-                        hasUpper = true;
-                    }
-                    if (Character.isUpperCase(character)) {
-                        hasLower = true;
-                    }
-                    if (Character.isDigit(character)) {
-                        hasDigit = true;
-                    }
-                    if (Character.isSpaceChar(character)) {
-                        hasSpaces = true;
-                    }
-                    if (!Character.isLetter(character) && !Character.isDigit(character) && !Character.isWhitespace(character)) {
-                        hasSpecial = true;
-                    }
-                }
-                if (!hasSpaces) {
-                    if (hasUpper && hasLower) {
-                        if (hasDigit) {
-                            if (hasSpecial) {
-                                System.out.println("ALL CONDITIONS OF THE PASSWORD HAVE BEEN MET"); // ONCE ALL CONDITIONS WAS MET AND THE PASSWORD IS VALID
-                                this.password = password;
-                            } else {
-                                System.out.println("Password must have at least one Special Characters");
-                            }
-                        } else {
-                            System.out.println("Password must have at least one number");
-                        }
-                    } else {
-                        System.out.println("Password must have both Upper and Lower Cases");
-                    }
-                } else {
-                    System.out.println("Password cannot have spaces");
-                }
-            } else {
-                System.out.println("Password must be more than 7");
-            }
-        } else {
-            System.out.println("Password cannot be empty!");
-        }
+        this.password = password;
     }
     public void setMood(String mood) {
         this.mood = mood;
@@ -132,20 +83,39 @@ public class User implements IUser {
         this.streak = streak;
     }
 
+    /**
+     * The current User is Logged Out of the session
+     */
     @Override
     public void userLogout() {
         // NOT YET IMPLEMENTED
     }
 
+    /**
+     * Deletes all data related to this User, including account, studyGoals, pastResponses and studyMaterial
+     * @return Return true if successful deletion is done; otherwise, return false.
+     */
     @Override
     public boolean deleteUser() {
         // NOT YET IMPLEMENTED
         return false;
     }
 
+    /**
+     * Update the current User's account information with the new user data.
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @param username The account's username
+     * @param password The account's password
+     * @param mood The user's current mood
+     * @param memberSince The date of which the user created the account
+     * @return Return true if update is successful; otherwise, return false.
+     */
     @Override
     public boolean modifyUser(String firstName, String lastName, String username, String password, String mood, String memberSince) {
-        // NOT YET IMPLEMENTED
+        // TODO: Updates this User's data with the newly entered data.
+        // TODO: Ensure that the Logged-In User's information is updated.
+        // TODO: Reflect this change onto the database.
         return false;
     }
 }
