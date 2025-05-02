@@ -59,6 +59,14 @@ public class LoginController {
         }
     }
 
+    private void switchToDashboard() {
+        try {
+            MainApplication.setRoot("dashboard-view");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadMainScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/smartcookie/view/Main.fxml"));
