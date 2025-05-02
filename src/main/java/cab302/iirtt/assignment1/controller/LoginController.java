@@ -39,29 +39,14 @@ public class LoginController {
     @FXML
     private void onSignInButtonClick() {
         clearErrorLabels();
-        boolean valid = true;
-
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText();
-
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserByUsername(username);
-
-        if (user == null) {
+        User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
+        if (user != null) {
+            System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
+            MainApplication.currentUser = user;
+            switchToDashboard();
+        } else {
             loginErrorLabel.setText("Incorrect username or password");
             loginErrorLabel.setOpacity(1);
-            valid = false;
-        }
-
-        if (user != null && !user.getPassword().equals(password)) {
-            loginErrorLabel.setText("Incorrect username or password");
-            loginErrorLabel.setOpacity(1);
-            valid = false;
-        }
-
-        if (valid) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() + " has successfully Signed In!");
-            // TODO: Load Dashboard Scene
         }
     }
 

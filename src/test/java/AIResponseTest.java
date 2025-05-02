@@ -93,4 +93,10 @@ public class AIResponseTest {
         aiResponse.setUserID(5);
         Assertions.assertEquals(5, aiResponse.getUserID());
     }
+
+    @Test
+    public void testSetFavourite() {
+        aiResponse.setFavourite(true);
+        Assertions.assertEquals(true, aiResponse.getFavourite());
+    }
 }

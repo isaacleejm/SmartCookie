@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainApplication extends Application {
     public static User currentUser = null; // Stores the current logged-in User
@@ -36,8 +37,9 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         // The two lines below is used to test the Gemini API
-        GeminiAPI geminiAPI = new GeminiAPI();
-        geminiAPI.run("How does AI work? Please explain in less than 40 words.");
+//        GeminiAPI geminiAPI = new GeminiAPI();
+//        String generatedResponse = geminiAPI.run("How does AI work? Please explain in less than 40 words.");
+//        System.out.println(generatedResponse);
 
         // This should create the database (if the database has not yet been created) and create the users table (if users table has not yet been created)
         UserDAO userDAO = new UserDAO();
@@ -54,6 +56,15 @@ public class MainApplication extends Application {
 //        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
 //        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
+//        Testing generateResponse
+//        User user = IUser.userLogin("johndoe", "!Password123");
+//        MainApplication.currentUser = user;
+//        List<AIResponse> list = aiResponseDAO.getAllAIResponse();
+//        for (AIResponse response : list) {
+//            if (response instanceof FortuneCookie) {
+//                response.generateResponse("", "neutral");
+//            }
+//        }
 
 
         launch();
