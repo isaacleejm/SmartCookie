@@ -5,11 +5,12 @@ import javafx.animation.AnimationTimer;
 import java.time.LocalDate;
 
 public interface IUser {
-    // Allows the User to sign in to an existing account, using a username and password
-    // This method will have two parameters (String username, String Password)
-    // and compare them with very record of Users in the database until a match is found.
-    // If a match is found, the user is brought to the Dashboard Page, and it will be logged in as the matched user;
-    // Otherwise, display error message on the Login Page.
+    /**
+     * Allows the User to sign in to an existing account
+     * @param username The account's username
+     * @param password The account's password
+     * @return If match was found (successful login), return the User found; otherwise, return null.
+     */
     public static User userLogin(String username, String password) {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.getUserByUsername(username);
@@ -21,11 +22,13 @@ public interface IUser {
         }
     }
 
-    // Creates a new record of User that will be added to the User database
-    // This method will take in multiple parameters required for user login such as: (name, username, password, confirmPassword, phoneNumber, etc).
-    // Each parameter will have to be tested for correct formatting, such as password has to be n length, and passwords have to be same, or phone number is invalid.
-    // If an incorrect format is used, an error message will display for that error, otherwise, the account will be created successfully,
-    // the User object will be added to the User database, and they will be directed to the login page.
+    /**
+     * Creates a new record of User and adds it into the User Table Database.
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @param username The account's username
+     * @param password The account's password
+     */
     public static void userRegistration(String firstName, String lastName, String username, String password) {
         UserDAO userDAO = new UserDAO();
         User user = new User(firstName, lastName, username, password, "neutral", LocalDate.now().toString(), LocalDate.now().toString(), 0);
