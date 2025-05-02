@@ -1,5 +1,7 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.MainApplication;
+
 import java.time.LocalDate;
 
 public class User implements IUser {
@@ -113,9 +115,15 @@ public class User implements IUser {
      */
     @Override
     public boolean modifyUser(String firstName, String lastName, String username, String password, String mood, String memberSince) {
-        // TODO: Updates this User's data with the newly entered data.
-        // TODO: Ensure that the Logged-In User's information is updated.
-        // TODO: Reflect this change onto the database.
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.mood = mood;
+        this.memberSince = memberSince;
+        MainApplication.currentUser = this;
+        UserDAO userDAO = new UserDAO();
+        userDAO.updateUser(this);
         return false;
     }
 }

@@ -134,7 +134,7 @@ public class UserTest {
 
     @Test void testModifyUser() {
         user.modifyUser("firstName", "lastName", "username", "password", "mood", "memberSince");
-        assertEquals("firstname", user.getFirstName());
+        assertEquals("firstName", user.getFirstName());
         assertEquals("lastName", user.getLastName());
         assertEquals("username", user.getUsername());
         assertEquals("password", user.getPassword());
