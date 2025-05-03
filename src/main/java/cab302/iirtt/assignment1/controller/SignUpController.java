@@ -45,32 +45,6 @@ public class SignUpController {
     }
 
     /**
-     * Handles the Sign-Up button click event.
-     * Validates all fields and registers the user if inputs are valid.
-     */
-    @FXML
-    private void onSignUpButtonClick() {
-        clearErrorLabels();
-        boolean valid = true;
-
-        if (!setFirstNameField()) valid = false;
-        if (!setLastNameField()) valid = false;
-        if (!setUsernameField()) valid = false;
-        if (!setPasswordField()) valid = false;
-        if (!setConfirmPasswordField()) valid = false;
-
-        if (valid) {
-            IUser.userRegistration(
-                    firstNameField.getText().trim(),
-                    lastNameField.getText().trim(),
-                    usernameField.getText().trim(),
-                    passwordField.getText()
-            );
-            goToLogin();
-        }
-    }
-
-    /**
      * Handles the Go Back button click event.
      * Navigates the user back to the landing page view.
      */
@@ -103,6 +77,32 @@ public class SignUpController {
         usernameField.textProperty().addListener((obs, oldText, newText) -> setUsernameField());
         passwordField.textProperty().addListener((obs, oldText, newText) -> setPasswordField());
         confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> setConfirmPasswordField());
+    }
+
+    /**
+     * Handles the Sign-Up button click event.
+     * Validates all fields and registers the user if inputs are valid.
+     */
+    @FXML
+    private void onSignUpButtonClick() {
+        clearErrorLabels();
+        boolean valid = true;
+
+        if (!setFirstNameField()) valid = false;
+        if (!setLastNameField()) valid = false;
+        if (!setUsernameField()) valid = false;
+        if (!setPasswordField()) valid = false;
+        if (!setConfirmPasswordField()) valid = false;
+
+        if (valid) {
+            IUser.userRegistration(
+                    firstNameField.getText().trim(),
+                    lastNameField.getText().trim(),
+                    usernameField.getText().trim(),
+                    passwordField.getText()
+            );
+            goToLogin();
+        }
     }
 
     /**
