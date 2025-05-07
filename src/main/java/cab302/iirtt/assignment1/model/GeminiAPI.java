@@ -16,7 +16,11 @@ import java.sql.SQLOutput;
 import java.util.Properties;
 
 public class GeminiAPI {
-
+    /**
+     * Takes in a prompt and returns a text response from the GeminiAPI.
+     * @param prompt The Question that the AI will be responding to.
+     * @return The response from the GeminiAPI in String format.
+     */
     public String run(String prompt) {
         String response = "";
         try {
