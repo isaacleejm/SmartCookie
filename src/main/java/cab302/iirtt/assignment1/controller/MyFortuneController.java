@@ -4,14 +4,20 @@ import cab302.iirtt.assignment1.MainApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.ComboBox;
+import javafx.scene.text.Text;
 
+
+import java.awt.*;
 import java.io.IOException;
 import java.util.Optional;
 
 
 public class MyFortuneController {
+
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -66,6 +72,23 @@ public class MyFortuneController {
         }
     }
 
+    @FXML
+    private AnchorPane displayPane;
+
+    @FXML
+    private void changeFortune() throws IOException {
+        Text sampleText = new Text();
+        sampleText.setText("hello, this is a sample text " + fortunetype.getValue());
+
+        sampleText.setX(50);
+        sampleText.setY(50);
+
+        displayPane.getChildren().add(sampleText);
+
+
+    }
+
+
     // Hover for Left Navigation Bar
     @FXML
     private Rectangle dashboard; // fx:id in Scene Builder
@@ -85,9 +108,14 @@ public class MyFortuneController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
+    @FXML
+    private ComboBox<String> fortunetype;
 
     @FXML
     public void initialize() {
+        // Dummy data for ComboBox
+        fortunetype.getItems().addAll("Option 1", "Option 2", "Option 3");
+
         Color originalColor = (Color) dashboard.getFill();
 
         // Hover effect
