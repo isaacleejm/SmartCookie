@@ -49,6 +49,9 @@ public class GeminiAPI {
             JSONObject parts = candidates.getJSONObject(0).getJSONObject("content").getJSONArray("parts").getJSONObject(0);
             response = parts.getString("text");
 
+            // Uncomment the line below to print out additional information from the GeminiAPI.
+            // System.out.println(postResponse.body());
+
             // Printing out the response
             // System.out.println(response);
 
