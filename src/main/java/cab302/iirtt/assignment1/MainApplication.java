@@ -53,6 +53,11 @@ public class MainApplication extends Application {
         AIResponseDAO aiResponseDAO = new AIResponseDAO();
         aiResponseDAO.start();
 
+        // This should create the database (if the database has not yet been created) and create the studyMaterials table (if studyMaterials table has not yet been created)
+        StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+        studyMaterialDAO.start();
+
+
 //        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
 //        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
