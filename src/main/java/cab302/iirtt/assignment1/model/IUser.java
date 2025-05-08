@@ -35,20 +35,33 @@ public interface IUser {
         userDAO.addUser(user);
     }
 
-    // Allows the User to Logout of an account
-    // This method will have zero parameters ()
-    // The user's current session will end, and they will be directed to the login page.
+    /**
+     * Allows the User to Logout of an account. Function has zero parameters. The user's current session will end, and they will be directed to the login page.
+     */
     abstract void userLogout();
 
-    // Deletes an existing record of a User from the User Database
-    // All records related to this User (including Fortune, StudyMaterial, StudyGoal) will be deleted along with the User.
-    // Once all data has been deleted, they will be directed to the login page.
+    /**
+     * Function deletes an existing record of a User from the User Database
+     * All records related to this User (including Fortune, StudyMaterial, StudyGoal) will be deleted along with the User.
+     * Once all data has been deleted, they will be directed to the login page.
+     * @return
+     */
     abstract boolean deleteUser();
 
-    // Modify/Updates the User's information, such as: (name. password, phoneNumber, etc.)
-    // Takes in multiple parameters
-    // If the all parameters are in the correct formatting, the user's data will be updated with the new data and a "successful pop up will display";
-    // otherwise, it will display an error message for that error.
+
+    /**
+     * Modify/Updates the User's information, such as: (name. password, phoneNumber, etc.).
+     * Takes in multiple parameters.
+     * If the all parameters are in the correct formatting, the user's data will be updated with the new data and a "successful pop up will display";
+     * otherwise, it will display an error message for that error.
+     * @param firstName
+     * @param lastName
+     * @param username
+     * @param password
+     * @param mood
+     * @param memberSince
+     * @return
+     */
     abstract boolean modifyUser(String firstName, String lastName, String username, String password, String mood, String memberSince);
 
 }
