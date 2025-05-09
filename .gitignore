@@ -44,3 +44,4 @@ src/main/java/cab302/iirtt/assignment1/model/Constants.java
 database.db
 
 src/main/resources/config.properties
+/docs/javadoc/
