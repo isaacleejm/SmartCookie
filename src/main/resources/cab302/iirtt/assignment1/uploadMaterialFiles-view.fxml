@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -250,7 +248,7 @@
                </font>
             </Text>
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="60.0" layoutX="40.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <TextField fx:id="titleText" layoutX="60.0" layoutY="631.0" prefHeight="39.0" prefWidth="960.0" promptText="Title of Study Material" style="-fx-text-box-border: transparent;">
+            <TextField layoutX="60.0" layoutY="631.0" prefHeight="39.0" prefWidth="960.0" promptText="Upload Material in Plaintext" style="-fx-text-box-border: transparent;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -258,12 +256,24 @@
             <Rectangle id="pdf" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="1000.0" layoutY="640.0" stroke="BLACK" strokeType="INSIDE" width="1.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="990.0" layoutY="650.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="45.0" layoutY="600.0" stroke="BLACK" strokeType="INSIDE" width="990.0" />
-            <Button fx:id="uploadButton" layoutX="989.0" layoutY="638.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="20.0" text="Button" />
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="45.0" layoutY="92.0" prefHeight="500.0" prefWidth="990.0">
-              <content>
-                <AnchorPane fx:id="scrollContent" minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="1000.0" />
-              </content>
-            </ScrollPane>
+            <Text id="fileinfo" layoutX="60.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PDF:" wrappingWidth="960.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField id="pdfbox" layoutX="60.0" layoutY="131.0" prefHeight="128.0" prefWidth="960.0" />
+            <Text id="fileinfo" layoutX="60.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMAGES:" wrappingWidth="960.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField id="imagesbox" layoutX="60.0" layoutY="286.0" prefHeight="128.0" prefWidth="960.0" />
+            <Text id="fileinfo" layoutX="60.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPTX:" wrappingWidth="960.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField id="pptxbox" layoutX="60.0" layoutY="441.0" prefHeight="128.0" prefWidth="960.0" />
          </children>
       </AnchorPane>
    </children>
