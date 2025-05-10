@@ -24,9 +24,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import static jdk.xml.internal.SecuritySupport.getResourceAsStream;
-
-
 public class UploadMaterialController {
     private final StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
 
