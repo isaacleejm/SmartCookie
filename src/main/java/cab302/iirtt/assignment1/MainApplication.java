@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.util.List;
+//import java.util.List;
 
 public class MainApplication extends Application {
     public static User currentUser = null; // Stores the current logged-in User
