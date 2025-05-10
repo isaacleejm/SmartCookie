@@ -39,7 +39,7 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
                     + "studyMaterialSubject VARCHAR NOT NULL,"
                     + "studyMaterialDescription VARCHAR NOT NULL,"
                     + "dateModified VARCHAR NOT NULL,"
-                    + "dateUpdated VARCHAR NOT NULL,"
+                    + "dateCreated VARCHAR NOT NULL,"
                     + "userID DATETIME NOT NULL,"
                     + "FOREIGN KEY (userID) REFERENCES users(userID)"
                     + ")";
@@ -72,7 +72,7 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
             String clearQuery = "DELETE FROM studyMaterials";
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO studyMaterials (studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateUpdated, userID) VALUES "
+            String insertQuery = "INSERT INTO studyMaterials (studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateCreated, userID) VALUES "
                     + "('CAB123 Lecture 7', 'CAB123 Intro to JavaFX', 'JavaFX is a Java library and a GUI toolkit designed to develop and facilitate Rich Internet Applications (RIA), web applications, and desktop applications. It provides a comprehensive set of features and functionalities that allow developers to create visually appealing and interactive applications that can run on multiple platforms, including Windows, Linux, iOS, Android, and various devices such as desktops, web browsers, mobile phones, TVs, and tablets.', '" + LocalDate.of(2025, 5, 2) + "', '" + LocalDate.of(2025, 5, 5) + "', '2'),"
                     + "('ABC123 Tutorial 1', 'ABC123 Intro to Alphabets', 'Learning about the Alphabets. A - Apple, B - Ball, C - Cat, D - Dog, E - Elephant, F - Fish, G - Goat, H - Hat, I - Ice, J - Jam, K - Kite, L - Lion, M - Moon, N - Nose, O - Octopus, P - Pig, Q - Queen, R - Rabbit, S - Sun, T - Tiger, U - Umbrella, V - Violin, W - Whale, X - Xylophone, Y - Yak, Z - Zebra', '" + LocalDate.of(2025, 5, 3) + "', '" + LocalDate.of(2025, 5, 3) + "', '1'),"
                     + "('CAB123 Tutorial 7', 'CAB123 Intro to JavaFX', 'JavaFX is a modern, open-source framework developed by Oracle for building rich graphical user interfaces (GUIs) in Java applications. It is designed to create visually appealing and interactive desktop, mobile, and embedded applications. JavaFX is a successor to the older Swing and Abstract Window Toolkit (AWT) libraries, offering more advanced features and capabilities.', '" + LocalDate.of(2025, 4, 27) + "', '" + LocalDate.of(2025, 4, 28) + "', '2')";
@@ -90,7 +90,7 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
     @Override
     public void addStudyMaterial(StudyMaterial studyMaterial) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO studyMaterials (studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateUpdated, userID) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO studyMaterials (studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateCreated, userID) VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, studyMaterial.getStudyMaterialTitle());
             statement.setString(2, studyMaterial.getStudyMaterialSubject());
             statement.setString(3, studyMaterial.getStudyMaterialDescription());
@@ -116,7 +116,7 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
     @Override
     public void updateStudyMaterial(StudyMaterial studyMaterial) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE studyMaterials SET studyMaterialTitle = ?, studyMaterialSubject = ?, studyMaterialDescription = ?, dateModified = ?, dateUpdated = ?, userID = ? WHERE studyMaterialID = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE studyMaterials SET studyMaterialTitle = ?, studyMaterialSubject = ?, studyMaterialDescription = ?, dateModified = ?, dateCreated = ?, userID = ? WHERE studyMaterialID = ?");
             statement.setString(1, studyMaterial.getStudyMaterialTitle());
             statement.setString(2, studyMaterial.getStudyMaterialSubject());
             statement.setString(3, studyMaterial.getStudyMaterialDescription());
@@ -133,13 +133,13 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
     /**
      * Deletes a Study Material from the database.
      *
-     * @param studyMaterial The Study Material to delete.
+     * @param studyMaterialID The id of hte Study Material to delete.
      */
     @Override
-    public void deleteStudyMaterial(StudyMaterial studyMaterial) {
+    public void deleteStudyMaterialByID(int studyMaterialID) {
         try {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM studyMaterials WHERE studyMaterialID = ?");
-            statement.setInt(1, studyMaterial.getStudyMaterialID());
+            statement.setInt(1, studyMaterialID);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

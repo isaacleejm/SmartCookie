@@ -17,9 +17,9 @@ public interface IStudyMaterialDAO {
 
     /**
      * Deletes a Study Material from the database.
-     * @param studyMaterial The Study Material to delete.
+     * @param studyMaterialID The id of the Study Material to delete.
      */
-    abstract void deleteStudyMaterial(StudyMaterial studyMaterial);
+    abstract void deleteStudyMaterialByID(int studyMaterialID);
 
     /**
      * Retrieves a Study Material from the database.
