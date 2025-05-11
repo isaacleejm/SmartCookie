@@ -2,6 +2,10 @@ package cab302.iirtt.assignment1.model;
 
 import java.util.List;
 
+/**
+ * Interface for the StudyMaterial Data Access Object that handles
+ * the CRUD operations for the StudyMaterial class with the database.
+ */
 public interface IStudyMaterialDAO {
     /**
      * Adds a new StudyMaterial object to the database.

@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that implements IStudyMaterialDAO for the StudyMaterial Data Access Object that handles
+ * the CRUD operations for the StudyMaterial class with the database.
+ */
 public class StudyMaterialDAO implements IStudyMaterialDAO {
     private Connection connection;
 

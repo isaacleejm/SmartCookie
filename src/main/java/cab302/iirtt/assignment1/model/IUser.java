@@ -1,9 +1,12 @@
 package cab302.iirtt.assignment1.model;
 
-import javafx.animation.AnimationTimer;
+import cab302.iirtt.assignment1.MainApplication;
 
 import java.time.LocalDate;
 
+/**
+ * Interface for the User Object with methods for the User class.
+ */
 public interface IUser {
     /**
      * Allows the User to sign in to an existing account
@@ -38,7 +41,9 @@ public interface IUser {
     /**
      * Allows the User to Logout of an account. Function has zero parameters. The user's current session will end, and they will be directed to the login page.
      */
-    abstract void userLogout();
+    public static void userLogout() {
+        MainApplication.currentUser = null;
+    }
 
     /**
      * Function deletes an existing record of a User from the User Database

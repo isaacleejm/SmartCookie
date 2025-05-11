@@ -1,6 +1,7 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.IStudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterialDAO;
 import javafx.fxml.FXML;
@@ -20,22 +21,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class UploadMaterialController {
-    private final StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
 
     private int value = 0;
 
-
-    private double memberRating;
     private int studyMaterialID;
     private String studyMaterialTitle;
     private String studyMaterialSubject;
     private String buttonID;
-    private static int selectedID;
+    public static int selectedID;
 
     @FXML
     public static double scrollValue = 0;
@@ -110,8 +107,7 @@ public class UploadMaterialController {
         alert.setContentText("Are you sure you want to delete this Study Material?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // TODO: Delete selected Study Material from the database
-            studyMaterialDAO.deleteStudyMaterialByID(selectedID);
+            IStudyMaterial.deleteStudyMaterial(selectedID);
             MainApplication.setRoot("uploadMaterial-view");
         }
     }
@@ -161,7 +157,7 @@ public class UploadMaterialController {
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
 
         // Displaying Study Material of the current User
-        List<StudyMaterial> studyMaterialList = studyMaterialDAO.getAllStudyMaterial();
+        List<StudyMaterial> studyMaterialList = IStudyMaterial.getStudyMaterials();
         while(value < studyMaterialList.size()) {
             studyMaterialID = studyMaterialList.get(value).getStudyMaterialID();
             studyMaterialTitle = "Title : " + studyMaterialList.get(value).getStudyMaterialTitle();
@@ -184,12 +180,12 @@ public class UploadMaterialController {
     }
 
     @FXML
-    private void infoButtonF(String studyMaterialID) throws IOException {
+    private void infoButtonF(int studyMaterialID) throws IOException {
         // TODO: Link StudyMaterial ID to the INFO BUTTON, go to studyMaterial-view (where detailed information of studyMaterial is displayed.
 
         scrollValue = scrollPane.getVvalue();
-        System.out.println("NOT YET IMPLEMENTED");
-//        MainApplication.setRoot("studyMaterial-view");
+        selectedID = studyMaterialID;
+        MainApplication.setRoot("uploadMaterialInfo-view");
 
     }
 
@@ -250,7 +246,7 @@ public class UploadMaterialController {
         infoButton.setId(Integer.toString(studyMaterialID));
         infoButton.setStyle("-fx-background-radius: 40");
         infoButton.setOnAction( e -> {try {
-            infoButtonF(infoButton.getId());
+            infoButtonF(Integer.parseInt(infoButton.getId()));
         } catch (IOException e1) {
             e1.printStackTrace();
         }});
@@ -265,7 +261,7 @@ public class UploadMaterialController {
         trashButton.setId(Integer.toString(studyMaterialID));
         trashButton.setStyle("-fx-background-radius: 40");
         trashButton.setOnAction( e -> {try {
-            selectedID = studyMaterialID;
+            selectedID = Integer.parseInt(trashButton.getId());
             confirmDeletePage();
         } catch (IOException e2) {
             e2.printStackTrace();
