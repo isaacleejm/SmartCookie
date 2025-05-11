@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.controller.AichatbotController;
 import cab302.iirtt.assignment1.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +72,18 @@ public class MainApplication extends Application {
 //            }
 //        }
 
+        // Test generating a response from user input - Uncomment the code block below
+
+//        // Simulate a user is logged in
+//        User user = IUser.userLogin("johndoe", "!Password123");
+//        // Simulate the main application is working with the state being the current user
+//        MainApplication.currentUser = user;
+//        // Generate a controller object
+//        AichatbotController controller = new AichatbotController();
+//        // Generate responses, first input indicates an arbitrary question
+//        controller.generateResponse("Hello, could you give me your top five tips on how to study well?");
+//        // Second input indicates a follow-up question for the AI to reply on
+//        controller.generateResponse("Okay, why would you recommend tip three as the middle of the tips? Is it less important than 1 and 2, and more important than 4 and 5?");
 
         launch();
 
