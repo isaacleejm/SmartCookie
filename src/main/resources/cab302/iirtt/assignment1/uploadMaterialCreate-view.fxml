@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fffafa" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+            <VBox id="navbar" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <HBox id="logo" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image></ImageView>
+                              <Rectangle id="dashboardbutton" fx:id="dashboard" arcHeight="5.0" fill="#0088ff00" height="75.0" onMouseClicked="#switchToDashboard" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="settings" prefHeight="25.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" fill="#2197ff00" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="uploadmaterial" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Study Materials" wrappingWidth="118.8037109375">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/uploadmaterial.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="uploadstudybutton" fx:id="uploadmaterial" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="notifications" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notifications" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/notifications.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="notificationsbutton" fx:id="notifications" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToNotifications" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="aichatbot" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Chatbot" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/aichatbot.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="aichatbotbutton" fx:id="aichatbot" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToAIChatbot" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="studygoals" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Goals" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/studygoals.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="studygoalsbutton" fx:id="studygoals" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToStudyGoals" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="myfortunes" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Fortunes" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/myfortunes.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="myfortunesbutton" fx:id="myfortunes" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToMyFortune" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="advice" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advice / Tips" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/advice.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="advicebutton" fx:id="advice" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToAdvice" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="settings" prefHeight="75.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/settings.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="settingsbutton" fx:id="settings" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#switchToSettings" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="settings" prefHeight="25.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" fill="#2197ff00" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox id="logout" alignment="BOTTOM_LEFT" prefHeight="75.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="70.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logout.png" />
+                                 </image>
+                              </ImageView>
+                              <Rectangle id="logoutbutton" fx:id="logout" arcHeight="5.0" fill="#2197ff00" height="75.0" onMouseClicked="#logoutConfirm" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="720.0" prefWidth="1080.0">
+         <children>
+            <Rectangle arcHeight="100.0" arcWidth="100.0" height="700.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5" green="0.5" blue="0.5" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Text layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Material Details">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="45.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="990.0" />
+            <Text layoutX="230.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialtitle" layoutX="350.0" layoutY="143.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="185.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialsubject" layoutX="350.0" layoutY="245.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="136.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialdescription" layoutX="350.0" layoutY="345.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="108.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialdatecreated" layoutX="350.0" layoutY="445.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="93.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Modified:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialdatemodified" layoutX="350.0" layoutY="545.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="50.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Text layoutX="103.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CANCEL">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Rectangle fx:id="cancelbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="50.0" layoutY="620.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Text fx:id="edittext" layoutX="883.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Rectangle fx:id="createbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
