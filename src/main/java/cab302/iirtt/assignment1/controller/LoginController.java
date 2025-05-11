@@ -49,22 +49,13 @@ public class LoginController {
     }
 
     @FXML
-    private void switchToDashboard() throws IOException {
-        MainApplication.setRoot("dashboard-view");
-    }
-
-    @FXML
     private void onSignInButtonClick() {
         clearErrorLabels();
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {
             System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
             MainApplication.currentUser = user;
-            try {
-                switchToDashboard();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            switchToDashboard();
         } else {
             loginErrorLabel.setText("Incorrect username or password");
             loginErrorLabel.setOpacity(1);
@@ -75,6 +66,14 @@ public class LoginController {
     private void onCreateAccountButtonClick() {
         try {
             MainApplication.setRoot("signUp-view");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void switchToDashboard() {
+        try {
+            MainApplication.setRoot("dashboard-view");
         } catch (IOException e) {
             e.printStackTrace();
         }
