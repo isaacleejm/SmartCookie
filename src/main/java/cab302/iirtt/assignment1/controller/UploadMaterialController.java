@@ -32,7 +32,7 @@ public class UploadMaterialController {
     private String studyMaterialTitle;
     private String studyMaterialSubject;
     private String buttonID;
-    private static int selectedID;
+    public static int selectedID;
 
     @FXML
     public static double scrollValue = 0;
@@ -180,12 +180,12 @@ public class UploadMaterialController {
     }
 
     @FXML
-    private void infoButtonF(String studyMaterialID) throws IOException {
+    private void infoButtonF(int studyMaterialID) throws IOException {
         // TODO: Link StudyMaterial ID to the INFO BUTTON, go to studyMaterial-view (where detailed information of studyMaterial is displayed.
 
         scrollValue = scrollPane.getVvalue();
-        System.out.println("NOT YET IMPLEMENTED");
-//        MainApplication.setRoot("studyMaterial-view");
+        selectedID = studyMaterialID;
+        MainApplication.setRoot("uploadMaterialInfo-view");
 
     }
 
@@ -246,7 +246,7 @@ public class UploadMaterialController {
         infoButton.setId(Integer.toString(studyMaterialID));
         infoButton.setStyle("-fx-background-radius: 40");
         infoButton.setOnAction( e -> {try {
-            infoButtonF(infoButton.getId());
+            infoButtonF(Integer.parseInt(infoButton.getId()));
         } catch (IOException e1) {
             e1.printStackTrace();
         }});
@@ -261,7 +261,7 @@ public class UploadMaterialController {
         trashButton.setId(Integer.toString(studyMaterialID));
         trashButton.setStyle("-fx-background-radius: 40");
         trashButton.setOnAction( e -> {try {
-            selectedID = studyMaterialID;
+            selectedID = Integer.parseInt(trashButton.getId());
             confirmDeletePage();
         } catch (IOException e2) {
             e2.printStackTrace();
