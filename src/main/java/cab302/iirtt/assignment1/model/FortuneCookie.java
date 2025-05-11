@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class FortuneCookie extends AIResponse {
+    /**
+     * Default Constructor of FortuneCookie Class
+     */
     public FortuneCookie() {
 
     }

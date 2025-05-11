@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class FunPrediction extends AIResponse {
+    /**
+     * Default Constructor of FunPrediction Class
+     */
     public FunPrediction() {
 
     }
