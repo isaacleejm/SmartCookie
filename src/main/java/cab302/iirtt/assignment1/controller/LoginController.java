@@ -28,7 +28,7 @@ public class LoginController {
     @FXML private Label loginErrorLabel;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
         clearErrorLabels();
         usernameField.requestFocus();
         usernameField.setOnKeyPressed(event -> {
@@ -54,13 +54,17 @@ public class LoginController {
     }
 
     @FXML
-    private void onSignInButtonClick() throws IOException {
+    private void onSignInButtonClick() {
         clearErrorLabels();
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {
             System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
             MainApplication.currentUser = user;
-            switchToDashboard();
+            try {
+                switchToDashboard();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             loginErrorLabel.setText("Incorrect username or password");
             loginErrorLabel.setOpacity(1);
