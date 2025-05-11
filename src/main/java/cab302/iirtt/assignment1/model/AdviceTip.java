@@ -4,6 +4,12 @@ import java.util.List;
 
 public class AdviceTip extends AIResponse {
     /**
+     * Default Constructor of AdviceTop Class
+     */
+    public AdviceTip() {
+
+    }
+    /**
      * Declares a FortuneCookie AIResponse
      * @param responseRating The rating of the response
      * @param responseDate The date of which the response was generated
