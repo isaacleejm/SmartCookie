@@ -3,6 +3,7 @@ package cab302.iirtt.assignment1.model;
 import java.util.List;
 
 public class AIResponse implements IAIResponse{
+
     // AI Responses Variables.  ---> type (fortune cookie, motivational quote, advice/tips)
     public enum ResponseType {
         MOTIVATIONAL_QUOTE,
