@@ -1,9 +1,12 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.StudyMaterial;
+import cab302.iirtt.assignment1.model.StudyMaterialDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -12,6 +15,23 @@ import java.util.Optional;
 
 
 public class UploadMaterialInfoController {
+
+    public static StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+
+    @FXML
+    TextField materialTitleField;
+
+    @FXML
+    TextField materialSubjectField;
+
+    @FXML
+    TextField materialDescriptionField;
+
+    @FXML
+    TextField materialDateModifiedField;
+
+    @FXML
+    TextField materialDateCreatedField;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -109,6 +129,13 @@ public class UploadMaterialInfoController {
         settings.setOnMouseExited(e -> settings.setFill(Color.web("#0088ff00")));
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
+
+        StudyMaterial studyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
+        materialTitleField.setText(studyMaterial.getStudyMaterialTitle());
+        materialSubjectField.setText(studyMaterial.getStudyMaterialSubject());
+        materialDescriptionField.setText(studyMaterial.getStudyMaterialDescription());
+        materialDateModifiedField.setText(studyMaterial.getDateModified());
+        materialDateCreatedField.setText(studyMaterial.getDateCreated());
     }
 }
 
