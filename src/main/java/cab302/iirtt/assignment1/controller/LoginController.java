@@ -37,7 +37,12 @@ public class LoginController {
     }
 
     @FXML
-    private void onSignInButtonClick() {
+    private void switchToDashboard() throws IOException {
+        MainApplication.setRoot("dashboard-view");
+    }
+
+    @FXML
+    private void onSignInButtonClick() throws IOException {
         clearErrorLabels();
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {

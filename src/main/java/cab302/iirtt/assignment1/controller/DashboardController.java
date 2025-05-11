@@ -29,52 +29,51 @@ public class DashboardController {
     @FXML private Text todayFortuneText;
     @FXML private Text funPredictionText;
 
+
     @FXML
-    private void switchToDashboard() throws IOException {
+    protected void switchToDashboard() throws IOException {
         MainApplication.setRoot("dashboard-view");
     }
 
     @FXML
-    private void switchToUploadMaterial() throws IOException {
+    protected void switchToUploadMaterial() throws IOException {
         MainApplication.setRoot("uploadMaterial-view");
     }
 
     @FXML
-    private void switchToNotifications() throws IOException {
+    protected void switchToNotifications() throws IOException {
         MainApplication.setRoot("notifications-view");
     }
 
     @FXML
-    private void switchToAIChatbot() throws IOException {
+    protected void switchToAIChatbot() throws IOException {
         MainApplication.setRoot("aichatbot-view");
     }
 
     @FXML
-    private void switchToStudyGoals() throws IOException {
+    protected void switchToStudyGoals() throws IOException {
         MainApplication.setRoot("studyGoals-view");
     }
 
     @FXML
-    private void switchToMyFortune() throws IOException {
+    protected void switchToMyFortune() throws IOException {
         MainApplication.setRoot("myFortune-view");
     }
 
     @FXML
-    private void switchToAdvice() throws IOException {
+    protected void switchToAdvice() throws IOException {
         MainApplication.setRoot("adviceTips-view");
     }
 
     @FXML
-    private void switchToSettings() throws IOException {
+    protected void switchToSettings() throws IOException {
         MainApplication.setRoot("settings-view");
     }
 
-    // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html
     @FXML
-    private void logoutConfirm() throws IOException {
+    protected void logoutConfirm() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Logout");
-        alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to logout?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

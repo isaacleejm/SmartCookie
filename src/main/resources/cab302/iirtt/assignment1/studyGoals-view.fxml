@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.StudyGoalsController">
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml" fx:controller="cab302.iirtt.assignment1.controller.StudyGoalsController">
+   <!-- Left Navigation Panel from Dashboard -->
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -213,5 +213,66 @@
             </VBox>
          </children>
       </AnchorPane>
+
+      <!-- Main Content Wrapper -->
+      <AnchorPane layoutX="200.0" prefWidth="1080.0" prefHeight="720.0">
+         <!-- Greeting and Header -->
+         <Label id="username" fx:id="usernameText" layoutX="30.0" layoutY="15.0" text="Good day, User." style="-fx-font-size: 22px; -fx-font-family: 'Poppins'; -fx-text-fill: black;" />
+         <Label layoutX="30.0" layoutY="60.0" text="Did you meet your goals today?" style="-fx-font-size: 22px; -fx-font-family: 'Poppins'; -fx-text-fill: black;" />
+         <Label layoutX="800.0" layoutY="20.0" text="Tuesday 15th April" style="-fx-font-size: 24px; -fx-font-family: 'Poppins'; -fx-font-weight: bold; -fx-text-fill: black;" />
+
+         <!-- All Goals Title Banner -->
+         <StackPane layoutX="30.0" layoutY="100.0" prefWidth="240.0" prefHeight="40.0" style="-fx-background-color: #0028FF; -fx-background-radius: 20;">
+            <Label text="All Goals" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-family: 'Poppins';" />
+         </StackPane>
+
+         <!-- Goals Background Container -->
+         <AnchorPane layoutX="20.0" layoutY="150.0" prefWidth="1040.0" prefHeight="460.0" style="-fx-background-color: #E9E9E9; -fx-background-radius: 30;">
+            <ScrollPane layoutX="20.0" layoutY="20.0" prefWidth="1000.0" prefHeight="420.0" fitToWidth="true" fitToHeight="true">
+               <VBox fx:id="goalsContainer" spacing="20">
+                  <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+               </VBox>
+            </ScrollPane>
+         </AnchorPane>
+
+         <!-- New Goal Button -->
+         <Button layoutX="830.0" layoutY="630.0" prefWidth="220.0" prefHeight="50.0"
+                 text="New Goal +" onAction="#openCreateGoalPopup"
+                 style="-fx-background-color: #0028FF; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-family: 'Poppins'; -fx-background-radius: 25;"/>
+      </AnchorPane>
+
+      <!-- Goal Creation Popup -->
+      <Pane fx:id="createGoalPopup" layoutX="240.0" layoutY="90.0" prefWidth="800.0" prefHeight="500.0"
+            visible="false" style="-fx-background-color: #0028FF; -fx-background-radius: 30;">
+
+         <Label layoutX="310.0" layoutY="15.0" text="Create Goal" style="-fx-font-size: 32px; -fx-font-family: 'Itim'; -fx-text-fill: white;" />
+
+         <TextField fx:id="goalTitleField" layoutX="25.0" layoutY="60.0" prefWidth="750.0" promptText="Title"
+                    style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
+
+         <TextArea fx:id="goalDescriptionField" layoutX="25.0" layoutY="110.0" prefWidth="750.0" prefHeight="100.0" promptText="Description"
+                   style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
+
+         <Label layoutX="25.0" layoutY="220.0" text="Priority:" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" />
+         <fx:define><ToggleGroup fx:id="priorityGroup" /></fx:define>
+         <HBox layoutX="100.0" layoutY="215.0" spacing="10">
+            <RadioButton fx:id="priorityHigh" text="High" toggleGroup="$priorityGroup"
+                         style="-fx-background-color: #F4511E; -fx-background-radius: 20; -fx-padding: 8; -fx-font-family: 'Poppins';" />
+            <RadioButton fx:id="priorityMedium" text="Medium" toggleGroup="$priorityGroup"
+                         style="-fx-background-color: #FBC02D; -fx-background-radius: 20; -fx-padding: 8; -fx-font-family: 'Poppins';" />
+            <RadioButton fx:id="priorityLow" text="Low" toggleGroup="$priorityGroup" selected="true"
+                         style="-fx-background-color: #64B5F6; -fx-background-radius: 20; -fx-padding: 8; -fx-font-family: 'Poppins';" />
+         </HBox>
+
+         <Label layoutX="25.0" layoutY="270.0" text="Due Date:" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" />
+         <DatePicker fx:id="goalDueDatePicker" layoutX="100.0" layoutY="265.0" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
+
+         <CheckBox fx:id="pinGoalCheckBox" layoutX="25.0" layoutY="305.0" text="Pin Goal" style="-fx-text-fill: white; -fx-font-family: 'Poppins';" />
+
+         <Button layoutX="520.0" layoutY="420.0" text="Create" onAction="#createGoal"
+                 style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20;" />
+         <Button layoutX="620.0" layoutY="420.0" text="Cancel" onAction="#closeCreateGoalPopup"
+                 style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20;" />
+      </Pane>
    </children>
-</HBox>
+</AnchorPane>

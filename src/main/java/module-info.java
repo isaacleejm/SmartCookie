@@ -7,6 +7,7 @@ module cab302.iirtt.assignment1 {
     requires org.xerial.sqlitejdbc;
     requires java.sql;
     requires jdk.compiler;
+    requires java.desktop;
 
 
     opens cab302.iirtt.assignment1 to javafx.fxml;
