@@ -28,7 +28,7 @@ public class LoginController {
     @FXML private Label loginErrorLabel;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         clearErrorLabels();
         usernameField.requestFocus();
         usernameField.setOnKeyPressed(event -> {
