@@ -1,7 +1,17 @@
 package cab302.iirtt.assignment1.controller;
 
+import cab302.iirtt.assignment1.model.*;
 import cab302.iirtt.assignment1.MainApplication;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import cab302.iirtt.assignment1.model.User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
@@ -10,63 +20,76 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
-
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
-
+import java.util.ResourceBundle;
 
 public class StudyGoalsController {
 
+    public Label usernameText;
+    @FXML private VBox goalsContainer;
+    @FXML private Pane createGoalPopup;
+
+    @FXML private TextField goalTitleField;
+    @FXML private TextArea goalDescriptionField;
+    @FXML private DatePicker goalDueDatePicker;
+    @FXML private RadioButton priorityHigh, priorityMedium, priorityLow;
+    @FXML private CheckBox pinGoalCheckBox;
+
+    private StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+    private User currentUser;
 
     @FXML
-    private void switchToDashboard() throws IOException {
+    protected void switchToDashboard() throws IOException {
         MainApplication.setRoot("dashboard-view");
     }
 
     @FXML
-    private void switchToUploadMaterial() throws IOException {
+    protected void switchToUploadMaterial() throws IOException {
         MainApplication.setRoot("uploadMaterial-view");
     }
 
     @FXML
-    private void switchToNotifications() throws IOException {
+    protected void switchToNotifications() throws IOException {
         MainApplication.setRoot("notifications-view");
     }
 
     @FXML
-    private void switchToAIChatbot() throws IOException {
+    protected void switchToAIChatbot() throws IOException {
         MainApplication.setRoot("aichatbot-view");
     }
 
     @FXML
-    private void switchToStudyGoals() throws IOException {
+    protected void switchToStudyGoals() throws IOException {
         MainApplication.setRoot("studyGoals-view");
     }
 
     @FXML
-    private void switchToMyFortune() throws IOException {
+    protected void switchToMyFortune() throws IOException {
         MainApplication.setRoot("myFortune-view");
     }
 
     @FXML
-    private void switchToAdvice() throws IOException {
+    protected void switchToAdvice() throws IOException {
         MainApplication.setRoot("adviceTips-view");
     }
 
     @FXML
-    private void switchToSettings() throws IOException {
+    protected void switchToSettings() throws IOException {
         MainApplication.setRoot("settings-view");
     }
 
-    // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html
     @FXML
-    private void logoutConfirm() throws IOException {
+    protected void logoutConfirm() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Logout");
-        alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to logout?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            MainApplication.currentUser = null;
             MainApplication.setRoot("landingPage-view");
         }
     }
@@ -110,8 +133,10 @@ public class StudyGoalsController {
     @FXML
     private ComboBox<String> goaltype;
 
+
     @FXML
     public void initialize() {
+        currentUser = MainApplication.currentUser;
         // Dummy data for ComboBox
         goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
 
@@ -136,6 +161,113 @@ public class StudyGoalsController {
         settings.setOnMouseExited(e -> settings.setFill(Color.web("#0088ff00")));
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
+        setupHoverEffects();
+
+        if (currentUser == null) {
+            System.out.println("No user is currently logged in.");
+            return;
+        }
+
+        usernameText.setText(currentUser.getUsername());
+        loadGoals();
+        setupHoverEffects();
+    }
+
+    private void loadGoals() {
+        goalsContainer.getChildren().clear();
+        List<StudyGoal> goals = studyGoalDAO.getStudyGoalsByUserID(currentUser.getUserID());
+        for (StudyGoal goal : goals) {
+            goalsContainer.getChildren().add(createGoalCard(goal));
+        }
+    }
+
+    private Pane createGoalCard(StudyGoal goal) {
+        VBox card = new VBox(8);
+        card.setPadding(new Insets(10));
+        card.setStyle("-fx-background-color:" + getPriorityColor(goal.getStudyGoalPriority()) + ";-fx-background-radius:15;");
+
+        Label titleLabel = new Label(goal.getStudyGoalTitle());
+        titleLabel.setStyle("-fx-font-weight:bold;-fx-font-size:16px;");
+        Label descLabel = new Label(goal.getStudyGoalDescription());
+        Label dueDateLabel = new Label("Due: " + goal.getDueDate());
+        Label priorityLabel = new Label("Priority: " + goal.getStudyGoalPriority());
+
+        card.getChildren().addAll(titleLabel, descLabel, dueDateLabel, priorityLabel);
+
+        return card;
+    }
+
+    private String getPriorityColor(String priority) {
+        return switch (priority) {
+            case "High" -> "#F4511E";
+            case "Medium" -> "#FBC02D";
+            default -> "#64B5F6";
+        };
+    }
+
+    @FXML
+    private void openCreateGoalPopup() { createGoalPopup.setVisible(true); }
+
+    @FXML
+    private void createGoal() {
+        if (goalTitleField.getText().isBlank() || goalDescriptionField.getText().isBlank() || goalDueDatePicker.getValue() == null) {
+            showAlert(Alert.AlertType.ERROR, "Please fill out all required fields.");
+            return;
+        }
+
+        StudyGoal newGoal = new StudyGoal(
+                goalTitleField.getText(),
+                goalDescriptionField.getText(),
+                priorityHigh.isSelected() ? "High" : priorityMedium.isSelected() ? "Medium" : "Low",
+                false,
+                pinGoalCheckBox.isSelected(),
+                goalDueDatePicker.getValue().toString(),
+                LocalDate.now().toString(),
+                LocalDate.now().toString(),
+                currentUser.getUserID()
+        );
+
+        studyGoalDAO.addStudyGoal(newGoal);
+        goalsContainer.getChildren().add(createGoalCard(newGoal));
+        clearForm();
+        createGoalPopup.setVisible(false);
+    }
+
+    private void clearForm() {
+        goalTitleField.clear();
+        goalDescriptionField.clear();
+        goalDueDatePicker.setValue(null);
+        priorityLow.setSelected(true);
+        pinGoalCheckBox.setSelected(false);
+    }
+
+    @FXML
+    private void closeCreateGoalPopup() { createGoalPopup.setVisible(false); }
+
+    private void showAlert(Alert.AlertType type, String content) {
+        Alert alert = new Alert(type);
+        alert.setContentText(content);
+        alert.show();
+    }
+
+    private void setupHoverEffects() {
+        dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
+        dashboard.setOnMouseExited(e -> dashboard.setFill(Color.web("#0088ff00")));
+        uploadmaterial.setOnMouseEntered(e -> uploadmaterial.setFill(Color.web("#0088ff1a")));
+        uploadmaterial.setOnMouseExited(e -> uploadmaterial.setFill(Color.web("#0088ff00")));
+        notifications.setOnMouseEntered(e -> notifications.setFill(Color.web("#0088ff1a")));
+        notifications.setOnMouseExited(e -> notifications.setFill(Color.web("#0088ff00")));
+        aichatbot.setOnMouseEntered(e -> aichatbot.setFill(Color.web("#0088ff1a")));
+        aichatbot.setOnMouseExited(e -> aichatbot.setFill(Color.web("#0088ff00")));
+        studygoals.setOnMouseEntered(e -> studygoals.setFill(Color.web("#0088ff1a")));
+        studygoals.setOnMouseExited(e -> studygoals.setFill(Color.web("#0088ff00")));
+        myfortunes.setOnMouseEntered(e -> myfortunes.setFill(Color.web("#0088ff1a")));
+        myfortunes.setOnMouseExited(e -> myfortunes.setFill(Color.web("#0088ff00")));
+        advice.setOnMouseEntered(e -> advice.setFill(Color.web("#0088ff1a")));
+        advice.setOnMouseExited(e -> advice.setFill(Color.web("#0088ff00")));
+        settings.setOnMouseEntered(e -> settings.setFill(Color.web("#0088ff1a")));
+        settings.setOnMouseExited(e -> settings.setFill(Color.web("#0088ff00")));
+        logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
+        logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
     }
 }
-
