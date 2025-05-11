@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that implements IUserDAO for the User Data Access Object that handles
+ * the CRUD operations for the User class with the database.
+ */
 public class UserDAO implements IUserDAO {
     private Connection connection;
-
-    // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create a users table if it does not already exist.
 
     /**
      * UserDAO Constructor, connects to the Database and creates the User Table if it does not exist.

@@ -1,6 +1,7 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.IStudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterialDAO;
 import javafx.fxml.FXML;
@@ -20,17 +21,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class UploadMaterialController {
-    private final StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
 
     private int value = 0;
 
-
-    private double memberRating;
     private int studyMaterialID;
     private String studyMaterialTitle;
     private String studyMaterialSubject;
@@ -110,8 +107,7 @@ public class UploadMaterialController {
         alert.setContentText("Are you sure you want to delete this Study Material?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // TODO: Delete selected Study Material from the database
-            studyMaterialDAO.deleteStudyMaterialByID(selectedID);
+            IStudyMaterial.deleteStudyMaterial(selectedID);
             MainApplication.setRoot("uploadMaterial-view");
         }
     }
@@ -161,7 +157,7 @@ public class UploadMaterialController {
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
 
         // Displaying Study Material of the current User
-        List<StudyMaterial> studyMaterialList = studyMaterialDAO.getAllStudyMaterial();
+        List<StudyMaterial> studyMaterialList = IStudyMaterial.getStudyMaterials();
         while(value < studyMaterialList.size()) {
             studyMaterialID = studyMaterialList.get(value).getStudyMaterialID();
             studyMaterialTitle = "Title : " + studyMaterialList.get(value).getStudyMaterialTitle();

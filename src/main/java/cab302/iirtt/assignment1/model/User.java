@@ -2,8 +2,9 @@ package cab302.iirtt.assignment1.model;
 
 import cab302.iirtt.assignment1.MainApplication;
 
-import java.time.LocalDate;
-
+/**
+ * Class that implements IUser Interface  for Users that holds User variables and have CRUD methods for the User class.
+ */
 public class User implements IUser {
     // User Variables
     private int userID;
@@ -15,6 +16,7 @@ public class User implements IUser {
     private String memberSince;
     private String dateLoggedIn;
     private int streak;
+    private final UserDAO userDAO = new UserDAO();
 
 
     /**
@@ -86,14 +88,6 @@ public class User implements IUser {
     }
 
     /**
-     * The current User is Logged Out of the session
-     */
-    @Override
-    public void userLogout() {
-        // NOT YET IMPLEMENTED
-    }
-
-    /**
      * Deletes all data related to this User, including account, studyGoals, pastResponses and studyMaterial
      * @return Return true if successful deletion is done; otherwise, return false.
      */
@@ -122,7 +116,6 @@ public class User implements IUser {
         this.mood = mood;
         this.memberSince = memberSince;
         MainApplication.currentUser = this;
-        UserDAO userDAO = new UserDAO();
         userDAO.updateUser(this);
         return false;
     }

@@ -1,7 +1,13 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.MainApplication;
+
+import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Class for StudyMaterials that holds StudyMaterial variables and have CRUD methods for the StudyMaterial class.
+ */
 public class StudyMaterial implements IStudyMaterial{
     private int studyMaterialID;
     private String studyMaterialTitle;
@@ -10,6 +16,7 @@ public class StudyMaterial implements IStudyMaterial{
     private String dateModified;
     private String dateCreated;
     private int userID;
+    private final StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
 
     /**
      * StudyMaterial Constructor that creates a StudyMaterial Object without studyMaterialID
@@ -74,31 +81,6 @@ public class StudyMaterial implements IStudyMaterial{
         this.userID = userID;
     }
 
-
-    /**
-     * Creates a StudyMaterial Object and stores it into the studyMaterials Table Database.
-     */
-    @Override
-    public void createStudyMaterial() {
-
-    }
-
-    /**
-     * Delete this studyMaterial object from the studyMaterials Table Database.
-     */
-    @Override
-    public void deleteStudyMaterial() {
-
-    }
-
-    /**
-     * Allows logged-in User to view their StudyMaterials
-     */
-    @Override
-    public List<StudyMaterial> viewStudyMaterial() {
-        return List.of();
-    }
-
     /**
      * Updates this StudyMaterial with new data and reflect this change onto the studyMaterials Table Database.
      *
@@ -106,6 +88,12 @@ public class StudyMaterial implements IStudyMaterial{
      */
     @Override
     public void modifyStudyMaterial(StudyMaterial studyMaterial) {
-
+        this.studyMaterialTitle = studyMaterial.getStudyMaterialTitle();
+        this.studyMaterialSubject = studyMaterial.getStudyMaterialSubject();
+        this.studyMaterialDescription = studyMaterial.getStudyMaterialDescription();
+        this.dateModified = LocalDate.now().toString();
+        this.dateCreated = studyMaterial.getDateCreated();
+        this.userID = studyMaterial.getUserID();
+        studyMaterialDAO.updateStudyMaterial(this);
     }
 }
