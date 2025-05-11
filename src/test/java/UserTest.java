@@ -1,4 +1,6 @@
+import cab302.iirtt.assignment1.model.IUser;
 import cab302.iirtt.assignment1.model.User;
+import cab302.iirtt.assignment1.model.UserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,10 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
     User user;
+    UserDAO userDAO;
 
     @BeforeEach
     public void setup() {
-        user = new User("John", "Doe", "johndoe", "$Password123", "neutral", "2024-04-23", "2024-04-23", 0);
+        userDAO = new UserDAO();
+        userDAO.addUser(new User("John", "Doe", "johndoe21", "$Password123", "neutral", "2024-04-23", "2024-04-23", 0));
+        user = userDAO.getUserByUsername("johndoe21");
         user.setUserID(1);
     }
 
@@ -32,7 +37,7 @@ public class UserTest {
 
     @Test
     public void testGetUsername() {
-        assertEquals("johndoe", user.getUsername());
+        assertEquals("johndoe21", user.getUsername());
     }
 
     @Test
@@ -112,6 +117,29 @@ public class UserTest {
     public void testSetStreak() {
         user.setStreak(10);
         assertEquals(10, user.getStreak());
+    }
+
+    @Test
+    public void testUserRegistration() {
+        IUser.userRegistration("Bob", "Lee", "boblee", "Bobbly123$");
+        User registeredUser = userDAO.getUserByUsername("boblee");
+        assertEquals("boblee", registeredUser.getUsername());
+    }
+
+    @Test
+    public void testUserLogin() {
+        User registeredUser = IUser.userLogin("johndoe21", "$Password123");
+        assertEquals("johndoe21", registeredUser.getUsername());
+    }
+
+    @Test void testModifyUser() {
+        user.modifyUser("firstName", "lastName", "username", "password", "mood", "memberSince");
+        assertEquals("firstName", user.getFirstName());
+        assertEquals("lastName", user.getLastName());
+        assertEquals("username", user.getUsername());
+        assertEquals("password", user.getPassword());
+        assertEquals("mood", user.getMood());
+        assertEquals("memberSince", user.getMemberSince());
     }
 
 }

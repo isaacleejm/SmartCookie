@@ -4,33 +4,35 @@ import java.util.List;
 
 public interface IAIResponse {
 
-    // Generates AI message
-    // This method will have three parameters (String userInput, String responseType, String mood).
-    // Message generated is different to messages already received by user.
-    // Response type is set by user in settings
-    // Tone of message is based on user mood and tailored to study material (userInput)
+    /**
+     * Generates AI message based on user input and is one of either a fortune cookie, motivational quote, fun prediction or advice/tips.
+     * @param userInput The prompt for the AI.
+     */
     abstract void generateResponse(String userInput);
 
-    // User has the option to rate the response given from 1 to 5
-    // Each response has a unique ID
-    // rating is stored in responseRating and linked to corresponding responseID
+    /**
+     * Allows the user to rate their received response out of 10.
+     * @param responseID Unique identification number for AI generated response.
+     * @param responseRating Rating given by user.
+     */
     abstract void rateResponse(int responseID, int responseRating) ;
 
-    // User has the option to view past responses.
-    // Responses are stored in a database and given a unique ID
-    // User can view the message and corresponding ratings and ID
+    /**
+     * Allows user to view past responses.
+     * @param userID Unique identification number for specific user.
+     * @return A list of AI responses generated for a particular user.
+     */
     abstract List<AIResponse> viewResponses(String userID);
 
-    // User has the option to save their favourite messages
-    // Each user has their own unique list of favourite messages
+    /**
+     * This function lets the user save responses they like as a favourite.
+     * @param responseID Unique identification number for AI generated response.
+     */
     abstract void toggleFavouriteResponse(int responseID);
 
-//    // This feature generates a fun prediction based on the user's mood
-//    // Each user has their mood history stored
-//    // predictions are plausible but absurd
-//    abstract void generatePrediction(String mood , int userID);
-
-    // This feature allows the user to change the tone of the messages being generated
-    // It takes responseType as its only parameter
+    /**
+     * This function allows the user to alter the tone of the AI response.
+     * @param responseType One of four options (fortune cookie, motivational quote, fun prediction, advice/tips).
+     */
     abstract void changeType(String responseType) ;
 }

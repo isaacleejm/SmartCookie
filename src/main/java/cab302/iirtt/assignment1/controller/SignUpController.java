@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -42,32 +43,32 @@ public class SignUpController {
     private void initialize() {
         clearErrorLabels();
         addRealTimeValidation();
-    }
-
-    /**
-     * Handles the Sign-Up button click event.
-     * Validates all fields and registers the user if inputs are valid.
-     */
-    @FXML
-    private void onSignUpButtonClick() {
-        clearErrorLabels();
-        boolean valid = true;
-
-        if (!setFirstNameField()) valid = false;
-        if (!setLastNameField()) valid = false;
-        if (!setUsernameField()) valid = false;
-        if (!setPasswordField()) valid = false;
-        if (!setConfirmPasswordField()) valid = false;
-
-        if (valid) {
-            IUser.userRegistration(
-                    firstNameField.getText().trim(),
-                    lastNameField.getText().trim(),
-                    usernameField.getText().trim(),
-                    passwordField.getText()
-            );
-            goToLogin();
-        }
+        firstNameField.requestFocus();
+        firstNameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                lastNameField.requestFocus();
+            }
+        });
+        lastNameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                usernameField.requestFocus();
+            }
+        });
+        usernameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordField.requestFocus();
+            }
+        });
+        passwordField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                confirmPasswordField.requestFocus();
+            }
+        });
+        confirmPasswordField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                onSignUpButtonClick();
+            }
+        });
     }
 
     /**
@@ -103,6 +104,32 @@ public class SignUpController {
         usernameField.textProperty().addListener((obs, oldText, newText) -> setUsernameField());
         passwordField.textProperty().addListener((obs, oldText, newText) -> setPasswordField());
         confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> setConfirmPasswordField());
+    }
+
+    /**
+     * Handles the Sign-Up button click event.
+     * Validates all fields and registers the user if inputs are valid.
+     */
+    @FXML
+    private void onSignUpButtonClick() {
+        clearErrorLabels();
+        boolean valid = true;
+
+        if (!setFirstNameField()) valid = false;
+        if (!setLastNameField()) valid = false;
+        if (!setUsernameField()) valid = false;
+        if (!setPasswordField()) valid = false;
+        if (!setConfirmPasswordField()) valid = false;
+
+        if (valid) {
+            IUser.userRegistration(
+                    firstNameField.getText().trim(),
+                    lastNameField.getText().trim(),
+                    usernameField.getText().trim(),
+                    passwordField.getText()
+            );
+            goToLogin();
+        }
     }
 
     /**

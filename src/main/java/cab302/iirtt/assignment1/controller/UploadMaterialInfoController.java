@@ -1,31 +1,37 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
-import cab302.iirtt.assignment1.model.*;
+import cab302.iirtt.assignment1.model.StudyMaterial;
+import cab302.iirtt.assignment1.model.StudyMaterialDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.animation.AnimationTimer;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 
-public class SettingsController {
+public class UploadMaterialInfoController {
 
-    protected static int sessionDuration;
-    private long startTime;
-    private AnimationTimer timer;
+    public static StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
 
-    @FXML private Text usernameText;
-    @FXML private Text goalsCompletedText;
-    @FXML private Text sessionDurationText;
-    @FXML private Text responsesGatheredText;
+    @FXML
+    TextField materialTitleField;
+
+    @FXML
+    TextField materialSubjectField;
+
+    @FXML
+    TextField materialDescriptionField;
+
+    @FXML
+    TextField materialDateModifiedField;
+
+    @FXML
+    TextField materialDateCreatedField;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -76,7 +82,6 @@ public class SettingsController {
         alert.setContentText("Are you sure you want to logout?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            MainApplication.currentUser = null;
             MainApplication.setRoot("landingPage-view");
         }
     }
@@ -100,8 +105,6 @@ public class SettingsController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
-
-
 
     @FXML
     public void initialize() {
@@ -127,39 +130,12 @@ public class SettingsController {
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
 
-        // Display Logged-in User data
-        StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
-        AIResponseDAO aiResponseDAO = new AIResponseDAO();
-        User user = MainApplication.currentUser;
-
-        List<StudyGoal> goalsCompletedList = studyGoalDAO.getCompletedStudyGoalsByUserID(user.getUserID());
-        int goalsCompleted = goalsCompletedList.size();
-        goalsCompletedText.setText(Integer.toString(goalsCompleted));
-
-        List<AIResponse> responsesGatheredList = aiResponseDAO.getAIResponsesByUserID(user.getUserID());
-        int responsesGathered = responsesGatheredList.size();
-        responsesGatheredText.setText(Integer.toString(responsesGathered));
-
-        String username = user.getUsername();
-        usernameText.setText(username);
-
-        startTimer(); // starts the session timer
-        // TODO: This method is currently resetting every time dashboard runs
-    }
-
-    public void startTimer() {
-        startTime = System.nanoTime();
-
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                long elapsedNanos = now - startTime;
-                double elapsedSeconds = elapsedNanos / 1_000_000_000.0;
-                long elapsedMinutes = Math.round(elapsedSeconds / 60);
-                sessionDurationText.setText(String.format("%d", elapsedMinutes) + " m");
-            }
-        };
-        timer.start();
+        StudyMaterial studyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
+        materialTitleField.setText(studyMaterial.getStudyMaterialTitle());
+        materialSubjectField.setText(studyMaterial.getStudyMaterialSubject());
+        materialDescriptionField.setText(studyMaterial.getStudyMaterialDescription());
+        materialDateModifiedField.setText(studyMaterial.getDateModified());
+        materialDateCreatedField.setText(studyMaterial.getDateCreated());
     }
 }
 

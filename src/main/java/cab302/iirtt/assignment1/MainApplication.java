@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.util.List;
+//import java.util.List;
 
 public class MainApplication extends Application {
     public static User currentUser = null; // Stores the current logged-in User
@@ -52,6 +52,11 @@ public class MainApplication extends Application {
         // This should create the database (if the database has not yet been created) and create the AIResponses table (if aiResponses table has not yet been created)
         AIResponseDAO aiResponseDAO = new AIResponseDAO();
         aiResponseDAO.start();
+
+        // This should create the database (if the database has not yet been created) and create the studyMaterials table (if studyMaterials table has not yet been created)
+        StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+        studyMaterialDAO.start();
+
 
 //        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
 //        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed

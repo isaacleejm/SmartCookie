@@ -13,7 +13,18 @@ public class StudyGoal implements IStudyGoal {
     private String dateCreated;
     private int userID;
 
-    // Constructor
+    /**
+     * Study goal constructor that creates a StudyGoal object without studyGoalID
+     * @param studyGoalTitle The study goal's title
+     * @param studyGoalDescription The study goal's description
+     * @param studyGoalPriority The study goal's priority (Low, Medium, High)
+     * @param studyGoalStatus The study goal's status (In Progress, Completed)
+     * @param studyGoalPinned Whether the study goal is pinned or not
+     * @param dueDate The study goal's assigned due date
+     * @param lastModified The date of when the study goal was last modified
+     * @param dateCreated The date of when the study goal was created
+     * @param userID The userID of the User who created the StudyGoal
+     */
     public StudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean studyGoalPinned, String dueDate, String lastModified, String dateCreated, int userID) {
         this.studyGoalTitle = studyGoalTitle;
         this.studyGoalDescription = studyGoalDescription;
@@ -76,41 +87,77 @@ public class StudyGoal implements IStudyGoal {
         this.userID = userID;
     }
 
+    /**
+     * newStudyGoal is a new study goal including the parameters, and also dateCreated and userID which are not allowed to be set by the user.
+     * @param studyGoalTitle The study goal's title
+     * @param studyGoalDescription The study goal's description
+     * @param studyGoalPriority The study goal's priority (Low, Medium, High)
+     * @param studyGoalStatus The study goal's status (In Progress, Completed)
+     * @param studyGoalPinned Whether the study goal is pinned or not
+     * @param dueDate The study goal's assigned due date
+     * @param dateCreated The date of when the study goal was created
+     * @param userID The userID of the User who created the StudyGoal
+     */
     @Override
     public void newStudyGoal(String studyGoalTitle, String studyGoalDescription, String studyGoalPriority, boolean studyGoalStatus, boolean studyGoalPinned, String dueDate, String dateCreated, int userID) {
 
     }
 
+    /**
+     * Deletes the chosen study goal
+     */
     @Override
     public void deleteStudyGoal() {
 
     }
 
+    /**
+     * Changes the study goal priority from one of the three options (Low, Medium, High) by accessing the studyGoalPriority
+     * @param studyGoalPriority
+     */
     @Override
     public void changeStudyGoalPriority(String studyGoalPriority) {
 
     }
 
+    /**
+     * Toggles the study goal status to one of the two options, being whichever is not currently selected (In Progress, Completed)
+     */
     @Override
     public void toggleStudyGoalStatus() {
 
     }
 
+    /**
+     * Toggles whether the study goal is pinned, being True if pinned and False if not pinned.
+     */
     @Override
     public void togglePinStudyGoal() {
 
     }
 
+    /**
+     * Changes the study goal's due date set by the user for the parameter.
+     * @param dueDate
+     */
     @Override
     public void changeStudyGoalDueDate(String dueDate) {
 
     }
 
+    /**
+     * Changes the study goal title set by the user for the parameter.
+     * @param studyGoalTitle
+     */
     @Override
     public void changeStudyGoalTitle(String studyGoalTitle) {
 
     }
 
+    /**
+     * Changes the study goal description set by the user for the description.
+     * @param studyGoalDescription
+     */
     @Override
     public void changeStudyGoalDescription(String studyGoalDescription) {
 

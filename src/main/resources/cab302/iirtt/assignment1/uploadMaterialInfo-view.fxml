@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialInfoController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -244,26 +242,76 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Text layoutX="380.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Materials" underline="true">
+            <Text layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Material Details">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="60.0" layoutX="40.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <TextField fx:id="titleText" layoutX="60.0" layoutY="631.0" prefHeight="39.0" prefWidth="960.0" promptText="Title of Study Material" style="-fx-text-box-border: transparent;">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="45.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="990.0" />
+            <Text layoutX="230.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialTitleField" layoutX="350.0" layoutY="143.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
                </font>
             </TextField>
-            <Rectangle id="pdf" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="1000.0" layoutY="640.0" stroke="BLACK" strokeType="INSIDE" width="1.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="990.0" layoutY="650.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" layoutX="45.0" layoutY="600.0" stroke="BLACK" strokeType="INSIDE" width="990.0" />
-            <Button fx:id="uploadButton" layoutX="989.0" layoutY="638.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="20.0" text="Button" />
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="45.0" layoutY="92.0" prefHeight="500.0" prefWidth="990.0">
-              <content>
-                <AnchorPane fx:id="scrollContent" minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="1000.0" />
-              </content>
-            </ScrollPane>
+            <Text layoutX="185.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialSubjectField" layoutX="350.0" layoutY="245.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="136.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialDescriptionField" layoutX="350.0" layoutY="345.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="108.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialDateCreatedField" layoutX="350.0" layoutY="445.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Text layoutX="93.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Modified:">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="materialDateModifiedField" layoutX="350.0" layoutY="545.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="50.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Text layoutX="119.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BACK">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Rectangle fx:id="backbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="50.0" layoutY="620.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Text fx:id="edittext" layoutX="899.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Rectangle fx:id="editButton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
          </children>
       </AnchorPane>
    </children>

@@ -16,13 +16,10 @@ import java.sql.SQLOutput;
 import java.util.Properties;
 
 public class GeminiAPI {
-    //
+
     public String run(String prompt) {
         String response = "";
         try {
-            // User's prompt
-//            String prompt = "How does AI work? Please explain in less than 40 words.";
-
             // Connects to Gemini 2.0 Flash API and sets content type to json.
             Properties properties = new Properties();
             try (InputStream inputStream = GeminiAPI.class.getClassLoader().getResourceAsStream("config.properties")) {

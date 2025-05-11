@@ -5,17 +5,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that implements IUserDAO for the User Data Access Object that handles
+ * the CRUD operations for the User class with the database.
+ */
 public class UserDAO implements IUserDAO {
     private Connection connection;
 
-    // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create a users table if it does not already exist.
+    /**
+     * UserDAO Constructor, connects to the Database and creates the User Table if it does not exist.
+     */
     public UserDAO() {
         connection = DatabaseConnection.getInstance();
-//        deleteTable(); // Used for testing, TO BE REMOVED LATER
         createTable();
-//        insertSampleData(); // Used for testing, TO BE REMOVED LATER
     }
 
+    /**
+     * Creates a connection to the database, deletes the current User Table if it exists, creates a new User Table and inserts sample data into the User Table.
+     */
     public void start() {
         connection = DatabaseConnection.getInstance();
         deleteTable();
@@ -23,7 +30,9 @@ public class UserDAO implements IUserDAO {
         insertSampleData();
     }
 
-    // Creates the users table if it does not exist yet
+    /**
+     * Creates the User Table if it does not exist.
+     */
     private void createTable() {
         // Create table if not exists
         try {
@@ -44,7 +53,10 @@ public class UserDAO implements IUserDAO {
             e.printStackTrace();
         }
     }
-    // DROPs the users table if it exists
+
+    /**
+     * Deletes the User Table if it exists.
+     */
     private void deleteTable() {
         try {
             Statement statement = connection.createStatement();
@@ -54,7 +66,10 @@ public class UserDAO implements IUserDAO {
             e.printStackTrace();
         }
     }
-    // This method inserts sample data into users table and will be removed when submitting. NOTE: This method does not consider duplicate data
+
+    /**
+     * Insert Sample Data into the User Table
+     */
     private void insertSampleData() {
         try {
             // Clear before inserting
@@ -72,6 +87,10 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    /**
+     * Adds a new user to the User Table.
+     * @param user The user object to be added.
+     */
     @Override
     public void addUser(User user) {
         try {
@@ -95,10 +114,14 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    /**
+     * Updates an existing user's data in the database.
+     * @param user The user object with updated information.
+     */
     @Override
     public void updateUser(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, username = ?, password = ?, mood = ?, memberSince = ?, dateLoggedIn = ?, streak = ? WHERE userID = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET firstName = ?, lastName = ?, username = ?, password = ?, mood = ?, memberSince = ?, dateLoggedIn = ?, streak = ? WHERE userID = ?");
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getUsername());
@@ -114,6 +137,10 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    /**
+     * Deletes a user from the User Table.
+     * @param user The user to be deleted.
+     */
     @Override
     public void deleteUserByID(User user) {
         try {
@@ -125,6 +152,11 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    /**
+     * Retrieves a user from the User Table.
+     * @param userID The id of the user to retrieve.
+     * @return If the user with the given id was found, return the user; otherwise, return null.
+     */
     @Override
     public User getUserByID(int userID) {
         try {
@@ -150,6 +182,11 @@ public class UserDAO implements IUserDAO {
         return null;
     }
 
+    /**
+     * Retrieves a user from the User Table.
+     * @param username The username of the user to retrieve.
+     * @return If the user with the given username was found, return the user; otherwise, return null.
+     */
     @Override
     public User getUserByUsername(String username) {
         try {
@@ -175,6 +212,10 @@ public class UserDAO implements IUserDAO {
         return null;
     }
 
+    /**
+     * Retrieves all users from the User Table.
+     * @return A list of all users in the user table database.
+     */
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();

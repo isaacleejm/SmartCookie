@@ -9,6 +9,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
     private Connection connection;
 
     // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create a StudyGoal table if it does not already exist.
+
+    /**
+     * StudyGoalDAO Constructor, connects to the Database and creates the studyGoal table if it does not exist.
+     */
     public StudyGoalDAO() {
         connection = DatabaseConnection.getInstance();
 //        deleteTable(); // Used for testing, TO BE REMOVED LATER
@@ -16,6 +20,9 @@ public class StudyGoalDAO implements IStudyGoalDAO {
 //        insertSampleData(); // Used for testing, TO BE REMOVED LATER
     }
 
+    /**
+     * Creates a connection to the database, deletes the current StudyGoal Table if it exists, creates a new StudyGoal Table and inserts sample data into the StudyGoal Table.
+     */
     public void start() {
         connection = DatabaseConnection.getInstance();
         deleteTable();
@@ -23,7 +30,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         insertSampleData();
     }
 
-    // Creates the StudyGoal table if it does not exist yet
+
+    /**
+     * Creates the StudyGoal table if it does not exist yet
+     */
     private void createTable() {
         // Create table if not exists
         try {
@@ -47,7 +57,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             e.printStackTrace();
         }
     }
-    // DROPs the studyGoals table if it exists
+
+    /**
+     * Deletes the StudyGoal Table if it exists.
+     */
     private void deleteTable() {
         try {
             Statement statement = connection.createStatement();
@@ -57,7 +70,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
             e.printStackTrace();
         }
     }
-    // This method inserts sample data into StudyGoal table and will be removed when submitting. NOTE: This method does not consider duplicate data
+
+    /**
+     * Insert sample data into StudyGoal table
+     */
     private void insertSampleData() {
         try {
             // Clear before inserting
@@ -75,6 +91,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         }
     }
 
+    /**
+     * Adds a new StudyGoal to the StudyGoal table.
+     * @param studyGoal The studyGoal to add.
+     */
     @Override
     public void addStudyGoal(StudyGoal studyGoal) {
         try {
@@ -99,6 +119,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         }
     }
 
+    /**
+     * Updates an existing StudyGoal's data in the database.
+     * @param studyGoal The studyGoal to update.
+     */
     @Override
     public void updateStudyGoal(StudyGoal studyGoal) {
         try {
@@ -121,6 +145,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         }
     }
 
+    /**
+     * Deletes a StudyGoal from the StudyGoal Table.
+     * @param studyGoal The StudyGoal to delete.
+     */
     @Override
     public void deleteStudyGoal(StudyGoal studyGoal) {
         try {
@@ -132,6 +160,11 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         }
     }
 
+    /**
+     * Retrieves a StudyGoal from the StudyGoal table.
+     * @param studyGoalID The id of the study goal to retrieve.
+     * @return If the StudyGoal with the given id was found, return the user; otherwise, return null.
+     */
     @Override
     public StudyGoal getStudyGoal(int studyGoalID) {
         try {
@@ -159,6 +192,10 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         return null;
     }
 
+    /**
+     * Retrieves all StudyGoals from the StudyGoal table.
+     * @return A list of all StudyGoal's in the StudyGoal table database.
+     */
     @Override
     public List<StudyGoal> getAllStudyGoal() {
         List<StudyGoal> studyGoals = new ArrayList<>();
@@ -188,6 +225,11 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         return studyGoals;
     }
 
+    /**
+     * Retrieves a StudyGoal from the StudyGoal table.
+     * @param userID the ID of the User to view all their study goals.
+     * @return If the StudyGoal with the given userID was found, return the StudyGoal
+     */
     @Override
     public List<StudyGoal> getStudyGoalsByUserID(int userID) {
         List<StudyGoal> studyGoals = new ArrayList<>();
@@ -216,6 +258,11 @@ public class StudyGoalDAO implements IStudyGoalDAO {
         return studyGoals;
     }
 
+    /**
+     *
+     * @param userID the ID of the user to view all their completed studyGoals.
+     * @return A list of StudyGoal's that have their studyGoalStatus = true (Completed) and are found by the userID of the user.
+     */
     @Override
     public List<StudyGoal> getCompletedStudyGoalsByUserID(int userID) {
         List<StudyGoal> studyGoals = new ArrayList<>();
