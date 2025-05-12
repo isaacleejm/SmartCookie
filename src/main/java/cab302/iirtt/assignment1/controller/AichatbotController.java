@@ -3,6 +3,7 @@ package cab302.iirtt.assignment1.controller;
 import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.AIResponse;
 import cab302.iirtt.assignment1.model.AIResponseDAO;
+import cab302.iirtt.assignment1.model.AdviceTip;
 import cab302.iirtt.assignment1.model.GeminiAPI;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -118,52 +119,9 @@ public class AichatbotController extends AIResponse {
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
     }
 
-
-
-    /**
-     * Generating an AI response based on userInput into the text box
-     * @param userInput The prompt for the AI.
-     */
-    @Override
-    public void generateResponse(String userInput) {
-        if (MainApplication.currentUser == null) {
-            System.out.println("Error, User is not Logged-in to an account");
-            return;
-        }
-        // Add current user question to history (before asking Gemini)
-        chatHistory.add("User: " + userInput);
-
-        // Build chat history into a single prompt
-        StringBuilder promptBuilder = new StringBuilder();
-        for (String entry : chatHistory) {
-            promptBuilder.append(entry).append("\n");
-        }
-        promptBuilder.append("SmartestCookie: Please generate this response in less than 150 words.");
-
-        // Call Gemini with full history
-        String reply = new GeminiAPI().run(promptBuilder.toString());
-
-        // Add AI's response to history
-        chatHistory.add("SmartestCookie: " + reply);
-
-        AIResponse adviceTipResponse = new AIResponse (
-                AIResponse.ResponseType.ADVICE_TIP,
-                0,
-                LocalDate.now().toString(),
-                reply,
-                userInput,
-                false,
-                MainApplication.currentUser.getUserID()
-        );
-
-        AIResponseDAO dao = new AIResponseDAO();
-        dao.addAIResponse(adviceTipResponse);
-
-        // Print input
-        System.out.println("Input: " + userInput + "\n");
-
-        // Print reply
-        System.out.println("Reply: " + reply);
+    public void testGenerateResponse(String userInput) {
+        AdviceTip tip = new AdviceTip();
+        tip.generateResponse(userInput);
     }
 
 
