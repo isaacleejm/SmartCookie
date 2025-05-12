@@ -5,6 +5,7 @@ import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -28,6 +29,22 @@ public class DashboardController {
     @FXML private Text responsesGatheredText;
     @FXML private Text todayFortuneText;
     @FXML private Text funPredictionText;
+
+    @FXML private Rectangle day1;
+    @FXML private Rectangle day2;
+    @FXML private Rectangle day3;
+    @FXML private Rectangle day4;
+    @FXML private Rectangle day5;
+    @FXML private Rectangle day6;
+    @FXML private Rectangle day7;
+
+    @FXML private Text day1Text;
+    @FXML private Text day2Text;
+    @FXML private Text day3Text;
+    @FXML private Text day4Text;
+    @FXML private Text day5Text;
+    @FXML private Text day6Text;
+    @FXML private Text day7Text;
 
 
     @FXML
@@ -167,6 +184,40 @@ public class DashboardController {
 
         startTimer(); // starts the session timer
         // TODO: This method is currently resetting every time dashboard runs
+
+        int streak = user.getStreak();
+        int streakWeek = ((streak - 1) / 7);
+
+        day1Text.setText("Day " + (streakWeek * 7 + 1));
+        day2Text.setText("Day " + (streakWeek * 7 + 2));
+        day3Text.setText("Day " + (streakWeek * 7 + 3));
+        day4Text.setText("Day " + (streakWeek * 7 + 4));
+        day5Text.setText("Day " + (streakWeek * 7 + 5));
+        day6Text.setText("Day " + (streakWeek * 7 + 6));
+        day7Text.setText("Day " + (streakWeek * 7 + 7));
+
+        int streakDisplay = streak - (streakWeek * 7);
+
+        switch (streakDisplay) {
+            case 7:
+                day7.setFill(Paint.valueOf("#55FF00"));
+            case 6:
+                day6.setFill(Paint.valueOf("#55FF00"));
+            case 5:
+                day5.setFill(Paint.valueOf("#55FF00"));
+            case 4:
+                day4.setFill(Paint.valueOf("#55FF00"));
+            case 3:
+                day3.setFill(Paint.valueOf("#55FF00"));
+            case 2:
+                day2.setFill(Paint.valueOf("#55FF00"));
+            case 1:
+                day1.setFill(Paint.valueOf("#55FF00"));
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void startTimer() {

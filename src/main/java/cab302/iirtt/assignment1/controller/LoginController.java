@@ -53,7 +53,7 @@ public class LoginController {
         clearErrorLabels();
         User user = IUser.userLogin(usernameField.getText(), passwordField.getText());
         if (user != null) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
+//            System.out.println(user.getFirstName() + " " + user.getLastName() +" has successfuly Signed In!");
             MainApplication.currentUser = user;
             switchToDashboard();
         } else {
