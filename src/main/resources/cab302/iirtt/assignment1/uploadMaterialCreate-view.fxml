@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.UploadMaterialCreateController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -242,7 +243,7 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Text layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Material Details">
+            <Text layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Study Material">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
@@ -253,65 +254,45 @@
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialtitle" layoutX="350.0" layoutY="143.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextField fx:id="materialTitleField" layoutX="350.0" layoutY="143.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Text layoutX="185.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+            <Text layoutX="185.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialsubject" layoutX="350.0" layoutY="245.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextField fx:id="materialSubjectField" layoutX="350.0" layoutY="235.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Text layoutX="136.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+            <Text layoutX="136.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialdescription" layoutX="350.0" layoutY="345.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextArea fx:id="materialDescriptionField" layoutX="350.0" layoutY="333.0" prefHeight="253.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
-            </TextField>
-            <Text layoutX="108.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created:">
-               <font>
-                  <Font name="Comic Sans MS" size="30.0" />
-               </font>
-            </Text>
-            <TextField fx:id="materialdatecreated" layoutX="350.0" layoutY="445.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </TextField>
-            <Text layoutX="93.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Modified:">
-               <font>
-                  <Font name="Comic Sans MS" size="30.0" />
-               </font>
-            </Text>
-            <TextField fx:id="materialdatemodified" layoutX="350.0" layoutY="545.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </TextField>
+            </TextArea>
             <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="50.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
             <Text layoutX="103.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CANCEL">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Text>
-            <Rectangle fx:id="cancelbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="50.0" layoutY="620.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle fx:id="cancelButton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="50.0" layoutY="620.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" width="200.0" />
             <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
             <Text fx:id="edittext" layoutX="883.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Text>
-            <Rectangle fx:id="createbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle fx:id="createButton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" onMouseClicked="#onCreateButtonClick" stroke="BLACK" strokeType="INSIDE" width="200.0" />
          </children>
       </AnchorPane>
    </children>

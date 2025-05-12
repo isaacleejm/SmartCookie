@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -242,7 +243,7 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Text layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Material Details">
+            <Text fx:id="pageTitleText" layoutX="348.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Study Material Details">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
@@ -258,37 +259,37 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Text layoutX="185.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
+            <Text layoutX="185.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialSubjectField" layoutX="350.0" layoutY="245.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextField fx:id="materialSubjectField" layoutX="350.0" layoutY="216.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Text layoutX="136.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+            <Text layoutX="136.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialDescriptionField" layoutX="350.0" layoutY="345.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextArea fx:id="materialDescriptionField" layoutX="350.0" layoutY="289.0" prefHeight="170.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
-            </TextField>
-            <Text layoutX="108.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created:">
+            </TextArea>
+            <Text layoutX="108.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="materialDateCreatedField" layoutX="350.0" layoutY="445.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
+            <TextField fx:id="materialDateCreatedField" layoutX="350.0" layoutY="473.0" prefHeight="50.0" prefWidth="650.0" promptText="EMPTY TEXT">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Text layoutX="93.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Modified:">
+            <Text layoutX="101.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Modified:">
                <font>
                   <Font name="Comic Sans MS" size="30.0" />
                </font>
@@ -299,19 +300,19 @@
                </font>
             </TextField>
             <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="50.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text layoutX="119.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BACK">
+            <Text fx:id="backButtonText" layoutX="57.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BACK" textAlignment="CENTER" wrappingWidth="186.401123046875">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Text>
             <Rectangle fx:id="backbutton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="50.0" layoutY="620.0" onMouseClicked="#switchToUploadMaterial" stroke="BLACK" strokeType="INSIDE" width="200.0" />
             <Rectangle arcHeight="75.0" arcWidth="75.0" fill="WHITE" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Text fx:id="edittext" layoutX="899.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT">
+            <Text fx:id="editButtonText" layoutX="837.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT" textAlignment="CENTER" wrappingWidth="186.401123046875">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Text>
-            <Rectangle fx:id="editButton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle fx:id="editButton" arcHeight="75.0" arcWidth="75.0" fill="#ffffff00" height="60.0" layoutX="830.0" layoutY="620.0" onMouseClicked="#onEditButtonClick" stroke="BLACK" strokeType="INSIDE" width="200.0" />
          </children>
       </AnchorPane>
    </children>

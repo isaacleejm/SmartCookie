@@ -87,12 +87,12 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
     }
 
     /**
-     * Adds a new StudyMaterial object to the database.
+     * Adds a new StudyMaterial object to the database and returns the ID of the created StudyMaterial object
      *
      * @param studyMaterial The Study Material to add
      */
     @Override
-    public void addStudyMaterial(StudyMaterial studyMaterial) {
+    public int addStudyMaterial(StudyMaterial studyMaterial) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO studyMaterials (studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateCreated, userID) VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, studyMaterial.getStudyMaterialTitle());
@@ -106,10 +106,12 @@ public class StudyMaterialDAO implements IStudyMaterialDAO {
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 studyMaterial.setUserID(generatedKeys.getInt(1));
+                return studyMaterial.getUserID();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return -1;
     }
 
     /**
