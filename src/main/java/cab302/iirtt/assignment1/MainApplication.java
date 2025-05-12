@@ -80,10 +80,14 @@ public class MainApplication extends Application {
 //        MainApplication.currentUser = user;
 //        // Generate a controller object
 //        AichatbotController controller = new AichatbotController();
-//        // Generate responses, first input indicates an arbitrary question
-//        controller.generateResponse("Hello, could you give me your top five tips on how to study well?");
+//        // Generate responses, first input indicates an arbitrary question about study material
+//        controller.testGenerateResponse("Hello, I am learning about the alphabet currently");
 //        // Second input indicates a follow-up question for the AI to reply on
-//        controller.generateResponse("Okay, why would you recommend tip three as the middle of the tips? Is it less important than 1 and 2, and more important than 4 and 5?");
+//        controller.testGenerateResponse("What is the word associated with the letter Y, H and F?");
+//        // Third input indicates a statement that has nothing to do with the study material, or studying, self-improvement or learning.
+//        controller.testGenerateResponse("The world's longest concert lasted 453 hours.");
+//        // Fourth input indicates a statement that is irrelevant, with emotional context and the name of the AI (this is because Gemini has trouble dealing with emotional prompts, or referencing the AI's given name).
+//        controller.testGenerateResponse("I love you The SmartestCookie.");
 
         launch();
 
