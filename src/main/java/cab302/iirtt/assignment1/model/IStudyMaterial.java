@@ -9,12 +9,20 @@ import java.util.List;
  */
 public interface IStudyMaterial {
     StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+
     /**
      * Creates a StudyMaterial Object and stores it into the studyMaterials Table Database.
+     * @param studyMaterialTitle The title of the studyMaterial
+     * @param studyMaterialSubject The subject of the studyMaterial
+     * @param studyMaterialDescription The description of the studyMaterial
+     * @param dateModified The date of which the studyMaterial was last updated
+     * @param dateCreated The date of which the studyMaterial was initially created
+     * @param userID The userID of the User this studyMaterial belongs to
+     * @return
      */
-    public static void createStudyMaterial(String studyMaterialTitle, String studyMaterialSubject, String studyMaterialDescription, String dateModified, String dateCreated, int userID) {
+    public static int createStudyMaterial(String studyMaterialTitle, String studyMaterialSubject, String studyMaterialDescription, String dateModified, String dateCreated, int userID) {
         StudyMaterial newStudyMaterial = new StudyMaterial(studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, dateModified, dateCreated, userID);
-        studyMaterialDAO.addStudyMaterial(newStudyMaterial);
+        return studyMaterialDAO.addStudyMaterial(newStudyMaterial);
     }
 
     /**

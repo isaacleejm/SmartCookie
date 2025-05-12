@@ -5,31 +5,21 @@ import cab302.iirtt.assignment1.model.IStudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterialDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 
 
-public class UploadMaterialInfoController {
+public class UploadMaterialCreateController {
 
     public static StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
-
-    @FXML
-    Text pageTitleText;
-
-    @FXML
-    Text backButtonText;
-
-    @FXML
-    Text editButtonText;
-
-    @FXML
-    Rectangle editButton;
 
     @FXML
     TextField materialTitleField;
@@ -40,11 +30,6 @@ public class UploadMaterialInfoController {
     @FXML
     TextArea materialDescriptionField;
 
-    @FXML
-    TextField materialDateModifiedField;
-
-    @FXML
-    TextField materialDateCreatedField;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -143,63 +128,38 @@ public class UploadMaterialInfoController {
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
 
-        StudyMaterial studyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
-        materialTitleField.setText(studyMaterial.getStudyMaterialTitle());
-        materialSubjectField.setText(studyMaterial.getStudyMaterialSubject());
-        materialDescriptionField.setText(studyMaterial.getStudyMaterialDescription());
-        materialDateModifiedField.setText(studyMaterial.getDateModified());
-        materialDateCreatedField.setText(studyMaterial.getDateCreated());
-
         materialDescriptionField.setWrapText(true);
 
-        materialTitleField.setEditable(false);
-        materialSubjectField.setEditable(false);
-        materialDescriptionField.setEditable(false);
-        materialDateModifiedField.setDisable(true);
-        materialDateCreatedField.setDisable(true);
-
-        materialTitleField.setStyle("-fx-background-color: #CCCCCC");
-        materialSubjectField.setStyle("-fx-background-color: #CCCCCC");
-        materialDescriptionField.setStyle("-fx-control-inner-background: #CCCCCC");
-        materialDateModifiedField.setStyle("-fx-background-color: #CCCCCC");
-        materialDateCreatedField.setStyle("-fx-background-color: #CCCCCC");
+//        StudyMaterial studyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
+//        materialTitleField.setText(studyMaterial.getStudyMaterialTitle());
+//        materialSubjectField.setText(studyMaterial.getStudyMaterialSubject());
+//        materialDescriptionField.setText(studyMaterial.getStudyMaterialDescription());
+//        materialDateModifiedField.setText(studyMaterial.getDateModified());
+//        materialDateCreatedField.setText(studyMaterial.getDateCreated());
     }
 
     @FXML
-    private void onEditButtonClick() {
-        materialTitleField.setEditable(true);
-        materialSubjectField.setEditable(true);
-        materialDescriptionField.setEditable(true);
-        backButtonText.setText("CANCEL");
-        editButtonText.setText("CONFIRM");
-
-        materialTitleField.setStyle("-fx-background-color: #FFFFFF");
-        materialSubjectField.setStyle("-fx-background-color: #FFFFFF");
-        materialDescriptionField.setStyle("-fx-control-inner-background: #FFFFFF");
-        materialDateModifiedField.setStyle("-fx-background-color: #FFFFFF");
-        materialDateCreatedField.setStyle("-fx-background-color: #FFFFFF");
-
-        editButton.setOnMouseClicked(event -> modifyStudyMaterial());
-
-    }
-
-    private void modifyStudyMaterial() {
+    private void onCreateButtonClick() {
         String studyMaterialTitle = materialTitleField.getText();
         String studyMaterialSubject = materialSubjectField.getText();
         String studyMaterialDescription = materialDescriptionField.getText();
-        String dateModified = LocalDate.now().toString();
 
-        StudyMaterial updatedStudyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
-
-        updatedStudyMaterial.setStudyMaterialTitle(studyMaterialTitle);
-        updatedStudyMaterial.setStudyMaterialSubject(studyMaterialSubject);
-        updatedStudyMaterial.setStudyMaterialDescription(studyMaterialDescription);
-        updatedStudyMaterial.setDateModified(dateModified);
-
-        updatedStudyMaterial.modifyStudyMaterial(updatedStudyMaterial);
-
+        UploadMaterialController.selectedID = IStudyMaterial.createStudyMaterial(studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, LocalDate.now().toString(), LocalDate.now().toString(), MainApplication.currentUser.getUserID());
         try {
-            MainApplication.setRoot("uploadMaterialInfo-view");
+            switchToUploadMaterial();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createStudyMaterial() {
+        String studyMaterialTitle = materialTitleField.getText();
+        String studyMaterialSubject = materialSubjectField.getText();
+        String studyMaterialDescription = materialDescriptionField.getText();
+
+        UploadMaterialController.selectedID = IStudyMaterial.createStudyMaterial(studyMaterialTitle, studyMaterialSubject, studyMaterialDescription, LocalDate.now().toString(), LocalDate.now().toString(), MainApplication.currentUser.getUserID());
+        try {
+            switchToUploadMaterial();
         } catch (IOException e) {
             e.printStackTrace();
         }

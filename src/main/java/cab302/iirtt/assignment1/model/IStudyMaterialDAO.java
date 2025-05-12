@@ -11,7 +11,7 @@ public interface IStudyMaterialDAO {
      * Adds a new StudyMaterial object to the database.
      * @param studyMaterial The Study Material to add
      */
-    abstract void addStudyMaterial(StudyMaterial studyMaterial);
+    abstract int addStudyMaterial(StudyMaterial studyMaterial);
 
     /**
      * Updates an existing Study Material in the database
