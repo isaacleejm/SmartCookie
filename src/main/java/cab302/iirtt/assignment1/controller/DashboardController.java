@@ -5,9 +5,12 @@ import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.animation.AnimationTimer;
 
@@ -30,6 +33,7 @@ public class DashboardController {
     @FXML private Text todayFortuneText;
     @FXML private Text funPredictionText;
 
+    // Streak Indicator
     @FXML private Rectangle day1;
     @FXML private Rectangle day2;
     @FXML private Rectangle day3;
@@ -38,6 +42,7 @@ public class DashboardController {
     @FXML private Rectangle day6;
     @FXML private Rectangle day7;
 
+    // Streak Text
     @FXML private Text day1Text;
     @FXML private Text day2Text;
     @FXML private Text day3Text;
@@ -45,6 +50,11 @@ public class DashboardController {
     @FXML private Text day5Text;
     @FXML private Text day6Text;
     @FXML private Text day7Text;
+
+    // Today's Fortune ScrollPane
+    private int value = 0;
+    @FXML private ScrollPane scrollPane;
+    @FXML private AnchorPane scrollContent;
 
 
     @FXML
@@ -218,9 +228,88 @@ public class DashboardController {
                 break;
         }
 
+        // Displaying Today's Fortune
+        int studyGoalID;
+        String studyGoalTitle;
+        String studyGoalStatus;
+        List<StudyGoal> studyGoalList = studyGoalDAO.getStudyGoalsByUserID(MainApplication.currentUser.getUserID());
+        while(value < studyGoalList.size()) {
+            if (studyGoalList.get(value).getDueDate().equals(LocalDate.now().toString())) {
+                studyGoalID = studyGoalList.get(value).getStudyGoalID();
+                studyGoalTitle = "Title : " + studyGoalList.get(value).getStudyGoalTitle();
+                studyGoalStatus = "Status: " + studyGoalList.get(value).getStudyGoalStatus();
+                try {
+                    addToScroll(studyGoalID, studyGoalTitle, studyGoalStatus);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (value == 0) {
+            Rectangle rectangle = new Rectangle(650, 145, Color.web("#d7d7d7"));
+            rectangle.setArcHeight(7);
+            rectangle.setArcWidth(42);
+
+            Text text = new Text("You have No Goals Today");
+            text.setFont(new Font("System", 28));
+            text.setX(170);
+            text.setY(75);
+
+            scrollContent.getChildren().add(rectangle);
+            scrollContent.getChildren().add(text);
+        }
+        if (scrollContent.getPrefHeight()<=145){
+            scrollContent.setPrefHeight(145);
+        } else {
+            scrollContent.setPrefHeight(scrollContent.getPrefHeight() + 47);
+        }
+
     }
 
-    public void startTimer() {
+    private void addToScroll(int studyGoalID, String studyGoalTitle, String studyGoalStatus) throws IOException {
+        int scrollPaneWidth = 625;
+        int spacing = 5;
+        int blockWidth = scrollPaneWidth - (2*spacing) ;
+        int blockHeight = 47;
+        double borderRadius = blockHeight - 40;
+        int rectangleHeight = blockHeight - 5;
+
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setMaxWidth(blockWidth);
+        anchorPane.setMaxHeight(blockHeight);
+        anchorPane.setLayoutX(spacing);
+        anchorPane.setLayoutY((value* blockHeight)+spacing);
+        anchorPane.setId(Integer.toString(value));
+
+        Rectangle rectangle = new Rectangle(blockWidth, rectangleHeight, Color.web("#d7d7d7"));
+        scrollContent.setPrefHeight((value *blockHeight) + spacing) ;
+        rectangle.setArcHeight(borderRadius);
+        rectangle.setArcWidth(borderRadius);
+
+        Font newFont = new Font("System", 15);
+
+        Text textUser = new Text(studyGoalTitle);
+        textUser.setLayoutY((rectangleHeight/2)+5);
+        textUser.setFont(newFont);
+        textUser.setLayoutX(100);
+        textUser.setWrappingWidth(350);
+
+        Text textRating = new Text(studyGoalStatus);
+        textRating.setLayoutY((rectangleHeight/2)+5);
+        textRating.setFont(newFont);
+        textRating.setLayoutX(450);
+        textRating.setWrappingWidth(350);
+
+        anchorPane.getChildren().add(rectangle);
+        anchorPane.getChildren().add(textUser);
+        anchorPane.getChildren().add(textRating);
+
+        scrollContent.getChildren().add(anchorPane);
+
+        value ++;
+    }
+
+    private void startTimer() {
         startTime = System.nanoTime();
 
         timer = new AnimationTimer() {

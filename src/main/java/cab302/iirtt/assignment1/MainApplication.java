@@ -59,6 +59,7 @@ public class MainApplication extends Application {
         studyMaterialDAO.start();
 
 
+
 //        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
 //        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
 
