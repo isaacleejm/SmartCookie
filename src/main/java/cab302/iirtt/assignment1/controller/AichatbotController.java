@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * The Controller for the AIChatBot feature, which generates AdviceTips forms of AI Responses
+ */
 public class AichatbotController extends AIResponse {
 
     @FXML private TextField inputField;
