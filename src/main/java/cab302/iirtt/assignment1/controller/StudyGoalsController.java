@@ -38,6 +38,7 @@ public class StudyGoalsController {
     @FXML private DatePicker goalDueDatePicker;
     @FXML private RadioButton priorityHigh, priorityMedium, priorityLow;
     @FXML private CheckBox pinGoalCheckBox;
+    @FXML private ComboBox<String> statusFilterBox;
 
     private StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
     private User currentUser;
@@ -97,7 +98,7 @@ public class StudyGoalsController {
     @FXML
     private AnchorPane displayPane;
 
-    @FXML
+    /**@FXML
     private void changeGoal() throws IOException {
         Text sampleText = new Text();
         sampleText.setText("hello, this is a sample text " + goaltype.getValue());
@@ -108,7 +109,7 @@ public class StudyGoalsController {
         displayPane.getChildren().add(sampleText);
 
 
-    }
+    }*/
 
 
     // Hover for Left Navigation Bar
@@ -130,17 +131,18 @@ public class StudyGoalsController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
-    @FXML
-    private ComboBox<String> goaltype;
+    /**@FXML
+    private ComboBox<String> goaltype;*/
 
 
     @FXML
     public void initialize() {
         currentUser = MainApplication.currentUser;
+        /**
         // Dummy data for ComboBox
         goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
 
-        Color originalColor = (Color) dashboard.getFill();
+        Color originalColor = (Color) dashboard.getFill();*/
 
         // Hover effect
         dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
@@ -169,6 +171,9 @@ public class StudyGoalsController {
         }
 
         usernameText.setText(currentUser.getUsername());
+        statusFilterBox.getItems().addAll("All", "In Progress", "Completed");
+        statusFilterBox.setValue("All");
+        statusFilterBox.setOnAction(e -> loadGoals());
         loadGoals();
         setupHoverEffects();
     }
@@ -176,9 +181,30 @@ public class StudyGoalsController {
     private void loadGoals() {
         goalsContainer.getChildren().clear();
         List<StudyGoal> goals = studyGoalDAO.getStudyGoalsByUserID(currentUser.getUserID());
+
+        String selectedStatus = statusFilterBox.getValue();
+        goals = goals.stream()
+                .filter(g -> selectedStatus.equals("All") ||
+                        (selectedStatus.equals("Completed") && g.getStudyGoalStatus()) ||
+                        (selectedStatus.equals("In Progress") && !g.getStudyGoalStatus()))
+                .sorted((g1, g2) -> {
+                    if (g1.getStudyGoalPinned() != g2.getStudyGoalPinned())
+                        return Boolean.compare(g2.getStudyGoalPinned(), g1.getStudyGoalPinned());
+                    return Integer.compare(priorityValue(g2.getStudyGoalPriority()), priorityValue(g1.getStudyGoalPriority()));
+                })
+                .toList();
+
         for (StudyGoal goal : goals) {
             goalsContainer.getChildren().add(createGoalCard(goal));
         }
+    }
+
+    private int priorityValue(String priority) {
+        return switch (priority) {
+            case "High" -> 3;
+            case "Medium" -> 2;
+            default -> 1;
+        };
     }
 
     private Pane createGoalCard(StudyGoal goal) {
@@ -191,9 +217,23 @@ public class StudyGoalsController {
         Label descLabel = new Label(goal.getStudyGoalDescription());
         Label dueDateLabel = new Label("Due: " + goal.getDueDate());
         Label priorityLabel = new Label("Priority: " + goal.getStudyGoalPriority());
+        Label statusLabel = new Label(goal.getStudyGoalStatus() ? "Completed" : "In Progress");
 
-        card.getChildren().addAll(titleLabel, descLabel, dueDateLabel, priorityLabel);
+        HBox actions = new HBox(10);
+        Button deleteBtn = new Button("🗑");
+        deleteBtn.setOnAction(e -> {
+            studyGoalDAO.deleteStudyGoal(goal);
+            loadGoals();
+        });
+        Button pinBtn = new Button(goal.getStudyGoalPinned() ? "📌" : "📍");
+        pinBtn.setOnAction(e -> {
+            goal.setStudyGoalPinned(!goal.getStudyGoalPinned());
+            studyGoalDAO.updateStudyGoal(goal);
+            loadGoals();
+        });
+        actions.getChildren().addAll(deleteBtn, pinBtn);
 
+        card.getChildren().addAll(titleLabel, descLabel, dueDateLabel, priorityLabel, statusLabel, actions);
         return card;
     }
 
@@ -231,6 +271,7 @@ public class StudyGoalsController {
         goalsContainer.getChildren().add(createGoalCard(newGoal));
         clearForm();
         createGoalPopup.setVisible(false);
+        loadGoals();
     }
 
     private void clearForm() {
