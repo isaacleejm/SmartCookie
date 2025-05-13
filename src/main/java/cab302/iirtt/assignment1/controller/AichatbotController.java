@@ -1,6 +1,10 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.AIResponse;
+import cab302.iirtt.assignment1.model.AIResponseDAO;
+import cab302.iirtt.assignment1.model.AdviceTip;
+import cab302.iirtt.assignment1.model.GeminiAPI;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -8,10 +12,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
-public class AichatbotController {
+public class AichatbotController extends AIResponse {
+
+    private final ArrayList<String> chatHistory = new ArrayList<>();
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -110,5 +118,12 @@ public class AichatbotController {
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
     }
+
+    public void testGenerateResponse(String userInput) {
+        AdviceTip tip = new AdviceTip();
+        tip.generateResponse(userInput);
+    }
+
+
 }
 

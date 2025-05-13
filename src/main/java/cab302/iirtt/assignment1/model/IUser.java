@@ -59,13 +59,13 @@ public interface IUser {
      * Takes in multiple parameters.
      * If the all parameters are in the correct formatting, the user's data will be updated with the new data and a "successful pop up will display";
      * otherwise, it will display an error message for that error.
-     * @param firstName
-     * @param lastName
-     * @param username
-     * @param password
-     * @param mood
-     * @param memberSince
-     * @return
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @param username The account's username
+     * @param password The account's password
+     * @param mood The user's mood
+     * @param memberSince The date of which the user created this account
+     * @return Return true if success update of data; otherwise, return false.
      */
     abstract boolean modifyUser(String firstName, String lastName, String username, String password, String mood, String memberSince);
 

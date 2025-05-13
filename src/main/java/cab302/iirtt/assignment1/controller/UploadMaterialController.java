@@ -4,6 +4,7 @@ import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.IStudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterial;
 import cab302.iirtt.assignment1.model.StudyMaterialDAO;
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
@@ -84,6 +85,11 @@ public class UploadMaterialController {
     @FXML
     private void switchToSettings() throws IOException {
         MainApplication.setRoot("settings-view");
+    }
+
+    @FXML
+    private void switchToMaterialCreate() throws IOException {
+        MainApplication.setRoot("UploadMaterialCreate-view");
     }
 
     // https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html

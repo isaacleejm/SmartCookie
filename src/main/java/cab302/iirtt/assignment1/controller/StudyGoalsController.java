@@ -140,7 +140,7 @@ public class StudyGoalsController {
         currentUser = MainApplication.currentUser;
         /**
         // Dummy data for ComboBox
-        goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
+//        goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
 
         Color originalColor = (Color) dashboard.getFill();*/
 

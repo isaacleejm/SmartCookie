@@ -270,5 +270,6 @@
          <Button layoutX="620.0" layoutY="420.0" onAction="#closeCreateGoalPopup" style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20;" text="Cancel" />
          <fx:define><ToggleGroup fx:id="priorityGroup" /></fx:define>
       </Pane>
+
    </children>
 </AnchorPane>

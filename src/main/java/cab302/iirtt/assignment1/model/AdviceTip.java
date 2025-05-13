@@ -1,8 +1,22 @@
 package cab302.iirtt.assignment1.model;
 
+import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.StudyMaterial;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdviceTip extends AIResponse {
+
+    private final ArrayList<String> chatHistory = new ArrayList<>();
+
+    /**
+     * Default Constructor of AdviceTop Class
+     */
+    public AdviceTip() {
+
+    }
     /**
      * Declares a FortuneCookie AIResponse
      * @param responseRating The rating of the response
@@ -16,9 +30,71 @@ public class AdviceTip extends AIResponse {
         super(AIResponse.ResponseType.valueOf("ADVICE_TIP"), responseRating, responseDate, responseText, userInput, favourite, userID);
     }
 
+    /**
+     * Generating an AI response based on userInput into the text box
+     * @param userInput The prompt for the AI.
+     */
     @Override
     public void generateResponse(String userInput) {
-        // TODO: Creates an advice/tip AI response using uploaded material
+        if (MainApplication.currentUser == null) {
+            System.out.println("Error, User is not Logged-in to an account");
+            return;
+        }
+
+        // Add current user question to history (before asking Gemini)
+        chatHistory.add("User: " + userInput);
+
+        // Build study material section
+        StringBuilder promptBuilder = new StringBuilder();
+        StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+        List<StudyMaterial> studyMaterials = studyMaterialDAO.getStudyMaterialByUserID(MainApplication.currentUser.getUserID());
+
+        if (!studyMaterials.isEmpty()) {
+            promptBuilder.append("Here is the user's study material:\n");
+            for (StudyMaterial material : studyMaterials) {
+                promptBuilder.append(material.getStudyMaterialTitle())
+                        .append(": ")
+                        .append(material.getStudyMaterialSubject())
+                        .append(": ")
+                        .append(material.getStudyMaterialDescription())
+                        .append("\n");
+            }
+            promptBuilder.append("\n");
+        } else {
+            promptBuilder.append("Note: The user has not uploaded any study material yet. If relevant, you may suggest they upload study content to improve future responses.\n\n");
+        }
+
+        // Append chat history
+        for (String entry : chatHistory) {
+            promptBuilder.append(entry).append("\n");
+        }
+
+        // Add instruction to generate advice/tips
+        promptBuilder.append("SmartestCookie: You are The SmartestCookie. Please generate this response in the format of providing advice or tips related to studying, self-improvement or learning. Please generate this response in less than 150 words.");
+
+        // Call Gemini with full prompt
+        String reply = new GeminiAPI().run(promptBuilder.toString());
+
+        // Add AI's response to history
+        chatHistory.add("SmartestCookie: " + reply);
+
+        // Save the response to the database
+        AIResponse adviceTipResponse = new AIResponse(
+                AIResponse.ResponseType.ADVICE_TIP,
+                0,
+                LocalDate.now().toString(),
+                reply,
+                userInput,
+                false,
+                MainApplication.currentUser.getUserID()
+        );
+
+        AIResponseDAO dao = new AIResponseDAO();
+        dao.addAIResponse(adviceTipResponse);
+
+        // Print input and reply to console
+        System.out.println("Input: " + userInput + "\n");
+        System.out.println("Reply: " + reply);
     }
 
     @Override

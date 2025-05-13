@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.controller.AichatbotController;
 import cab302.iirtt.assignment1.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +72,22 @@ public class MainApplication extends Application {
 //            }
 //        }
 
+        // Test generating a response from user input - Uncomment the code block below
+
+//        // Simulate a user is logged in
+//        User user = IUser.userLogin("johndoe", "!Password123");
+//        // Simulate the main application is working with the state being the current user
+//        MainApplication.currentUser = user;
+//        // Generate a controller object
+//        AichatbotController controller = new AichatbotController();
+//        // Generate responses, first input indicates an arbitrary question about study material
+//        controller.testGenerateResponse("Hello, I am learning about the alphabet currently");
+//        // Second input indicates a follow-up question for the AI to reply on
+//        controller.testGenerateResponse("What is the word associated with the letter Y, H and F?");
+//        // Third input indicates a statement that has nothing to do with the study material, or studying, self-improvement or learning.
+//        controller.testGenerateResponse("The world's longest concert lasted 453 hours.");
+//        // Fourth input indicates a statement that is irrelevant, with emotional context and the name of the AI (this is because Gemini has trouble dealing with emotional prompts, or referencing the AI's given name).
+//        controller.testGenerateResponse("I love you The SmartestCookie.");
 
         launch();
 
