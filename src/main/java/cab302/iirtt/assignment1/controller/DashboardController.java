@@ -233,7 +233,8 @@ public class DashboardController {
         String studyGoalTitle;
         String studyGoalStatus;
         List<StudyGoal> studyGoalList = studyGoalDAO.getStudyGoalsByUserID(MainApplication.currentUser.getUserID());
-        while(value < studyGoalList.size()) {
+        int index = 0;
+        while(index < studyGoalList.size()) {
             if (studyGoalList.get(value).getDueDate().equals(LocalDate.now().toString())) {
                 studyGoalID = studyGoalList.get(value).getStudyGoalID();
                 studyGoalTitle = "Title : " + studyGoalList.get(value).getStudyGoalTitle();
@@ -244,6 +245,7 @@ public class DashboardController {
                     e.printStackTrace();
                 }
             }
+            index++;
         }
         if (value == 0) {
             Rectangle rectangle = new Rectangle(650, 145, Color.web("#d7d7d7"));
