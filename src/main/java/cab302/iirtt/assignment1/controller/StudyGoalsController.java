@@ -98,7 +98,7 @@ public class StudyGoalsController {
     @FXML
     private AnchorPane displayPane;
 
-    /**@FXML
+    /*@FXML
     private void changeGoal() throws IOException {
         Text sampleText = new Text();
         sampleText.setText("hello, this is a sample text " + goaltype.getValue());
@@ -131,14 +131,14 @@ public class StudyGoalsController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
-    /**@FXML
+    /*@FXML
     private ComboBox<String> goaltype;*/
 
 
     @FXML
     public void initialize() {
         currentUser = MainApplication.currentUser;
-        /**
+        /*
         // Dummy data for ComboBox
 //        goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
 
