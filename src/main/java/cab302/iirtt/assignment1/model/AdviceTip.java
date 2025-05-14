@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The AdviceTip class which is a ENUM type of AIResponse
+ */
 public class AdviceTip extends AIResponse {
 
     private final ArrayList<String> chatHistory = new ArrayList<>();

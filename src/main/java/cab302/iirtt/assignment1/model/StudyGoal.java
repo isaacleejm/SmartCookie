@@ -1,5 +1,8 @@
 package cab302.iirtt.assignment1.model;
 
+/**
+ * The Study Goal class which implements the IStudyGoal interface
+ */
 public class StudyGoal implements IStudyGoal {
 
     private int studyGoalID;
