@@ -15,6 +15,9 @@ import java.net.http.HttpResponse;
 import java.sql.SQLOutput;
 import java.util.Properties;
 
+/**
+ * Class for GeminiAPI and has methods regarding the Gemini API
+ */
 public class GeminiAPI {
 
     public String run(String prompt) {

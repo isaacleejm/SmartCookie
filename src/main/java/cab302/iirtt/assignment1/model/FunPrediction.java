@@ -5,6 +5,9 @@ import cab302.iirtt.assignment1.MainApplication;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The FunPrediction class which is a ENUM type of AIResponse
+ */
 public class FunPrediction extends AIResponse {
     /**
      * Default Constructor of FunPrediction Class

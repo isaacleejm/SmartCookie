@@ -2,6 +2,10 @@ package cab302.iirtt.assignment1.model;
 
 import java.util.List;
 
+/**
+ * Interface for the AIResponse Data Access Object that handles
+ * the CRUD operations for the AIResponse class with the database.
+ */
 public interface IAIResponseDAO {
     /**
      * Adds a new AI response to the database.
