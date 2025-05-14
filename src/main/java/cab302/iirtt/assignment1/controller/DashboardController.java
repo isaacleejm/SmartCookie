@@ -235,10 +235,10 @@ public class DashboardController {
         List<StudyGoal> studyGoalList = studyGoalDAO.getStudyGoalsByUserID(MainApplication.currentUser.getUserID());
         int index = 0;
         while(index < studyGoalList.size()) {
-            if (studyGoalList.get(value).getDueDate().equals(LocalDate.now().toString())) {
-                studyGoalID = studyGoalList.get(value).getStudyGoalID();
-                studyGoalTitle = "Title : " + studyGoalList.get(value).getStudyGoalTitle();
-                studyGoalStatus = "Status: " + studyGoalList.get(value).getStudyGoalStatus();
+            if (studyGoalList.get(index).getDueDate().equals(LocalDate.now().toString())) {
+                studyGoalID = studyGoalList.get(index).getStudyGoalID();
+                studyGoalTitle = "Title : " + studyGoalList.get(index).getStudyGoalTitle();
+                studyGoalStatus = "Status: " + studyGoalList.get(index).getStudyGoalStatus();
                 try {
                     addToScroll(studyGoalID, studyGoalTitle, studyGoalStatus);
                 } catch (IOException e) {
@@ -247,6 +247,7 @@ public class DashboardController {
             }
             index++;
         }
+
         if (value == 0) {
             Rectangle rectangle = new Rectangle(650, 145, Color.web("#d7d7d7"));
             rectangle.setArcHeight(7);
