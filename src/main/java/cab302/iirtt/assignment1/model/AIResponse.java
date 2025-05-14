@@ -2,6 +2,9 @@ package cab302.iirtt.assignment1.model;
 
 import java.util.List;
 
+/**
+ * The AI Response class which implements the IAIResponse interface
+ */
 public class AIResponse implements IAIResponse{
 
     /**

@@ -6,6 +6,9 @@ import com.sun.tools.javac.Main;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The FortuneCookie class which is a ENUM type of AIResponse
+ */
 public class FortuneCookie extends AIResponse {
     /**
      * Default Constructor of FortuneCookie Class

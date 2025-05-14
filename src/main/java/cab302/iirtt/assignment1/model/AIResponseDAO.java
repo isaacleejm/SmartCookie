@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that implements IAIResponseDAO for the AIResponse Data Access Object that handles
+ * the CRUD operations for the AIResponse class with the database.
+ */
 public class AIResponseDAO implements IAIResponseDAO{
     private Connection connection;
 
