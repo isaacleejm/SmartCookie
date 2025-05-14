@@ -48,10 +48,9 @@ public interface IUser {
     /**
      * Function deletes an existing record of a User from the User Database
      * All records related to this User (including Fortune, StudyMaterial, StudyGoal) will be deleted along with the User.
-     * Once all data has been deleted, they will be directed to the login page.
-     * @return
+     * Once all data has been deleted, they will be directed to the landing page.
      */
-    abstract boolean deleteUser();
+    abstract void deleteUser();
 
 
     /**
