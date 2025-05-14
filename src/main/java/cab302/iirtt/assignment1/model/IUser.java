@@ -19,6 +19,14 @@ public interface IUser {
         User user = userDAO.getUserByUsername(username);
         if (user == null) { return null; }
         if (password.equals(user.getPassword())) {
+            if (user.getDateLoggedIn().equals(LocalDate.now().minusDays(1).toString())) {
+                user.setDateLoggedIn(LocalDate.now().toString());
+                user.setStreak(user.getStreak() + 1);
+            } else if (!user.getDateLoggedIn().equals(LocalDate.now().toString())) {
+                user.setDateLoggedIn(LocalDate.now().toString());
+                user.setStreak(1);
+            }
+            userDAO.updateUser(user);
             return user;
         } else {
             return null;
