@@ -2,6 +2,9 @@ package cab302.iirtt.assignment1.model;
 
 import java.util.List;
 
+/**
+ * The MotivationalQuote class which is a ENUM type of AIResponse
+ */
 public class MotivationalQuote extends AIResponse {
     /**
      * Default Constructor of MotivationalQuote Class

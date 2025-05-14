@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that implements IStudyGoalDAO for the StudyGoal Data Access Object that handles
+ * the CRUD operations for the StudyGoal class with the database.
+ */
 public class StudyGoalDAO implements IStudyGoalDAO {
     private Connection connection;
 
