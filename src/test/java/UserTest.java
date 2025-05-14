@@ -4,6 +4,8 @@ import cab302.iirtt.assignment1.model.UserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
@@ -13,7 +15,7 @@ public class UserTest {
     @BeforeEach
     public void setup() {
         userDAO = new UserDAO();
-        userDAO.addUser(new User("John", "Doe", "johndoe21", "$Password123", "neutral", "2024-04-23", "2024-04-23", 0));
+        userDAO.addUser(new User("John", "Doe", "johndoe21", "$Password123", "neutral", "2024-04-23", LocalDate.now().toString(), 1s));
         user = userDAO.getUserByUsername("johndoe21");
         user.setUserID(1);
     }
@@ -57,12 +59,12 @@ public class UserTest {
 
     @Test
     public void testGetDateLoggedIn() {
-        assertEquals("2024-04-23", user.getDateLoggedIn());
+        assertEquals(LocalDate.now().toString(), user.getDateLoggedIn());
     }
 
     @Test
     public void testGetStreak() {
-        assertEquals(0, user.getStreak());
+        assertEquals(1, user.getStreak());
     }
 
     @Test
