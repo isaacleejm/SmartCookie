@@ -119,7 +119,7 @@ public class StudyMaterialTest {
         StudyMaterial oldFirstStudyMaterial = studyMaterialList.getFirst();
         IStudyMaterial.deleteStudyMaterial(studyMaterialList.getFirst().getStudyMaterialID());
         studyMaterialList = studyMaterialDAO.getAllStudyMaterial();
-        assertNotEquals(oldFirstStudyMaterial.getStudyMaterialTitle(), studyMaterialList.getFirst().getStudyMaterialTitle());
+        assertNotEquals(oldFirstStudyMaterial.getStudyMaterialID(), studyMaterialList.getFirst().getStudyMaterialID());
     }
 
     @Test
