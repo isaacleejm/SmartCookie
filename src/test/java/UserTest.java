@@ -15,7 +15,7 @@ public class UserTest {
     @BeforeEach
     public void setup() {
         userDAO = new UserDAO();
-        userDAO.addUser(new User("John", "Doe", "johndoe21", "$Password123", "neutral", "2024-04-23", LocalDate.now().toString(), 1s));
+        userDAO.addUser(new User("John", "Doe", "johndoe21", "$Password123", "neutral", "2024-04-23", LocalDate.now().toString(), 1));
         user = userDAO.getUserByUsername("johndoe21");
         user.setUserID(1);
     }
