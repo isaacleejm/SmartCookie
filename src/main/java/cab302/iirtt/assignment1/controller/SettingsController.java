@@ -161,5 +161,33 @@ public class SettingsController {
         };
         timer.start();
     }
+
+    @FXML
+    private void deleteButtonOnClick() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Delete");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete your account?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            deleteConfirmation();
+        }
+    }
+
+    private void deleteConfirmation() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("ARE YOU REALLY SURE?");
+        alert.setHeaderText(null);
+        alert.setContentText("WARNING: ALL DATA WILL BE LOST");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                MainApplication.currentUser.deleteUser();
+                MainApplication.setRoot("landingPage-view");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
