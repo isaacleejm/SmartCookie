@@ -1,5 +1,8 @@
 package cab302.iirtt.assignment1.model;
 
+/**
+ * Interface for the StudyGoal Object with methods for the StudyGoal class.
+ */
 public interface IStudyGoal {
 
     /**

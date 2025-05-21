@@ -78,9 +78,9 @@ public class UserDAO implements IUserDAO {
             clearStatement.execute(clearQuery);
             Statement insertStatement = connection.createStatement();
             String insertQuery = "INSERT INTO users (firstName, lastName, username, password, mood, memberSince, dateLoggedIn, streak) VALUES "
-                    + "('John', 'Doe', 'johndoe', '!Password123', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
-                    + "('Jane', 'Doe', 'janedoe', 'P@ssword321', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0'),"
-                    + "('Jay', 'Doe', 'jaydoe', 'I5n0tmyp@ssword', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '0')";
+                    + "('John', 'Doe', 'johndoe', '!Password123', 'neutral', '" + LocalDate.of(2025, 1, 24) + "', '" + LocalDate.now().minusDays(1) + "', '12'),"
+                    + "('Jane', 'Doe', 'janedoe', 'P@ssword321', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '5'),"
+                    + "('Jay', 'Doe', 'jaydoe', 'I5n0tmyp@ssword', 'neutral', '" + LocalDate.now() + "', '" + LocalDate.now() + "', '25')";
             insertStatement.execute(insertQuery);
         } catch (Exception e) {
             e.printStackTrace();

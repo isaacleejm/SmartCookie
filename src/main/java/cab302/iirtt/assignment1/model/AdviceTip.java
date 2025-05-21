@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The AdviceTip class which is a ENUM type of AIResponse
+ */
 public class AdviceTip extends AIResponse {
 
     private final ArrayList<String> chatHistory = new ArrayList<>();
@@ -91,15 +94,15 @@ public class AdviceTip extends AIResponse {
 
         AIResponseDAO dao = new AIResponseDAO();
         dao.addAIResponse(adviceTipResponse);
-
-        // Print input and reply to console
-        System.out.println("Input: " + userInput + "\n");
-        System.out.println("Reply: " + reply);
     }
 
     @Override
     public List<AIResponse> viewResponses(String userID) { // maybe
         // TODO: Returns a list of all AdviceTip AI responses with the same UserID
         return null;
+    }
+
+    public List<String> getChatHistory() {
+        return chatHistory;
     }
 }

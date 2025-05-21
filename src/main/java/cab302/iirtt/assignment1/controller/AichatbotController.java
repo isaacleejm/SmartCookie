@@ -6,18 +6,30 @@ import cab302.iirtt.assignment1.model.AIResponseDAO;
 import cab302.iirtt.assignment1.model.AdviceTip;
 import cab302.iirtt.assignment1.model.GeminiAPI;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.geometry.Insets;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * The Controller for the AIChatBot feature, which generates AdviceTips forms of AI Responses
+ */
 public class AichatbotController extends AIResponse {
+
+    @FXML private TextField inputField;
+    @FXML private VBox chatContainer;
+    @FXML private ScrollPane chatScrollPane;
 
     private final ArrayList<String> chatHistory = new ArrayList<>();
 
@@ -98,7 +110,31 @@ public class AichatbotController extends AIResponse {
     public void initialize() {
         Color originalColor = (Color) dashboard.getFill();
 
-        // Hover effect
+        // Ensure scrolling behavior is correct
+        VBox.setVgrow(chatContainer, Priority.ALWAYS);
+        chatContainer.setFillWidth(true);
+        chatScrollPane.setFitToWidth(true);
+        chatScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        chatScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        // Greeting: SmartestCookie
+        Label nameLabel = new Label("SmartestCookie");
+        HBox nameLabelBox = new HBox(nameLabel);
+        nameLabelBox.setAlignment(Pos.CENTER_RIGHT);
+        nameLabelBox.setPadding(new Insets(0, 20, 0, 20));
+
+        Label greeting = new Label("Hello, how can I help you today?");
+        greeting.setStyle("-fx-background-color: #e8e8e8; -fx-padding: 10; -fx-background-radius: 10;");
+        greeting.setWrapText(true);
+        greeting.setMaxWidth(500);
+
+        HBox greetingBox = new HBox(greeting);
+        greetingBox.setAlignment(Pos.CENTER_RIGHT);
+        greetingBox.setPadding(new Insets(5, 10, 5, 10));
+
+        // Add to chat container
+        chatContainer.getChildren().addAll(nameLabelBox, greetingBox);
+
         dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
         dashboard.setOnMouseExited(e -> dashboard.setFill(Color.web("#0088ff00")));
         uploadmaterial.setOnMouseEntered(e -> uploadmaterial.setFill(Color.web("#0088ff1a")));
@@ -122,6 +158,58 @@ public class AichatbotController extends AIResponse {
     public void testGenerateResponse(String userInput) {
         AdviceTip tip = new AdviceTip();
         tip.generateResponse(userInput);
+    }
+
+    @FXML
+    private void handleSendMessage() {
+        String userMessage = inputField.getText().trim();
+        if (userMessage.isEmpty()) return;
+
+        // --- USER name label
+        Label userName = new Label("USER");
+        HBox userNameBox = new HBox(userName);
+        userNameBox.setAlignment(Pos.CENTER_LEFT);
+        userNameBox.setPadding(new Insets(0, 10, 0, 10));
+
+        // --- USER message
+        Label userLabel = new Label(userMessage);
+        userLabel.setStyle("-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 10; -fx-border-color: #999;");
+        userLabel.setWrapText(true);
+        userLabel.setMaxWidth(500);
+
+        HBox userBox = new HBox(userLabel);
+        userBox.setAlignment(Pos.CENTER_LEFT);
+        userBox.setPadding(new Insets(5, 10, 5, 10));
+
+        chatContainer.getChildren().addAll(userNameBox, userBox);
+
+        // --- Generate AI reply
+        AdviceTip tip = new AdviceTip();
+        tip.generateResponse(userMessage);
+
+        String reply = tip.getChatHistory()
+                .get(tip.getChatHistory().size() - 1)
+                .replace("SmartestCookie: ", "");
+
+        // --- SmartestCookie name label
+        Label cookieName = new Label("SmartestCookie");
+        HBox cookieNameBox = new HBox(cookieName);
+        cookieNameBox.setAlignment(Pos.CENTER_RIGHT);
+        cookieNameBox.setPadding(new Insets(0, 20, 0, 20));
+
+        // --- SmartestCookie message
+        Label cookieLabel = new Label(reply);
+        cookieLabel.setStyle("-fx-background-color: #e8e8e8; -fx-padding: 10; -fx-background-radius: 10;");
+        cookieLabel.setWrapText(true);
+        cookieLabel.setMaxWidth(500);
+
+        HBox cookieBox = new HBox(cookieLabel);
+        cookieBox.setAlignment(Pos.CENTER_RIGHT);
+        cookieBox.setPadding(new Insets(5, 10, 5, 10));
+
+        chatContainer.getChildren().addAll(cookieNameBox, cookieBox);
+
+        inputField.clear();
     }
 
 
