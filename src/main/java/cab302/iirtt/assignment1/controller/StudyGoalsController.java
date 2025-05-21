@@ -211,20 +211,20 @@ public class StudyGoalsController {
         Label statusLabel = new Label(goal.getStudyGoalStatus() ? "Completed" : "In Progress");
 
         HBox actions = new HBox(10);
-        Button deleteBtn = new Button("🗑");
+        Button deleteBtn = new Button("🗑 Delete Goal");
         deleteBtn.setOnAction(e -> {
             studyGoalDAO.deleteStudyGoal(goal);
             loadGoals();
         });
 
-        Button pinBtn = new Button(goal.getStudyGoalPinned() ? "📌" : "📍");
+        Button pinBtn = new Button(goal.getStudyGoalPinned() ? "📌 Unpin Goal" : "📍 Pin Goal");
         pinBtn.setOnAction(e -> {
             goal.setStudyGoalPinned(!goal.getStudyGoalPinned());
             studyGoalDAO.updateStudyGoal(goal);
             loadGoals();
         });
 
-        Button editBtn = new Button("✏");
+        Button editBtn = new Button("✏ Edit Goal");
         editBtn.setOnAction(e -> openEditGoalPopup(goal));
 
         Button statusToggleBtn = new Button(goal.getStudyGoalStatus() ? "↩ Mark In Progress" : "✔ Mark Completed");
