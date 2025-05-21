@@ -249,7 +249,7 @@
 
          <TextField fx:id="goalTitleField" layoutX="25.0" layoutY="60.0" prefWidth="750.0" promptText="Title" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
 
-         <TextArea fx:id="goalDescriptionField" layoutX="25.0" layoutY="110.0" prefHeight="100.0" prefWidth="750.0" promptText="Description" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
+         <TextArea fx:id="goalDescriptionField" layoutX="25.0" layoutY="110.0" prefHeight="100.0" prefWidth="750.0" promptText="Description" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC; -fx-padding: 5;" />
 
          <Label layoutX="25.0" layoutY="220.0" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" text="Priority:" />
          <HBox layoutX="100.0" layoutY="215.0" spacing="10">
@@ -262,7 +262,7 @@
          </HBox>
 
          <Label layoutX="25.0" layoutY="270.0" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" text="Due Date:" />
-         <DatePicker fx:id="goalDueDatePicker" layoutX="100.0" layoutY="265.0" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
+         <DatePicker fx:id="goalDueDatePicker" layoutX="110.0" layoutY="265.0" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC; -fx-padding: 5 10 5 10;" />
 
          <CheckBox fx:id="pinGoalCheckBox" layoutX="25.0" layoutY="305.0" style="-fx-text-fill: white; -fx-font-family: 'Poppins';" text="Pin Goal" />
 

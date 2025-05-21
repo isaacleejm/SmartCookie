@@ -95,23 +95,6 @@ public class StudyGoalsController {
         }
     }
 
-    @FXML
-    private AnchorPane displayPane;
-
-    /*@FXML
-    private void changeGoal() throws IOException {
-        Text sampleText = new Text();
-        sampleText.setText("hello, this is a sample text " + goaltype.getValue());
-
-        sampleText.setX(50);
-        sampleText.setY(50);
-
-        displayPane.getChildren().add(sampleText);
-
-
-    }*/
-
-
     // Hover for Left Navigation Bar
     @FXML
     private Rectangle dashboard; // fx:id in Scene Builder
@@ -131,18 +114,13 @@ public class StudyGoalsController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
-    /*@FXML
-    private ComboBox<String> goaltype;*/
 
-
+    /**
+     * Initializes the controller. Loads the current user, goals, and UI settings.
+     */
     @FXML
     public void initialize() {
         currentUser = MainApplication.currentUser;
-        /*
-        // Dummy data for ComboBox
-//        goaltype.getItems().addAll("Option 1", "Option 2", "Option 3");
-
-        Color originalColor = (Color) dashboard.getFill();*/
 
         // Hover effect
         dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
@@ -178,6 +156,9 @@ public class StudyGoalsController {
         setupHoverEffects();
     }
 
+    /**
+     * Loads and displays all study goals filtered and sorted according to user input.
+     */
     private void loadGoals() {
         goalsContainer.getChildren().clear();
         List<StudyGoal> goals = studyGoalDAO.getStudyGoalsByUserID(currentUser.getUserID());
@@ -199,6 +180,11 @@ public class StudyGoalsController {
         }
     }
 
+    /**
+     * Returns an integer representing the priority level.
+     * @param priority The priority as a string.
+     * @return Integer value of the priority.
+     */
     private int priorityValue(String priority) {
         return switch (priority) {
             case "High" -> 3;
@@ -207,6 +193,11 @@ public class StudyGoalsController {
         };
     }
 
+    /**
+     * Creates and returns a UI card element for the specified study goal.
+     * @param goal The study goal object.
+     * @return A Pane representing the goal card.
+     */
     private Pane createGoalCard(StudyGoal goal) {
         VBox card = new VBox(8);
         card.setPadding(new Insets(10));
@@ -225,18 +216,37 @@ public class StudyGoalsController {
             studyGoalDAO.deleteStudyGoal(goal);
             loadGoals();
         });
+
         Button pinBtn = new Button(goal.getStudyGoalPinned() ? "📌" : "📍");
         pinBtn.setOnAction(e -> {
             goal.setStudyGoalPinned(!goal.getStudyGoalPinned());
             studyGoalDAO.updateStudyGoal(goal);
             loadGoals();
         });
-        actions.getChildren().addAll(deleteBtn, pinBtn);
+
+        Button editBtn = new Button("✏");
+        editBtn.setOnAction(e -> openEditGoalPopup(goal));
+
+        Button statusToggleBtn = new Button(goal.getStudyGoalStatus() ? "↩ Mark In Progress" : "✔ Mark Completed");
+        statusToggleBtn.setOnAction(e -> {
+            goal.setStudyGoalStatus(!goal.getStudyGoalStatus());
+            studyGoalDAO.updateStudyGoal(goal);
+            loadGoals();
+        });
+
+        actions.getChildren().addAll(deleteBtn, pinBtn, editBtn, statusToggleBtn);
 
         card.getChildren().addAll(titleLabel, descLabel, dueDateLabel, priorityLabel, statusLabel, actions);
         return card;
     }
 
+    private StudyGoal currentEditingGoal;
+
+    /**
+     * Returns the color code associated with a given priority level.
+     * @param priority The priority level.
+     * @return A hex color code as a string.
+     */
     private String getPriorityColor(String priority) {
         return switch (priority) {
             case "High" -> "#F4511E";
@@ -245,9 +255,41 @@ public class StudyGoalsController {
         };
     }
 
+    /**
+     * Opens the popup for editing a study goal.
+     * @param goal The goal to edit.
+     */
     @FXML
-    private void openCreateGoalPopup() { createGoalPopup.setVisible(true); }
+    private void openEditGoalPopup(StudyGoal goal) {
+        currentEditingGoal = goal;
+        goalTitleField.setText(goal.getStudyGoalTitle());
+        goalDescriptionField.setText(goal.getStudyGoalDescription());
+        goalDueDatePicker.setValue(LocalDate.parse(goal.getDueDate()));
 
+        switch (goal.getStudyGoalPriority()) {
+            case "High": priorityHigh.setSelected(true); break;
+            case "Medium": priorityMedium.setSelected(true); break;
+            default: priorityLow.setSelected(true); break;
+        }
+
+        pinGoalCheckBox.setSelected(goal.getStudyGoalPinned());
+
+        createGoalPopup.setVisible(true);
+    }
+
+    /**
+     * Opens the popup for creating a new study goal.
+     */
+    @FXML
+    private void openCreateGoalPopup() {
+        currentEditingGoal = null;
+        clearForm();
+        createGoalPopup.setVisible(true);
+    }
+
+    /**
+     * Creates or updates a study goal based on the form inputs.
+     */
     @FXML
     private void createGoal() {
         if (goalTitleField.getText().isBlank() || goalDescriptionField.getText().isBlank() || goalDueDatePicker.getValue() == null) {
@@ -255,25 +297,39 @@ public class StudyGoalsController {
             return;
         }
 
-        StudyGoal newGoal = new StudyGoal(
-                goalTitleField.getText(),
-                goalDescriptionField.getText(),
-                priorityHigh.isSelected() ? "High" : priorityMedium.isSelected() ? "Medium" : "Low",
-                false,
-                pinGoalCheckBox.isSelected(),
-                goalDueDatePicker.getValue().toString(),
-                LocalDate.now().toString(),
-                LocalDate.now().toString(),
-                currentUser.getUserID()
-        );
+        if (currentEditingGoal != null) {
+            currentEditingGoal.setStudyGoalTitle(goalTitleField.getText());
+            currentEditingGoal.setStudyGoalDescription(goalDescriptionField.getText());
+            currentEditingGoal.setDueDate(goalDueDatePicker.getValue().toString());
+            currentEditingGoal.setStudyGoalPriority(priorityHigh.isSelected() ? "High" : priorityMedium.isSelected() ? "Medium" : "Low");
+            currentEditingGoal.setStudyGoalPinned(pinGoalCheckBox.isSelected());
 
-        studyGoalDAO.addStudyGoal(newGoal);
-        goalsContainer.getChildren().add(createGoalCard(newGoal));
+            studyGoalDAO.updateStudyGoal(currentEditingGoal);
+            currentEditingGoal = null;
+        } else {
+            StudyGoal newGoal = new StudyGoal(
+                    goalTitleField.getText(),
+                    goalDescriptionField.getText(),
+                    priorityHigh.isSelected() ? "High" : priorityMedium.isSelected() ? "Medium" : "Low",
+                    false,
+                    pinGoalCheckBox.isSelected(),
+                    goalDueDatePicker.getValue().toString(),
+                    LocalDate.now().toString(),
+                    LocalDate.now().toString(),
+                    currentUser.getUserID()
+            );
+
+            studyGoalDAO.addStudyGoal(newGoal);
+        }
+
         clearForm();
         createGoalPopup.setVisible(false);
         loadGoals();
     }
 
+    /**
+     * Clears the goal form fields.
+     */
     private void clearForm() {
         goalTitleField.clear();
         goalDescriptionField.clear();
@@ -282,15 +338,26 @@ public class StudyGoalsController {
         pinGoalCheckBox.setSelected(false);
     }
 
+    /**
+     * Closes the goal creation/edit popup.
+     */
     @FXML
     private void closeCreateGoalPopup() { createGoalPopup.setVisible(false); }
 
+    /**
+     * Displays an alert dialog with the specified message.
+     * @param type The type of alert.
+     * @param content The message content.
+     */
     private void showAlert(Alert.AlertType type, String content) {
         Alert alert = new Alert(type);
         alert.setContentText(content);
         alert.show();
     }
 
+    /**
+     * Sets up hover effects for the navigation bar items.
+     */
     private void setupHoverEffects() {
         dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
         dashboard.setOnMouseExited(e -> dashboard.setFill(Color.web("#0088ff00")));
