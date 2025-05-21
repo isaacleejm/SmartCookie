@@ -3,9 +3,7 @@ package cab302.iirtt.assignment1.controller;
 import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -55,6 +53,13 @@ public class DashboardController {
     private int value = 0;
     @FXML private ScrollPane scrollPane;
     @FXML private AnchorPane scrollContent;
+
+    // Mood
+    @FXML private ToggleButton happyMood;
+    @FXML private ToggleButton tiredMood;
+    @FXML private ToggleButton anxiousMood;
+    @FXML private ToggleButton neutralMood;
+    @FXML private ToggleButton stressedMood;
 
 
     @FXML
@@ -267,7 +272,60 @@ public class DashboardController {
             scrollContent.setPrefHeight(scrollContent.getPrefHeight() + 47);
         }
 
+
+        // Update current mood
+        ToggleGroup selectedMood = new ToggleGroup();
+        happyMood.setToggleGroup(selectedMood);
+        tiredMood.setToggleGroup(selectedMood);
+        anxiousMood.setToggleGroup(selectedMood);
+        neutralMood.setToggleGroup(selectedMood);
+        stressedMood.setToggleGroup(selectedMood);
+
+        happyMood.setOnAction(e -> MainApplication.currentUser.setMood("happy"));
+        tiredMood.setOnAction(e -> MainApplication.currentUser.setMood("tired"));
+        anxiousMood.setOnAction(e -> MainApplication.currentUser.setMood("anxious"));
+        neutralMood.setOnAction(e -> MainApplication.currentUser.setMood("neutral"));
+        stressedMood.setOnAction(e -> MainApplication.currentUser.setMood("stressed"));
+
+        String currentMood = user.getMood();
+
+        // Test whether current mood updates
+        System.out.println(currentMood);
+
+        user = MainApplication.currentUser;
+        switch(currentMood){
+            case "happy":
+                happyMood.setSelected(true);
+                MainApplication.currentUser.setMood("happy");
+                user.modifyUser(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                break;
+            case "tired":
+                tiredMood.setSelected(true);
+                MainApplication.currentUser.setMood("tired");
+                user.modifyUser(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                break;
+            case "anxious":
+                anxiousMood.setSelected(true);
+                MainApplication.currentUser.setMood("anxious");
+                user.modifyUser(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                break;
+            case "neutral":
+                neutralMood.setSelected(true);
+                MainApplication.currentUser.setMood("neutral");
+                user.modifyUser(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                break;
+            case "stressed":
+                stressedMood.setSelected(true);
+                MainApplication.currentUser.setMood("stressed");
+                user.modifyUser(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                break;
+        }
+
+
+
     }
+
+    @FXML
 
     private void addToScroll(int studyGoalID, String studyGoalTitle, String studyGoalStatus) throws IOException {
         int scrollPaneWidth = 625;

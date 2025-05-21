@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ToggleButton?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.DashboardController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -358,11 +359,11 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Text>
-                                    <Button layoutX="30.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Happy" />
-                                    <Button layoutX="130.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Tired" />
-                                    <Button layoutX="230.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Anxious" />
-                                    <Button layoutX="80.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Neutral" />
-                                    <Button layoutX="180.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Stressed" />
+                                    <ToggleButton fx:id="happyMood" layoutX="30.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Happy" />
+                                    <ToggleButton fx:id="tiredMood" layoutX="130.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Tired" />
+                                    <ToggleButton fx:id="anxiousMood" layoutX="230.0" layoutY="80.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Anxious" />
+                                    <ToggleButton fx:id="neutralMood" layoutX="80.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Neutral" />
+                                    <ToggleButton fx:id="stressedMood" layoutX="180.0" layoutY="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Stressed" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -413,45 +414,45 @@
                                        </font>
                                     </Text>
                                     <Rectangle fx:id="day1" arcHeight="10.0" arcWidth="10.0" fill="#55ff00" height="50.0" layoutX="30.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day1Text" fill="WHITE" layoutX="37.0" layoutY="110.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 1">
+                                    <Text fx:id="day1Text" fill="WHITE" layoutX="30.0" layoutY="109.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 1" textAlignment="CENTER" wrappingWidth="60.0">
                                        <font>
-                                          <Font name="System Bold" size="18.0" />
+                                          <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Text>
                                     <Rectangle fx:id="day2" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="110.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day2Text" fill="WHITE" layoutX="116.0" layoutY="110.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 2">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Text>
                                     <Rectangle fx:id="day3" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="190.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day3Text" fill="WHITE" layoutX="196.0" layoutY="110.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 3">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Text>
                                     <Rectangle fx:id="day4" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="270.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day4Text" fill="WHITE" layoutX="276.0" layoutY="110.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 4">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Text>
                                     <Rectangle fx:id="day5" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="70.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day5Text" fill="WHITE" layoutX="76.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 5">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Text>
                                     <Rectangle fx:id="day6" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="150.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day6Text" fill="WHITE" layoutX="156.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 6">
+                                    <Rectangle fx:id="day7" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="230.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                    <Text fx:id="day2Text" fill="WHITE" layoutX="110.0" layoutY="109.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 2" textAlignment="CENTER" wrappingWidth="60.0">
                                        <font>
-                                          <Font name="System Bold" size="18.0" />
+                                          <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Text>
-                                    <Rectangle fx:id="day7" arcHeight="10.0" arcWidth="10.0" fill="#cccccc" height="50.0" layoutX="230.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Text fx:id="day7Text" fill="WHITE" layoutX="236.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 7">
+                                    <Text fx:id="day3Text" fill="WHITE" layoutX="190.0" layoutY="109.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 3" textAlignment="CENTER" wrappingWidth="60.0">
                                        <font>
-                                          <Font name="System Bold" size="18.0" />
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="day4Text" fill="WHITE" layoutX="270.0" layoutY="109.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 4" textAlignment="CENTER" wrappingWidth="60.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="day5Text" fill="WHITE" layoutX="70.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 5" textAlignment="CENTER" wrappingWidth="60.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="day6Text" fill="WHITE" layoutX="150.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 6" textAlignment="CENTER" wrappingWidth="60.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="day7Text" fill="WHITE" layoutX="230.0" layoutY="180.0" stroke="BLACK" strokeType="OUTSIDE" text="Day 7" textAlignment="CENTER" wrappingWidth="60.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Text>
                                  </children>
