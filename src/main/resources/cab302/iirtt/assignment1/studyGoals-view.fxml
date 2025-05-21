@@ -248,13 +248,9 @@
          <Label layoutX="310.0" layoutY="8.0" style="-fx-font-size: 32px; -fx-font-family: 'Itim'; -fx-text-fill: white;" text="Create Goal" />
 
          <TextField fx:id="goalTitleField" layoutX="25.0" layoutY="60.0" prefWidth="750.0" promptText="Title" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC;" />
-         <TextArea fx:id="goalDescriptionField" layoutX="25.0" layoutY="110.0" prefHeight="100.0" prefWidth="750.0" promptText="Description" style="-fx-background-color: transparent; -fx-control-inner-background: #FCFCFC; -fx-text-fill: black;" />
-
          <TextArea fx:id="goalDescriptionField" layoutX="25.0" layoutY="110.0" prefHeight="100.0" prefWidth="750.0" promptText="Description" style="-fx-background-radius: 20; -fx-background-color: #FCFCFC; -fx-padding: 5;" />
 
          <Label layoutX="25.0" layoutY="220.0" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" text="Priority:" />
-         <HBox layoutX="100.0" layoutY="215.0" spacing="10">
-         <Label layoutX="25.0" layoutY="230.0" style="-fx-font-family: 'Poppins'; -fx-text-fill: white; -fx-font-size: 18px;" text="Priority:" />
          <HBox layoutX="100.0" layoutY="225.0" spacing="10">
             <RadioButton fx:id="priorityHigh" style="-fx-background-color: #F4511E; -fx-background-radius: 20; -fx-padding: 8; -fx-font-family: 'Poppins';" text="High">
                <toggleGroup>
@@ -269,8 +265,8 @@
 
          <CheckBox fx:id="pinGoalCheckBox" layoutX="25.0" layoutY="350.0" style="-fx-text-fill: white; -fx-font-family: 'Poppins';" text="Pin Goal" />
 
-         <Button layoutX="40.0" layoutY="420.0" onAction="#createGoal" style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20; -fx-font-size: 20px" text="     Create     " />
-         <Button layoutX="620.0" layoutY="420.0" onAction="#closeCreateGoalPopup" style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20; -fx-font-size: 20px" text="     Cancel     " />
+         <Button layoutX="40.0" layoutY="420.0" onAction="#closeCreateGoalPopup" style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20; -fx-font-size: 20px" text="     Cancel     " />
+         <Button layoutX="620.0" layoutY="420.0" onAction="#createGoal" style="-fx-background-color: #FCFCFC; -fx-font-family: 'Poppins'; -fx-background-radius: 20; -fx-font-size: 20px" text="     Create     " />
          <fx:define><ToggleGroup fx:id="priorityGroup" /></fx:define>
       </Pane>
 
