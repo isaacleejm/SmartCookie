@@ -26,7 +26,7 @@
                      <children>
                         <Rectangle arcHeight="100.0" arcWidth="100.0" height="720.0" stroke="BLACK" strokeType="INSIDE" width="428.0">
                            <fill>
-                              <LinearGradient startX="1.0">
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                                  <stops>
                                     <Stop>
                                        <color>
