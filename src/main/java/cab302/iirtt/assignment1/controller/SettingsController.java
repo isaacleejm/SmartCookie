@@ -26,6 +26,8 @@ public class SettingsController {
     @FXML private Text goalsCompletedText;
     @FXML private Text sessionDurationText;
     @FXML private Text responsesGatheredText;
+    @FXML private Text nameDisplay;
+    @FXML private Text emailDisplay;
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -142,6 +144,12 @@ public class SettingsController {
 
         String username = user.getUsername();
         usernameText.setText(username);
+
+        String fullname = user.getFirstName() + " " + user.getLastName();
+        nameDisplay.setText(fullname);
+
+        emailDisplay.setText(username);
+
 
         startTimer(); // starts the session timer
         // TODO: This method is currently resetting every time dashboard runs
