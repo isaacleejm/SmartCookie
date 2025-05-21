@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="cab302.iirtt.assignment1.controller.StudyGoalsController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cab302.iirtt.assignment1.controller.StudyGoalsController">
    <!-- Left Navigation Panel from Dashboard -->
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -221,9 +236,8 @@
 
          <!-- All Goals Title Banner with Dropdown -->
          <StackPane layoutX="30.0" layoutY="100.0" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #0028FF; -fx-background-radius: 20;">
-            <HBox alignment="CENTER" spacing="10" prefWidth="240.0">
-               <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-family: 'Poppins';" text="All Goals" />
-               <ComboBox fx:id="statusFilterBox" promptText="▼" prefWidth="25" style="-fx-background-color: #0028FF; -fx-font-size: 16px; -fx-font-family: 'Poppins'; -fx-mark-color: white; -fx-border-color: transparent; -fx-display-caret: false; -fx-prompt-text-fill: white;" />
+            <HBox alignment="CENTER" prefWidth="240.0" spacing="10">
+               <ComboBox fx:id="statusFilterBox" prefHeight="42.0" prefWidth="245.0" promptText="All" style="-fx-background-color: transparent;" stylesheets="@styles/styles.css" />
             </HBox>
          </StackPane>
 
@@ -232,7 +246,7 @@
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="20.0" prefHeight="420.0" prefWidth="1000.0">
                <VBox fx:id="goalsContainer" spacing="20">
                   <padding>
-                     <Insets top="10" right="10" bottom="10" left="10" />
+                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
                </VBox>
             </ScrollPane>
