@@ -219,13 +219,13 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="980.0" maxWidth="980.0" minHeight="436.0" minWidth="970.0" prefHeight="456.0" prefWidth="971.0">
+      <AnchorPane maxHeight="980.0" maxWidth="1082.0" minHeight="436.0" minWidth="970.0" prefHeight="720.0" prefWidth="1082.0">
          <children>
-            <AnchorPane layoutX="52.5" layoutY="95.0" maxWidth="973.0" minHeight="500.0" minWidth="500.0" prefHeight="909.0" prefWidth="973.0">
+            <AnchorPane layoutX="53.0" layoutY="95.0" maxWidth="973.0" minHeight="500.0" minWidth="500.0" prefHeight="504.0" prefWidth="973.0">
                <children>
-                  <ScrollPane fx:id="chatScrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="5.0" maxWidth="973.0" minHeight="0.0" minWidth="0.0" prefWidth="973.0" vbarPolicy="AS_NEEDED" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fx:id="chatScrollPane" fitToWidth="true" prefHeight="504.0" prefWidth="973.0">
                      <content>
-                        <VBox fx:id="chatContainer" maxHeight="509.0" maxWidth="1021.0" minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="973.0" />
+                        <VBox fx:id="chatContainer" prefHeight="505.0" prefWidth="958.0" />
                      </content>
                   </ScrollPane>
                </children>

@@ -8,10 +8,7 @@ import cab302.iirtt.assignment1.model.GeminiAPI;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Insets;
@@ -174,6 +171,7 @@ public class AichatbotController extends AIResponse {
         // --- USER message
         Label userLabel = new Label(userMessage);
         userLabel.setStyle("-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 10; -fx-border-color: #999;");
+        userLabel.setAlignment(Pos.CENTER_LEFT);
         userLabel.setWrapText(true);
         userLabel.setMaxWidth(500);
 
@@ -193,21 +191,31 @@ public class AichatbotController extends AIResponse {
 
         // --- SmartestCookie name label
         Label cookieName = new Label("SmartestCookie");
+        AnchorPane cookieNameAnchor = new AnchorPane(cookieName);
+        cookieNameAnchor.setPrefWidth(chatContainer.getWidth());
         HBox cookieNameBox = new HBox(cookieName);
         cookieNameBox.setAlignment(Pos.CENTER_RIGHT);
         cookieNameBox.setPadding(new Insets(0, 20, 0, 20));
+        cookieNameBox.setLayoutX(450);
+        cookieNameAnchor.getChildren().add(cookieNameBox);
 
         // --- SmartestCookie message
         Label cookieLabel = new Label(reply);
         cookieLabel.setStyle("-fx-background-color: #e8e8e8; -fx-padding: 10; -fx-background-radius: 10;");
         cookieLabel.setWrapText(true);
+        cookieLabel.setAlignment(Pos.CENTER_RIGHT);
+        cookieLabel.setLayoutX(450);
         cookieLabel.setMaxWidth(500);
 
+        AnchorPane cookieAnchor = new AnchorPane(cookieLabel);
+        cookieAnchor.setPrefWidth(chatContainer.getWidth());
         HBox cookieBox = new HBox(cookieLabel);
         cookieBox.setAlignment(Pos.CENTER_RIGHT);
         cookieBox.setPadding(new Insets(5, 10, 5, 10));
+        cookieBox.setLayoutX(450);
+        cookieAnchor.getChildren().add(cookieBox);
 
-        chatContainer.getChildren().addAll(cookieNameBox, cookieBox);
+        chatContainer.getChildren().addAll(cookieNameAnchor, cookieAnchor);
 
         inputField.clear();
     }
