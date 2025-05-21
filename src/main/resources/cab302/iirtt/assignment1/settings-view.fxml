@@ -506,7 +506,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Text>
-                                          <Rectangle fx:id="deleteaccountbutton" arcHeight="50.0" arcWidth="50.0" fill="#ffffff00" height="40.0" layoutX="85.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                                          <Rectangle fx:id="deleteaccountbutton" arcHeight="50.0" arcWidth="50.0" fill="#ffffff00" height="40.0" layoutX="85.0" layoutY="150.0" onMouseClicked="#deleteButtonOnClick" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

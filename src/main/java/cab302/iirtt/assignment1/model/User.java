@@ -2,6 +2,8 @@ package cab302.iirtt.assignment1.model;
 
 import cab302.iirtt.assignment1.MainApplication;
 
+import java.util.List;
+
 /**
  * Class that implements IUser Interface  for Users that holds User variables and have CRUD methods for the User class.
  */
@@ -17,6 +19,9 @@ public class User implements IUser {
     private String dateLoggedIn;
     private int streak;
     private final UserDAO userDAO = new UserDAO();
+    private final StudyGoalDAO studyGoalDAO = new StudyGoalDAO();
+    private final StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
+    private final AIResponseDAO aiResponseDAO = new AIResponseDAO();
 
 
     /**
@@ -89,12 +94,22 @@ public class User implements IUser {
 
     /**
      * Deletes all data related to this User, including account, studyGoals, pastResponses and studyMaterial
-     * @return Return true if successful deletion is done; otherwise, return false.
      */
     @Override
-    public boolean deleteUser() {
-        // NOT YET IMPLEMENTED
-        return false;
+    public void deleteUser() {
+        List<StudyMaterial> studyMaterialList = studyMaterialDAO.getStudyMaterialByUserID(userID);
+        List<StudyGoal> studyGoalList = studyGoalDAO.getStudyGoalsByUserID(userID);
+        List<AIResponse> aiResponseList = aiResponseDAO.getAIResponsesByUserID(userID);
+        for (StudyMaterial studyMaterial : studyMaterialList) {
+            studyMaterialDAO.deleteStudyMaterialByID(studyMaterial.getStudyMaterialID());
+        }
+        for (StudyGoal studyGoal : studyGoalList) {
+            studyGoalDAO.deleteStudyGoal(studyGoal);
+        }
+        for (AIResponse aiResponse : aiResponseList) {
+            aiResponseDAO.deleteAIResponse(aiResponse);
+        }
+        userDAO.deleteUserByID(this);
     }
 
     /**

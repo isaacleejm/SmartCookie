@@ -19,6 +19,14 @@ public interface IUser {
         User user = userDAO.getUserByUsername(username);
         if (user == null) { return null; }
         if (password.equals(user.getPassword())) {
+            if (user.getDateLoggedIn().equals(LocalDate.now().minusDays(1).toString())) {
+                user.setDateLoggedIn(LocalDate.now().toString());
+                user.setStreak(user.getStreak() + 1);
+            } else if (!user.getDateLoggedIn().equals(LocalDate.now().toString())) {
+                user.setDateLoggedIn(LocalDate.now().toString());
+                user.setStreak(1);
+            }
+            userDAO.updateUser(user);
             return user;
         } else {
             return null;
@@ -48,10 +56,9 @@ public interface IUser {
     /**
      * Function deletes an existing record of a User from the User Database
      * All records related to this User (including Fortune, StudyMaterial, StudyGoal) will be deleted along with the User.
-     * Once all data has been deleted, they will be directed to the login page.
-     * @return
+     * Once all data has been deleted, they will be directed to the landing page.
      */
-    abstract boolean deleteUser();
+    abstract void deleteUser();
 
 
     /**

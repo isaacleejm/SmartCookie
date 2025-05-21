@@ -2,6 +2,9 @@ package cab302.iirtt.assignment1.model;
 
 import java.util.List;
 
+/**
+ * Interface for the AIResponse Object with methods for the AIResponse class.
+ */
 public interface IAIResponse {
 
     /**
