@@ -1,5 +1,6 @@
 package cab302.iirtt.assignment1;
 
+import cab302.iirtt.assignment1.controller.AichatbotController;
 import cab302.iirtt.assignment1.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+//import java.util.List;
 
 public class MainApplication extends Application {
     public static User currentUser = null; // Stores the current logged-in User

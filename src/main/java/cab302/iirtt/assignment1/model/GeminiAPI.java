@@ -48,9 +48,6 @@ public class GeminiAPI {
             JSONObject parts = candidates.getJSONObject(0).getJSONObject("content").getJSONArray("parts").getJSONObject(0);
             response = parts.getString("text");
 
-            // Printing out the response
-            // System.out.println(response);
-
             return response;
 
         } catch (Exception e) { // catches all exceptions
