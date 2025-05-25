@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -248,24 +247,11 @@
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="50.0" arcWidth="75.0" fill="#0900ff" height="55.0" layoutX="40.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="300.0" />
-            <ComboBox fx:id="advicetype" layoutX="40.0" layoutY="95.0" prefHeight="60.0" prefWidth="300.0" promptText="All Advice / Tips" style="-fx-background-color: transparent;" stylesheets="@styles/styles.css" />
-            <ScrollPane id="scrollgoals" layoutX="40.0" layoutY="174.0" prefHeight="442.0" prefWidth="1001.0">
+            <ScrollPane id="scrollgoals" fx:id="scrollPane" fitToWidth="true" layoutX="50.0" layoutY="109.0" prefHeight="551.0" prefWidth="1001.0">
                <content>
-                  <AnchorPane fx:id="displayPane" minHeight="0.0" minWidth="0.0" prefHeight="425.0" prefWidth="1000.0">
-                     <children>
-                        <HBox prefHeight="425.0" prefWidth="300.0" />
-                     </children>
-                  </AnchorPane>
+                  <VBox fx:id="scrollContent" prefHeight="548.0" prefWidth="999.0" />
                </content>
             </ScrollPane>
-            <Rectangle arcHeight="50.0" arcWidth="75.0" fill="#0900ff" height="55.0" layoutX="791.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-text-box-border: transperent;" width="250.0" />
-            <Text fill="WHITE" layoutX="813.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Advice/Tips  +" wrappingWidth="221.4462890625">
-               <font>
-                  <Font name="Comic Sans MS" size="24.0" />
-               </font>
-            </Text>
-            <Rectangle id="newfortunebutton" arcHeight="50.0" arcWidth="75.0" fill="#0900ff00" height="55.0" layoutX="791.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-text-box-border: transperent;" width="250.0" />
          </children>
       </AnchorPane>
    </children>
