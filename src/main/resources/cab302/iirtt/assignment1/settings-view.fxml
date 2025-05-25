@@ -349,7 +349,7 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fx:id="namedisplay" fill="#1100ff" layoutX="41.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE NAME SAMPLE">
+                                    <Text fx:id="nameDisplay" fill="#1100ff" layoutX="41.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE NAME SAMPLE">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -360,12 +360,12 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="#1100ff" layoutX="42.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+                                    <Text fill="#1100ff" layoutX="42.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fx:id="emaildisplay" fill="#1100ff" layoutX="41.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE EMAIL SAMPLE">
+                                    <Text fx:id="emailDisplay" fill="#1100ff" layoutX="41.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAMPLE EMAIL SAMPLE">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
