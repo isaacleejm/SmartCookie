@@ -1,0 +1,220 @@
+[33mcommit dd375b3acf5efadfa8d0161706c552a9babc1920[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 2c1816f 3eb54f5
+Author: RennyMatis2000 <rennysaurus@gmail.com>
+Date:   Wed May 21 12:26:26 2025 +1000
+
+    Merge pull request #118 from isaacleejm/FXMLfinalize
+    
+    Implemented changing mood in dashboard, mood updates in database when…
+
+[33mcommit 3eb54f5ca539f92ab1e2aa84f935c0afbe33b84f[m[33m ([m[1;31morigin/FXMLfinalize[m[33m)[m
+Author: Tao Ming Lim <taoming.lim@connect.qut.edu.au>
+Date:   Wed May 21 01:13:07 2025 +1000
+
+    Implemented changing mood in dashboard, mood updates in database when another is selected.
+    
+    Fixed AIChatbot AnchorPane not being aligned with user input text box
+    
+    Updated visuals for create study goals popup
+
+[33mcommit 2c1816fea246de9f11a9be8f5ef7d70955835409[m
+Merge: 11e4916 9228f46
+Author: RennyMatis2000 <rennysaurus@gmail.com>
+Date:   Tue May 20 15:38:18 2025 +1000
+
+    Merge pull request #117 from isaacleejm/UserSHFeatures
+    
+    Implementation of User Deletion, all data regarding the user is deleted
+
+[33mcommit 11e4916241d439de5bc3913d0c3bcdf78c5a386b[m
+Merge: 5d1a96d 8e4874d
+Author: RennyMatis2000 <rennysaurus@gmail.com>
+Date:   Tue May 20 15:37:03 2025 +1000
+
+    Merge pull request #116 from isaacleejm/displayStreaks
+    
+    Implementation of streaks update
+
+[33mcommit 8e4874d39909c5f549524e753e348affd5e575af[m[33m ([m[1;31morigin/displayStreaks[m[33m)[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 23:44:11 2025 +1000
+
+    fixed userTest
+
+[33mcommit 9228f46c971c4d2662a66078e83222e416937b24[m[33m ([m[1;31morigin/UserSHFeatures[m[33m)[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 23:43:02 2025 +1000
+
+    fixed userTest again
+
+[33mcommit fb2b835ba4d3330ca4cbd6913b314924415f30da[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 23:42:42 2025 +1000
+
+    fixed userTest
+
+[33mcommit 9d4c76e61483cea6756279f5c30db8df79a6ef87[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 23:37:15 2025 +1000
+
+    Implementation of User Deletion, all data regarding the user is deleted
+
+[33mcommit 1c3e94c033e240c2df7b811c23c46377f8c976ff[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 23:02:01 2025 +1000
+
+    Implementation of streaks update
+
+[33mcommit 5d1a96d818dd744451736da00b3b92ef9b2509df[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 16:03:55 2025 +1000
+
+    Fixed bug regarding Today's StudyGoal display in Dashboard
+
+[33mcommit ae41ace13734cded908cc7b044b69c4f7892b61e[m
+Merge: 982673f f3ea885
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 14:12:11 2025 +1000
+
+    Merge pull request #115 from isaacleejm/IsaacJavaDocs
+    
+    Added new adiditional Javadocs to all classes and interfaces in the model directory
+
+[33mcommit f3ea8850405815cce5ff0e28e8a87e99f9968e0c[m[33m ([m[1;31morigin/IsaacJavaDocs[m[33m)[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 14:09:40 2025 +1000
+
+    added more Javadocs
+
+[33mcommit 255b87491d01a4957dea995e05e2af44be746efa[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 14:04:52 2025 +1000
+
+    added more JavaDoc
+
+[33mcommit 982673f4734fd1f3e2d382f3cb5ecc19ed787b4d[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 13:11:31 2025 +1000
+
+    edited test cases for studyMaterialTest
+
+[33mcommit 3eeac466e10ccbca3084560a2c65b2d88c89ed0b[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 13:01:41 2025 +1000
+
+    Added StudyMaterial Test Cases
+
+[33mcommit 72b5778f6be17dac987d041e0c0b96b82afa6c28[m
+Merge: 90552bf 49e85f7
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Wed May 14 10:33:43 2025 +1000
+
+    Merge pull request #114 from isaacleejm/RennyAIChatBot
+    
+    Added extra javadoc commenting to classes
+
+[33mcommit 49e85f702d6e4cf8c0c56ab9de6ddb4a60ad4142[m[33m ([m[1;31morigin/RennyAIChatBot[m[33m, [m[1;32mRennyAIChatBot[m[33m)[m
+Author: RennyMatis2000 <rennysaurus@gmail.com>
+Date:   Wed May 14 09:24:12 2025 +1000
+
+    Added extra javadoc commenting to classes
+
+[33mcommit 90552bfbadb39053d6ff4af4d519843ff36c77a2[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 23:32:49 2025 +1000
+
+    fixed major bug
+
+[33mcommit ec07a5e246418c45148f862d7209dc420b78798a[m
+Merge: cfc7c34 f46f0e2
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 23:23:33 2025 +1000
+
+    Merge pull request #113 from isaacleejm/displayTodayGoal
+    
+    Implementation of Today's StudyGoal and Streaks in Dashboard
+
+[33mcommit cfc7c341618430aaec375b496a77e9f121882a77[m
+Merge: c5de9b8 73cc479
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 22:55:18 2025 +1000
+
+    Merge pull request #112 from isaacleejm/IsaiahBranch2
+    
+    Added filtering, automatic priority sorting, delete and pin functions to Study Goals.
+
+[33mcommit c5de9b84e8f701e4a81824e8fe2f4c9dbfa5e7bb[m
+Merge: c8fced3 c41ea28
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 22:55:05 2025 +1000
+
+    Merge pull request #111 from isaacleejm/RennyAIChatBot
+    
+    Added chat history, with ability for user to speak to the AI Chat bot and receive Advice and Tips
+
+[33mcommit 73cc479e8da90a2db8966f56ebbdfcb62066d1c2[m[33m ([m[1;31morigin/IsaiahBranch2[m[33m)[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 22:53:50 2025 +1000
+
+    Update StudyGoalsController.java
+
+[33mcommit 6ad3b27e44423da9e116d5a08001debdc1cb3ea9[m
+Merge: ff066e0 c8fced3
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 20:18:41 2025 +1000
+
+    Merge branch 'master' into IsaiahBranch2
+
+[33mcommit f46f0e279acdbcd0bcd089602cb05597e5751032[m[33m ([m[1;31morigin/displayTodayGoal[m[33m)[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 18:59:20 2025 +1000
+
+    Implementation of Today's StudyGoal in Dashboard
+
+[33mcommit ff066e0f334a947fca9883a834892e8ac4d31a93[m
+Author: Isaiah Garces <i.garces@connect.qut.edu.au>
+Date:   Tue May 13 18:32:07 2025 +1000
+
+    Added filtering, automatic priority sorting, delete and pin functions to Study Goals.
+
+[33mcommit c41ea28d199f364f612b3d2ee3448fe1327cfd1a[m
+Author: RennyMatis2000 <rennysaurus@gmail.com>
+Date:   Tue May 13 17:44:02 2025 +1000
+
+    Added chat history, with ability for user to speak to the AI Chat bot and receive Advice and Tips.
+
+[33mcommit 48085cf3744a8a0cfdd9a80df5195fb556cc1944[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Tue May 13 00:59:54 2025 +1000
+
+    Implemented Steak display on Dashboard
+
+[33mcommit c8fced3ce7e7fe9a4d8922b07ef54beb6f01fcf3[m
+Merge: 0501dd5 a8363fc
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Mon May 12 22:31:17 2025 +1000
+
+    Merge pull request #110 from isaacleejm/dashboardStreak
+    
+    Added visuals for login streak in dashboard page.
+
+[33mcommit a8363fcfebd24d903a7ebecaf933c7a06838a161[m[33m ([m[1;31morigin/dashboardStreak[m[33m)[m
+Author: Tao Ming Lim <taoming.lim@connect.qut.edu.au>
+Date:   Mon May 12 17:52:31 2025 +1000
+
+    Added visuals for login streak in dashboard page.
+
+[33mcommit 0501dd5ad4d0b7535d9e71089ad031d2033bcb3c[m
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Mon May 12 16:55:47 2025 +1000
+
+    added IUser Javadoc
+
+[33mcommit 6e8b3d9cb790c5f66d092c3fa42853b703e5d988[m
+Merge: 758bc75 aa0ee2b
+Author: isaacleejm <108120700+isaacleejm@users.noreply.github.com>
+Date:   Mon May 12 16:05:02 2025 +1000
+
+    Merge pull request #108 from isaacleejm/RennyAIChatBot
+    
+    Moved AIChatBot functionality into AdviceTip files, e

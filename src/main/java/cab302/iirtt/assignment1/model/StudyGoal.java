@@ -38,9 +38,6 @@ public class StudyGoal implements IStudyGoal {
         this.lastModified = lastModified;
         this.dateCreated = dateCreated;
         this.userID = userID;
-
-//        this.mood = "neutral";
-//        this.memberSince = LocalDate.now().toString();
     }
 
     // Getter and Setter

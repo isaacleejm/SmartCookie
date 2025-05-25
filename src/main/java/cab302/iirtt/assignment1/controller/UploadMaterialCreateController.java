@@ -130,12 +130,6 @@ public class UploadMaterialCreateController {
 
         materialDescriptionField.setWrapText(true);
 
-//        StudyMaterial studyMaterial = studyMaterialDAO.getStudyMaterialByID(UploadMaterialController.selectedID);
-//        materialTitleField.setText(studyMaterial.getStudyMaterialTitle());
-//        materialSubjectField.setText(studyMaterial.getStudyMaterialSubject());
-//        materialDescriptionField.setText(studyMaterial.getStudyMaterialDescription());
-//        materialDateModifiedField.setText(studyMaterial.getDateModified());
-//        materialDateCreatedField.setText(studyMaterial.getDateCreated());
     }
 
     @FXML

@@ -15,9 +15,7 @@ public class AIResponseDAO implements IAIResponseDAO{
     // Constructor, creates connection with database if it exists, otherwise, it will create a database.db. Then it will create an AI responses table if it does not already exist.
     public AIResponseDAO() {
         connection = DatabaseConnection.getInstance();
-//        deleteTable(); // Used for testing, TO BE REMOVED LATER
         createTable();
-//        insertSampleData(); // Used for testing, TO BE REMOVED LATER
     }
 
     public void start() {

@@ -37,10 +37,6 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        // The two lines below is used to test the Gemini API
-//        GeminiAPI geminiAPI = new GeminiAPI();
-//        String generatedResponse = geminiAPI.run("How does AI work? Please explain in less than 40 words.");
-//        System.out.println(generatedResponse);
 
         // This should create the database (if the database has not yet been created) and create the users table (if users table has not yet been created)
         UserDAO userDAO = new UserDAO();
@@ -57,38 +53,6 @@ public class MainApplication extends Application {
         // This should create the database (if the database has not yet been created) and create the studyMaterials table (if studyMaterials table has not yet been created)
         StudyMaterialDAO studyMaterialDAO = new StudyMaterialDAO();
         studyMaterialDAO.start();
-
-
-
-//        IUser.userRegistration("TestName", "LastName", "myUsername", "Password123"); // It works, but has not format checking
-//        IUser user = IUser.userLogin("johndoe", "password123"); // It works, it returns the user that was logged in, and returns null if failed
-
-//        Testing generateResponse
-//        User user = IUser.userLogin("johndoe", "!Password123");
-//        MainApplication.currentUser = user;
-//        List<AIResponse> list = aiResponseDAO.getAllAIResponse();
-//        for (AIResponse response : list) {
-//            if (response instanceof FortuneCookie) {
-//                response.generateResponse("", "neutral");
-//            }
-//        }
-
-        // Test generating a response from user input - Uncomment the code block below
-
-//        // Simulate a user is logged in
-//        User user = IUser.userLogin("johndoe", "!Password123");
-//        // Simulate the main application is working with the state being the current user
-//        MainApplication.currentUser = user;
-//        // Generate a controller object
-//        AichatbotController controller = new AichatbotController();
-//        // Generate responses, first input indicates an arbitrary question about study material
-//        controller.testGenerateResponse("Hello, I am learning about the alphabet currently");
-//        // Second input indicates a follow-up question for the AI to reply on
-//        controller.testGenerateResponse("What is the word associated with the letter Y, H and F?");
-//        // Third input indicates a statement that has nothing to do with the study material, or studying, self-improvement or learning.
-//        controller.testGenerateResponse("The world's longest concert lasted 453 hours.");
-//        // Fourth input indicates a statement that is irrelevant, with emotional context and the name of the AI (this is because Gemini has trouble dealing with emotional prompts, or referencing the AI's given name).
-//        controller.testGenerateResponse("I love you The SmartestCookie.");
 
         launch();
 
