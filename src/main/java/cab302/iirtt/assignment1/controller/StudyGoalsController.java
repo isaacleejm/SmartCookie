@@ -95,9 +95,12 @@ public class StudyGoalsController {
         }
     }
 
-    // Hover for Left Navigation Bar
+
+    /**
+     * Hover for Left Navigation Bar.
+     */
     @FXML
-    private Rectangle dashboard; // fx:id in Scene Builder
+    private Rectangle dashboard;
     @FXML
     private Rectangle uploadmaterial;
     @FXML
@@ -122,7 +125,9 @@ public class StudyGoalsController {
     public void initialize() {
         currentUser = MainApplication.currentUser;
 
-        // Hover effect
+        /**
+         * Hover effect
+         */
         dashboard.setOnMouseEntered(e -> dashboard.setFill(Color.web("#0088ff1a")));
         dashboard.setOnMouseExited(e -> dashboard.setFill(Color.web("#0088ff00")));
         uploadmaterial.setOnMouseEntered(e -> uploadmaterial.setFill(Color.web("#0088ff1a")));
