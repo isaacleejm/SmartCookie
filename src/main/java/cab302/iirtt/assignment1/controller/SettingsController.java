@@ -3,8 +3,8 @@ package cab302.iirtt.assignment1.controller;
 import cab302.iirtt.assignment1.MainApplication;
 import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -18,16 +18,15 @@ import java.util.Optional;
 
 public class SettingsController {
 
-    protected static int sessionDuration;
-    private long startTime;
-    private AnimationTimer timer;
+    public static UserDAO userDAO = new UserDAO();
 
     @FXML private Text usernameText;
     @FXML private Text goalsCompletedText;
-    @FXML private Text sessionDurationText;
+    @FXML private Text streakProgressText;
     @FXML private Text responsesGatheredText;
     @FXML private Text nameDisplay;
     @FXML private Text emailDisplay;
+
 
     @FXML
     private void switchToDashboard() throws IOException {
@@ -134,9 +133,12 @@ public class SettingsController {
         AIResponseDAO aiResponseDAO = new AIResponseDAO();
         User user = MainApplication.currentUser;
 
+
         List<StudyGoal> goalsCompletedList = studyGoalDAO.getCompletedStudyGoalsByUserID(user.getUserID());
         int goalsCompleted = goalsCompletedList.size();
         goalsCompletedText.setText(Integer.toString(goalsCompleted));
+
+        streakProgressText.setText(Integer.toString(MainApplication.currentUser.getStreak()));
 
         List<AIResponse> responsesGatheredList = aiResponseDAO.getAIResponsesByUserID(user.getUserID());
         int responsesGathered = responsesGatheredList.size();
@@ -149,25 +151,6 @@ public class SettingsController {
         nameDisplay.setText(fullname);
 
         emailDisplay.setText(username);
-
-
-        startTimer(); // starts the session timer
-        // TODO: This method is currently resetting every time dashboard runs
-    }
-
-    public void startTimer() {
-        startTime = System.nanoTime();
-
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                long elapsedNanos = now - startTime;
-                double elapsedSeconds = elapsedNanos / 1_000_000_000.0;
-                long elapsedMinutes = Math.round(elapsedSeconds / 60);
-                sessionDurationText.setText(String.format("%d", elapsedMinutes) + " m");
-            }
-        };
-        timer.start();
     }
 
     @FXML
@@ -197,5 +180,86 @@ public class SettingsController {
             }
         }
     }
-}
 
+    @FXML
+    private void editNameOnClick() {
+        User user = MainApplication.currentUser;
+        // Create a custom dialog
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Full Name");
+        dialog.setHeaderText(null);
+
+        // Add OK and Cancel buttons
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(okButton, cancelButton);
+
+        // Creates two TextFields and adds them to the dialog
+        TextField firstName = new TextField();
+        firstName.setPromptText("Enter text here...");
+        firstName.setText(user.getFirstName());
+        TextField lastName = new TextField();
+        lastName.setPromptText("Enter text here...");
+        lastName.setText(user.getLastName());
+
+        // Layout the TextField with a label
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.add(new Label("First Name"), 0, 0);
+        grid.add(new Label("Last Name"), 0, 1);
+        grid.add(firstName, 1, 0);
+        grid.add(lastName, 1, 1);
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Capture the result when OK is clicked
+        dialog.setResultConverter(buttonType -> {
+            if (buttonType == okButton) {
+                MainApplication.currentUser.modifyUser(firstName.getText(),lastName.getText(),user.getUsername(),user.getPassword(),user.getMood(),user.getMemberSince());
+                nameDisplay.setText(firstName.getText() + " " + lastName.getText());
+            }
+            return null; // Return null for Cancel
+        });
+        dialog.showAndWait().orElse(null);
+    }
+    @FXML
+    private void editUsernameOnClick() {
+        User user = MainApplication.currentUser;
+        // Create a custom dialog
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Username");
+        dialog.setHeaderText(null);
+
+        // Add OK and Cancel buttons
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(okButton, cancelButton);
+
+        // Create a TextField and add it to the dialog
+        TextField username = new TextField();
+        username.setPromptText("Enter text here...");
+        username.setText(user.getUsername());
+
+        // Layout the TextField with a label
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.add(new Label("Username"), 0, 0);
+        grid.add(username, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Capture the result when OK is clicked
+        dialog.setResultConverter(buttonType -> {
+            if (buttonType == okButton) {
+                MainApplication.currentUser.modifyUser(user.getFirstName(),user.getLastName(),username.getText(),user.getPassword(),user.getMood(),user.getMemberSince());
+                usernameText.setText(username.getText());
+                emailDisplay.setText(username.getText());
+            }
+            return null; // Return null for Cancel
+        });
+        dialog.showAndWait().orElse(null);
+    }
+
+}
