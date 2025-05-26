@@ -1,17 +1,21 @@
 package cab302.iirtt.assignment1.controller;
 
 import cab302.iirtt.assignment1.MainApplication;
+import cab302.iirtt.assignment1.model.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -71,21 +75,15 @@ public class MyFortuneController {
         }
     }
 
-    @FXML
-    private AnchorPane displayPane;
+    private AIResponseDAO aiResponseDAO = new AIResponseDAO();
+    private int count = 1;
+    private int colorIndex = 0;
 
     @FXML
-    private void changeFortune() throws IOException {
-        Text sampleText = new Text();
-        sampleText.setText("hello, this is a sample text " + fortunetype.getValue());
+    private VBox scrollContent;
 
-        sampleText.setX(50);
-        sampleText.setY(50);
-
-        displayPane.getChildren().add(sampleText);
-
-
-    }
+    @FXML
+    private ScrollPane scrollPane;
 
 
     // Hover for Left Navigation Bar
@@ -107,13 +105,11 @@ public class MyFortuneController {
     private Rectangle settings;
     @FXML
     private Rectangle logout;
-    @FXML
-    private ComboBox<String> fortunetype;
+
 
     @FXML
     public void initialize() {
         // Dummy data for ComboBox
-        fortunetype.getItems().addAll("Option 1", "Option 2", "Option 3");
 
         Color originalColor = (Color) dashboard.getFill();
 
@@ -136,6 +132,72 @@ public class MyFortuneController {
         settings.setOnMouseExited(e -> settings.setFill(Color.web("#0088ff00")));
         logout.setOnMouseEntered(e -> logout.setFill(Color.web("#0088ff1a")));
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
+
+        loadResponses();
+    }
+
+    private Pane createGoalCard(AIResponse response) {
+        String color;
+
+        switch (colorIndex) {
+            case 0:
+                color = "#F4511E";
+                colorIndex = 1;
+                break;
+            case 1:
+                color = "#FBC02D";
+                colorIndex = 2;
+                break;
+            default:
+                color = "#64B5F6";
+                colorIndex = 0;
+                break;
+        }
+        VBox card = new VBox(8);
+        card.setPadding(new Insets(10));
+        card.setStyle("-fx-background-color:" + color + ";-fx-background-radius:15;");
+
+        Label numberLabel = new Label(count +".");
+        numberLabel.setStyle("-fx-font-weight:bold;-fx-font-size:16px;");
+        Label descriptionLabel = new Label(response.getResponseText());
+        Label dateCreatedLabel = new Label("Date Generated: " + response.getResponseDate());
+        Label ratingLabel = new Label(response.getResponseRating() > 0 ? "Rating: " + Integer.toString(response.getResponseRating()) : "Rating: Unrated");
+        Label statusLabel = new Label(response.getFavourite() ? "Favourited" : "Not Favourited");
+
+        HBox actions = new HBox(10);
+        Button deleteBtn = new Button("🗑 Delete Response");
+        deleteBtn.setOnAction(e -> {
+            aiResponseDAO.deleteAIResponse(response);
+            loadResponses();
+        });
+
+        Button statusToggleBtn = new Button(response.getFavourite() ? "↩ Unfavourite" : "✔ Mark as Favourite");
+        statusToggleBtn.setOnAction(e -> {
+            response.setFavourite(!response.getFavourite());
+            aiResponseDAO.updateAIResponse(response);
+            loadResponses();
+        });
+
+        actions.getChildren().addAll(deleteBtn, statusToggleBtn);
+
+        card.getChildren().addAll(numberLabel, descriptionLabel, dateCreatedLabel, ratingLabel, statusLabel, actions);
+        count++;
+        return card;
+    }
+
+    /**
+     * Loads and displays all fortune AI Responses for current user.
+     */
+    private void loadResponses() {
+        scrollContent.getChildren().clear();
+        count = 1;
+        colorIndex = 0;
+        List<AIResponse> responses = aiResponseDAO.getAIResponsesByType(MainApplication.currentUser.getUserID(), AIResponse.ResponseType.FUN_PREDICTION);
+        System.out.println("size:" +responses.size());
+        for (AIResponse response : responses) {
+            System.out.println(count);
+            scrollContent.getChildren().add(createGoalCard(response));
+        }
     }
 }
 

@@ -103,14 +103,14 @@ public class AIResponseDAO implements IAIResponseDAO{
     public void updateAIResponse(AIResponse aiResponse) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE AIResponses SET responseType = ?, responseRating = ?, responseDate = ?, responseText = ?, userInput = ?, favourite = ?, userID = ? WHERE responseID = ?");
-            statement.setInt(1, aiResponse.getAIResponseID());
-            statement.setString(2, aiResponse.getResponseType().name());
-            statement.setInt(3, aiResponse.getResponseRating());
-            statement.setString(4, aiResponse.getResponseDate());
-            statement.setString(5, aiResponse.getResponseText());
-            statement.setString(6, aiResponse.getUserInput());
-            statement.setBoolean(7, aiResponse.getFavourite());
-            statement.setInt(8, aiResponse.getUserID());
+            statement.setString(1, aiResponse.getResponseType().name());
+            statement.setInt(2, aiResponse.getResponseRating());
+            statement.setString(3, aiResponse.getResponseDate());
+            statement.setString(4, aiResponse.getResponseText());
+            statement.setString(5, aiResponse.getUserInput());
+            statement.setBoolean(6, aiResponse.getFavourite());
+            statement.setInt(7, aiResponse.getUserID());
+            statement.setInt(8, aiResponse.getAIResponseID());
 
             statement.executeUpdate();
         } catch (Exception e) {
