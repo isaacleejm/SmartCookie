@@ -152,23 +152,19 @@ public class AichatbotController extends AIResponse {
         logout.setOnMouseExited(e -> logout.setFill(Color.web("#0088ff00")));
     }
 
-    public void testGenerateResponse(String userInput) {
-        AdviceTip tip = new AdviceTip();
-        tip.generateResponse(userInput);
-    }
 
     @FXML
     private void handleSendMessage() {
         String userMessage = inputField.getText().trim();
         if (userMessage.isEmpty()) return;
 
-        // --- USER name label
+        // USER name label
         Label userName = new Label("USER");
         HBox userNameBox = new HBox(userName);
         userNameBox.setAlignment(Pos.CENTER_LEFT);
         userNameBox.setPadding(new Insets(0, 10, 0, 10));
 
-        // --- USER message
+        // USER message
         Label userLabel = new Label(userMessage);
         userLabel.setStyle("-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 10; -fx-border-color: #999;");
         userLabel.setAlignment(Pos.CENTER_LEFT);
@@ -181,7 +177,7 @@ public class AichatbotController extends AIResponse {
 
         chatContainer.getChildren().addAll(userNameBox, userBox);
 
-        // --- Generate AI reply
+        // Generate AI reply
         AdviceTip tip = new AdviceTip();
         tip.generateResponse(userMessage);
 
@@ -189,7 +185,7 @@ public class AichatbotController extends AIResponse {
                 .get(tip.getChatHistory().size() - 1)
                 .replace("SmartestCookie: ", "");
 
-        // --- SmartestCookie name label
+        // SmartestCookie name label
         Label cookieName = new Label("SmartestCookie");
         AnchorPane cookieNameAnchor = new AnchorPane(cookieName);
         cookieNameAnchor.setPrefWidth(chatContainer.getWidth());
@@ -199,7 +195,7 @@ public class AichatbotController extends AIResponse {
         cookieNameBox.setLayoutX(450);
         cookieNameAnchor.getChildren().add(cookieNameBox);
 
-        // --- SmartestCookie message
+        // SmartestCookie message
         Label cookieLabel = new Label(reply);
         cookieLabel.setStyle("-fx-background-color: #e8e8e8; -fx-padding: 10; -fx-background-radius: 10;");
         cookieLabel.setWrapText(true);
