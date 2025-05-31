@@ -123,7 +123,7 @@
                                  </stops>
                               </LinearGradient>
                            </fill></Rectangle>
-                        <Text fill="WHITE" layoutX="170.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                        <Text fill="WHITE" layoutX="170.0" layoutY="80.0" onMouseClicked="#switchToLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                            <font>
                               <Font name="Comic Sans MS" size="34.0" />
                            </font>
@@ -222,7 +222,7 @@
                                  </stops>
                               </LinearGradient>
                            </fill></Rectangle>
-                        <Text fill="WHITE" layoutX="145.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+                        <Text fill="WHITE" layoutX="145.0" layoutY="80.0" onMouseClicked="#switchToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
                            <font>
                               <Font name="Comic Sans MS" size="34.0" />
                            </font>
