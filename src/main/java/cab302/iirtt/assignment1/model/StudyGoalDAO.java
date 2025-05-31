@@ -52,7 +52,6 @@ public class StudyGoalDAO implements IStudyGoalDAO {
                     + "dateCreated DATETIME NOT NULL,"
                     + "userID INTEGER NOT NULL,"
                     + "FOREIGN KEY (userID) REFERENCES users(userID)"
-                    // userID is not a Foreign Key until it can be linked with the usersDatabase
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
