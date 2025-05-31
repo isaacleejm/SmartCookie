@@ -18,10 +18,8 @@ public class StudyGoalDAO implements IStudyGoalDAO {
      * StudyGoalDAO Constructor, connects to the Database and creates the studyGoal table if it does not exist.
      */
     public StudyGoalDAO() {
-        connection = DatabaseConnection.getInstance();
-//        deleteTable(); // Used for testing, TO BE REMOVED LATER
-        createTable();
-//        insertSampleData(); // Used for testing, TO BE REMOVED LATER
+        connection = DatabaseConnection.getInstance(); // Creates an instance of the database if it does not already exist, else get the instance
+        createTable(); // Creates a StudyGoal table within the database if it does not exist
     }
 
     /**
